@@ -3,7 +3,6 @@
     flex-direction: column;
     height: 100%;
     width: 70%;
-    border: 1px solid black;
     margin-top: 1rem;
 }
 
@@ -12,6 +11,7 @@
     flex-direction: column;
     border-radius: 7px;
     background-color: #ffff;
+    border: 1px solid #eae9e7;
     min-height:40rem ;
 }
 
@@ -91,6 +91,7 @@
 
 .footerPart:hover{
     background-color: #f3f2ef;
+    cursor: pointer;
 }
 
 .footerPart >label{
@@ -119,4 +120,41 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+}
+
+.commentInput{
+    border: none;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    height: 2rem;
+}
+
+.commentInput:focus{
+    outline: none;
+}
+
+.commentDiv{
+    margin-left: 0.4rem;
+    display: flex;
+    flex-direction: column;
+    background-color: #f3f2ef;
+    padding: 0.4rem;
+}
+
+.commentImageDiv{
+    margin: 1rem;
+    display: flex;
+    padding: 1rem;
+    flex-direction: row;
+}
+
+.commentHeader{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.commentConent{
+    text-align: start;
 }

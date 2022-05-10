@@ -7,9 +7,16 @@ import { faPeopleGroup } from '@fortawesome/free-solid-svg-icons'
 import { faBriefcase } from '@fortawesome/free-solid-svg-icons'
 import { faMessage } from '@fortawesome/free-solid-svg-icons'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
-import { faAngleDown } from '@fortawesome/free-solid-svg-icons'
+import { faDoorOpen } from '@fortawesome/free-solid-svg-icons'
+import { useState } from 'react';
 
 function Navigation() {
+
+    const [state,setState] = useState(0)
+    function changeState(state){
+        setState(state)
+    }
+
     return (
         <div className={classes.wrap}>
             <div className={classes.search}>
@@ -21,25 +28,29 @@ function Navigation() {
             </div>
             <div className={classes.gap}></div>
             <div className={classes.navigation}>
-                <div className={classes.navigationDiv}>
+                <div className={state !== 0 ? classes.navigationDiv : classes.navigationDivActive} onClick={()=> changeState(0)}>
                 <FontAwesomeIcon icon={faHome}  className={classes.navigationIcon}/>
                     <label className={classes.navigationLabel}>Home</label>
                 </div>
-                <div className={classes.navigationDiv}>
+                <div className={state !== 1 ? classes.navigationDiv : classes.navigationDivActive} onClick={()=> changeState(1)}>
                 <FontAwesomeIcon icon={faPeopleGroup}  className={classes.navigationIcon}/>
                     <label className={classes.navigationLabel}>My network</label>
                 </div>
-                <div className={classes.navigationDiv}>
+                <div className={state !== 2 ? classes.navigationDiv : classes.navigationDivActive} onClick={()=> changeState(2)}>
                 <FontAwesomeIcon icon={faBriefcase}  className={classes.navigationIcon}/>
                     <label className={classes.navigationLabel}>Jobs</label>
                 </div>
-                <div className={classes.navigationDiv}>
+                <div className={state !== 3 ? classes.navigationDiv : classes.navigationDivActive} onClick={()=> changeState(3)}>
                 <FontAwesomeIcon icon={faMessage}  className={classes.navigationIcon}/>
                     <label className={classes.navigationLabel}>Messaging</label>
                 </div>
-                <div className={classes.navigationDiv}>
+                <div className={state !== 4 ? classes.navigationDiv : classes.navigationDivActive} onClick={()=> changeState(4)} >
                 <FontAwesomeIcon icon={faUser}  className={classes.navigationIcon}/>
-                    <label className={classes.navigationLabel}>Me<FontAwesomeIcon icon={faAngleDown}  className={classes.navigationIcon}/></label>
+                    <label className={classes.navigationLabel}>Me</label>
+                </div>
+                <div className={state !== 5 ? classes.navigationDiv : classes.navigationDivActive} onClick={()=> changeState(5)}>
+                <FontAwesomeIcon icon={faDoorOpen}  className={classes.navigationIcon}/>
+                    <label className={classes.navigationLabel}>Sign out</label>
                 </div>
             </div>
         </div>

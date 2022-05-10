@@ -6,7 +6,7 @@ import Homepage from './pages/Homepage/Homepage';
 import Mainpage from './pages/Mainpage/Mainpage';
 
 import './App.css';
-
+import Navigation from "../src/components/Navigation/Navigation";
 
 function App() {
 
@@ -19,6 +19,7 @@ function App() {
 
   return (
     <div className="App">
+        <Navigation></Navigation>
         <Routes>
             <Route path='/' element={<Mainpage />} />
             <Route path='/home' element={<Homepage />} />

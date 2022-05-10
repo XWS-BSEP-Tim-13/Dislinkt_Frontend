@@ -2,13 +2,15 @@ import classes from './Posts.module.css';
 import User from '../../images/user.png'
 import Unavailable from '../../images/unavailable.png'
 import { faThumbsUp } from '@fortawesome/free-solid-svg-icons'
+import { faThumbsDown } from '@fortawesome/free-solid-svg-icons'
 import { faComment } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useState } from 'react';
 function Posts(){
 
     const [commentSection,setCommentSection] = useState(false) 
-
+    const [comments,setComments] = useState([1,2,3])
+    const [dummyData,setDummyData] = useState("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ")
     return(
         <div className={classes.containerWrap}>
             <div className={classes.post}>
@@ -27,12 +29,16 @@ function Posts(){
                 </div>
                 <div className={classes.footer}>
                     <div className={classes.footerPart}>
-                    <FontAwesomeIcon icon={faThumbsUp}/>
-                    <label className={classes.lblMargin}>Like</label>
+                        <FontAwesomeIcon icon={faThumbsUp}/>
+                        <label className={classes.lblMargin}>Like</label>
+                    </div>
+                    <div className={classes.footerPart}>
+                        <FontAwesomeIcon icon={faThumbsDown}/>
+                        <label className={classes.lblMargin}>Dislike</label>
                     </div>
                     <div className={classes.footerPart} onClick={() => setCommentSection(!commentSection)}>
-                    <FontAwesomeIcon icon={faComment}/>
-                    <label className={classes.lblMargin}>Comment</label>
+                        <FontAwesomeIcon icon={faComment}/>
+                        <label className={classes.lblMargin}>Comment</label>
                     </div>
                 </div>
                 { commentSection &&
@@ -40,8 +46,26 @@ function Posts(){
                     <div className={classes.comment}>
                         <img src={User}  className={classes.img}/>
                         <div className={classes.createComment}>
-                            Add a comment...
+                            <textarea type="text" placeholder='Add a comment' className={classes.commentInput}/>
                         </div>
+                    </div>
+                    <div className={classes.comments}>
+                        {
+                            comments.map((comment,i) => 
+                            <div className={classes.commentImageDiv}>
+                                <div>
+                                <img src={User}  className={classes.img}/>
+                                </div>
+                            <div className={classes.commentDiv}>
+                                <div className={classes.commentHeader}>
+                                    <label>Stefan Ljubovic</label>
+                                    <label>4d</label>
+                                </div>
+                                <label className={classes.commentConent}>{dummyData}</label>
+                            </div>
+                            </div>
+                            )
+                        }
                     </div>
                 </div>
                 }
