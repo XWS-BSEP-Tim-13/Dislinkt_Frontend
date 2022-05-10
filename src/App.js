@@ -7,6 +7,8 @@ import Mainpage from './pages/Mainpage/Mainpage';
 
 import './App.css';
 import Navigation from "../src/components/Navigation/Navigation";
+import UserProfile from './components/UserProfile/UserProfile/UserProfile';
+
 
 function App() {
 
@@ -23,6 +25,7 @@ function App() {
         <Routes>
             <Route path='/' element={<Mainpage />} />
             <Route path='/home' element={<Homepage />} />
+            <Route path='/in' element={<UserProfile />} />
         </Routes>
     </div>
   );
