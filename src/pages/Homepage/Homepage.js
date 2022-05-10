@@ -14,7 +14,7 @@ function Homepage() {
                         <div className={classes.main}>
                             <div>
                                 <CreatePost></CreatePost>
-                                <Posts></Posts>
+                                <Posts className={classes.margin}></Posts>
                             </div>
                         </div>
                         <div className={classes.connect}>

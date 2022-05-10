@@ -5,4 +5,36 @@
     border: 1px solid #616365;
     border-radius: 7px;
     background-color: #ffff;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+}
+
+.row{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.img{
+    height: 50px;
+    width: 50px;
+}
+
+.post{
+    border:1px solid #616365;
+    border-radius: 15px;
+    width: 100%;
+    height: 90%;
+    margin-left: 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 1rem;
+    cursor: pointer;
+}
+
+.post:hover{
+    background-color: #f3f2ef;
 }

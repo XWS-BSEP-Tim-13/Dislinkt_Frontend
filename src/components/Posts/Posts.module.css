@@ -4,4 +4,119 @@
     height: 100%;
     width: 70%;
     border: 1px solid black;
+    margin-top: 1rem;
+}
+
+.post{
+    display: flex;
+    flex-direction: column;
+    border-radius: 7px;
+    background-color: #ffff;
+    min-height:40rem ;
+}
+
+.postHeader{
+    display: flex;
+    flex-direction: row;
+    padding: 1rem;
+}
+
+.user{
+    margin-left: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.smallText{
+    font-size: smaller;
+    color: #616365;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.username{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.img{
+    height: 50px;
+    width: 50px;
+}
+
+
+.postImage{
+    height: 30rem;
+    width: 100%;
+}
+
+.likeSection{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    width: 100%;
+    padding: 1rem;
+}
+
+.likeIcon{
+    color: #3f90e4;
+    margin-right: 3px;
+}
+
+.smallText1{
+    font-size: smaller;
+    color: #616365;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin-left: 2rem;
+}
+
+.footer{
+    display: flex;
+    flex-direction: row;
+    border-top:2px solid #f3f2e1;
+}
+
+.footerPart{
+    flex: 1;
+    padding: 1rem;
+    color:#616365;
+}
+
+.footerPart:hover{
+    background-color: #f3f2ef;
+}
+
+.footerPart >label{
+    margin-left: 0.5rem;
+}
+
+.description{
+    padding: 1rem;
+    text-align: left;
+}
+
+.createComment{
+    width: 100%;
+    border: 1px solid #616365;
+    padding: 1rem;
+    border-radius: 15px;
+}
+
+.commentSection{
+    display: flex;
+    flex-direction: column;
+}
+
+.comment{
+    padding: 1rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
