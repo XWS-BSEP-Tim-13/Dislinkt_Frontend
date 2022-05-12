@@ -17,3 +17,12 @@
     width: 3vh;
     height: 3vh;
 }
+
+.subtitle {
+    font-weight: bold;
+}
+
+.location {
+    font-weight: lighter;
+    font-style: oblique;
+}
