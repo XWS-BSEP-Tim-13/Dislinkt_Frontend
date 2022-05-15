@@ -1,0 +1,23 @@
+.cover {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    height: 40vh;
+}
+
+.imgCover {
+    flex-shrink: 0;
+    max-width: 100%;
+    min-height: 100%;
+    overflow-x: hidden;
+}
+
+.avatar {
+    border-radius: 50%;
+    position: absolute;
+    left: 1vw;
+    bottom: -3vh;
+    max-width: 8vw;
+    max-height: 16vh;
+}

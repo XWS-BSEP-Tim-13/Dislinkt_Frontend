@@ -1,0 +1,13 @@
+.skill {
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2vh;
+}
+
+.icon {
+    width: 1rem;
+    height: 1rem;
+    padding-left: 1vw;
+    cursor: pointer;
+}
