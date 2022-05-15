@@ -1,10 +1,10 @@
 //import { useEffect } from 'react';
 //import axios from 'axios';
 import { Route, Routes } from 'react-router-dom';
-
+import { useLocation } from 'react-router-dom'
 import Homepage from './pages/Homepage/Homepage';
 import Mainpage from './pages/Mainpage/Mainpage';
-
+import Network from './pages/Network/Network';
 import './App.css';
 import Navigation from "../src/components/Navigation/Navigation";
 import UserProfile from './components/UserProfile/UserProfile/UserProfile';
@@ -18,13 +18,15 @@ function App() {
         console.log(res.data)
     })
   }, []);*/
+  const location = useLocation();
 
   return (
     <div className="App">
-        <Navigation></Navigation>
+          { location.pathname !== '/' ? <Navigation /> : null }
         <Routes>
             <Route path='/' element={<Mainpage />} />
             <Route path='/home' element={<Homepage />} />
+            <Route path='/network' element={<Network />} />
             <Route path='/in' element={<UserProfile />} />
         </Routes>
     </div>

@@ -8,13 +8,18 @@ import { faBriefcase } from '@fortawesome/free-solid-svg-icons'
 import { faMessage } from '@fortawesome/free-solid-svg-icons'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
 import { faDoorOpen } from '@fortawesome/free-solid-svg-icons'
+import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
 function Navigation() {
 
     const [state,setState] = useState(0)
+    const navigate = useNavigate();
     function changeState(state){
         setState(state)
+        if(state ===1)  navigate('/network');
+        else if(state===0) navigate('/home');
+        else if(state==4) navigate('/in');
     }
 
     return (

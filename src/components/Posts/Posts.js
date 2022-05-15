@@ -25,6 +25,7 @@ function Posts(){
                 <img src={Unavailable} className={classes.postImage}/>
                 <div className={classes.likeSection}>
                 <label  className={classes.smallText}><FontAwesomeIcon icon={faThumbsUp}  className={classes.likeIcon}/>Ana and 300 others</label>
+                <label  className={classes.smallText}><FontAwesomeIcon icon={faThumbsDown}  className={classes.likeIcon}/>Ana and 300 others</label>
                 <label  className={classes.smallText1}>300 comments</label>
                 </div>
                 <div className={classes.footer}>
