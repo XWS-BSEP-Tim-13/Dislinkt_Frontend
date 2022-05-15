@@ -19,6 +19,7 @@ function Navigation() {
         setState(state)
         if(state ===1)  navigate('/network');
         else if(state===0) navigate('/home');
+        else if(state==2) navigate('/jobs');
         else if(state==3) navigate('/messaging');
         else if(state==4) navigate('/in');
     }
