@@ -56,7 +56,7 @@ const Post = () => {
                     <div className={classes.comments}>
                         {
                             comments.map((comment,i) => 
-                            <div className={classes.commentImageDiv}>
+                            <div className={classes.commentImageDiv} key={i}>
                                 <div>
                                 <img src={User}  className={classes.img}/>
                                 </div>

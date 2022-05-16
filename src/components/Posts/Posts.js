@@ -1,44 +1,45 @@
 import classes from './Posts.module.css';
-import React, { useState, useRef, useCallback,useEffect} from 'react'
+import React, { useState,useEffect} from 'react'
 import Post from '../Post/Post';
-import usePostsSearch from './usePostsSearch'
+import InfiniteScroll from 'react-infinite-scroll-component';
+import UserService from '../../services/UserService'
+
 function Posts(){
     const [pageNumber, setPageNumber] = useState(1)
-    const {
-        posts,
-        hasMore,
-        loading,
-        error
-      } = usePostsSearch(pageNumber)
+    const [posts,setPosts] =useState([])
+    const [loading,setLoading] = useState(false)
+    const [hasMore,setHasMore] =useState(true)
 
-      const observer = useRef()
-      const lastPostElementRef = useCallback(node => {
-        if (loading) return
-        if (observer.current) observer.current.disconnect()
-        observer.current = new IntersectionObserver(entries => {
-          if (entries[0].isIntersecting && hasMore) {
-            setPageNumber(prevPageNumber => prevPageNumber + 1)
-          }
-        })
-        if (node) observer.current.observe(node)
-      }, [loading, hasMore])
-
-    
-    
-
+    useEffect(() => {
+        setLoading(true)
+        const data = {
+            "username": "ljubo",
+            "page" : pageNumber
+        }
+        console.log('aaa')
+        UserService.feed(data)
+            .then(res=>{
+                setHasMore(res.data.lastPage !== pageNumber)
+                setPosts(prevPosts => {
+                    return [...new Set([...prevPosts, ...res.data.posts.map(post=> post)])]
+                  })
+                  setLoading(false)
+            })
+      }, [pageNumber])
 
     return(
         <div className={classes.containerWrap}>
+        <InfiniteScroll
+        loader={<h4>Loading...</h4>}
+        dataLength={posts.length}
+        next={()=>setPageNumber(prevPageNumber => prevPageNumber + 1)} 
+        hasMore={hasMore}>
             {
-                posts.map((posts,i) => {
-                    if(posts.lenght === i +1){
-                        return <Post ref={lastPostElementRef}  key={i}/>
-                    }else{
-                        return <Post key={i}/>
-                    }
-                })}
-                <div>{loading && 'Loading...'}</div>
-                <div>{error && 'Error'}</div>
+                
+                posts.map((post,i) => 
+                        <Post key={i}/>
+                )}
+        </InfiniteScroll>
         </div>
     )
 }

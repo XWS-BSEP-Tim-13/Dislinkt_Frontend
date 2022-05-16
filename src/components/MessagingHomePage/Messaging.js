@@ -15,7 +15,7 @@ function Messaging() {
             <div className={classes.messages}>
                 {
                     messages.map((message,i)=>
-                        <div className={classes.message}>
+                        <div className={classes.message}  key={i}>
                              <img src={User}  className={classes.img}/>
                              <div className={classes.content}>
                                 <label>Marija Kljestan</label>
