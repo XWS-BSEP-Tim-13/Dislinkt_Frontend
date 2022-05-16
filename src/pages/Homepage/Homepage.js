@@ -28,7 +28,10 @@ function Homepage() {
                         <div className={classes.main}>
                             <div>
                                 <CreatePost></CreatePost>
-                                <Posts className={classes.margin}></Posts>
+                                <Posts ></Posts>
+                                <Posts ></Posts>
+                                <Posts ></Posts>
+                                <Posts ></Posts>
                             </div>
                         </div>
                         <div className={classes.connect}>

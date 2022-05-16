@@ -1,5 +1,6 @@
 .containerWrap {
     margin: 0 10%;
+    margin-bottom: 5rem;
 }
 
 .content{
@@ -62,10 +63,6 @@
     flex-direction: column;
     width: 100%;
     align-items: flex-end;
-}
-
-.margin{
-    margin-top: 1rem;
 }
 
 @media only screen and (max-width: 800px) {
