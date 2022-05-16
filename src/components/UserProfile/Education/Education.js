@@ -11,7 +11,7 @@ const Education = ({education}) => {
         <div className={classes.info}>
             <div className={classes.title}> {education.school} </div>
             <div> {education.description} </div>
-            <div> <span className={classes.date}>{education.startDate.toLocaleDateString()} - {education.endDate.toLocaleDateString()}</span> </div>
+            <div> <span className={classes.date}>{new Date(education.startDate).toLocaleDateString()} - {new Date(education.endDate).toLocaleDateString()}</span> </div>
         </div>
 
     </div>

@@ -3,11 +3,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRemove } from '@fortawesome/free-solid-svg-icons'
 import classes from './Skill.module.css'
 
-const Skill = () => {
+const Skill = ({skill}) => {
   return (
     <div>
         <div className={classes.skill}>
-            AWS
+            {skill}
             <FontAwesomeIcon icon={faRemove} className={classes.icon} />
         </div>
         <hr />

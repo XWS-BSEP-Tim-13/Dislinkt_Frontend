@@ -4,19 +4,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPencil, faAdd } from '@fortawesome/free-solid-svg-icons'
 import classes from './Experiences.module.css'
 
-const Experiences = () => {
+const Experiences = ({experiences}) => {
 
-    const experience = {
-        title: "Head of sales department",
-        employmentType: "Full-time",
-        companyName: "Microsoft",
-        location: "Los Angeles",
-        isCurrentlyWorking: false,
-        startDate: new Date(),
-        endDate: new Date(),
-        industry: "Software",
-        description: "In charge of the eastern branch of sales department in LA."
-    }
+    const experienceItems = experiences.map(item => {
+        return(
+            <Experience experience={item} key={item.id}/>
+        )
+    });
+
     return (
         <div className={classes.container}>
             <div className={classes.title}> 
@@ -26,7 +21,7 @@ const Experiences = () => {
                     <FontAwesomeIcon icon={faAdd} className={classes.icon}/>
                 </div>
             </div>
-            <Experience experience={experience}/>
+            {experienceItems}
         </div>
     )
 }

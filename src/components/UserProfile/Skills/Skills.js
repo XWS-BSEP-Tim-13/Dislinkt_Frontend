@@ -4,7 +4,14 @@ import { faAdd } from '@fortawesome/free-solid-svg-icons'
 import classes from './Skills.module.css'
 import Skill from '../Skill/Skill'
 
-const Experiences = () => {
+const Skills = ({skills}) => {
+
+    const skillItems = skills.map(item => {
+        return(
+            <Skill skill={item} key={item}/>
+        )
+    });
+
     return (
         <div className={classes.container}>
             <div className={classes.title}> 
@@ -13,9 +20,9 @@ const Experiences = () => {
                     <FontAwesomeIcon icon={faAdd} className={classes.icon}/>
                 </div>
             </div>
-            <Skill />
+            {skillItems}
         </div>
     )
 }
 
-export default Experiences
+export default Skills
