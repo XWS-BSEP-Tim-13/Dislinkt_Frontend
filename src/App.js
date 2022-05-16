@@ -10,7 +10,6 @@ import Jobs from './pages/Jobs/Jobs';
 import './App.css';
 import Navigation from "../src/components/Navigation/Navigation";
 import UserProfile from './components/UserProfile/UserProfile/UserProfile';
-import { isCompositeComponent } from 'react-dom/test-utils';
 
 
 function App() {
@@ -25,7 +24,7 @@ function App() {
 
   return (
     <div className="App">
-          { location.pathname !== '/' ? <Navigation /> : null }
+        { location.pathname !== '/' ? <Navigation /> : null }
         <Routes>
             <Route path='/' element={<Mainpage />} />
             <Route path='/home' element={<Homepage />} />
