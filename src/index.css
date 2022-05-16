@@ -1,13 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Noticia+Text&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
 
 :root {
     --red: #800000;
     --dark-red: #6a0000;
+    --light-grey: #f0f0f0;
 }
 
 body {
     margin: 0;
-    font-family: 'Noticia Text', serif;
+    font-family: 'Lato', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background-color: #f2f2f2;

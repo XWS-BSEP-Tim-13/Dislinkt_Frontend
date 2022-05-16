@@ -1,5 +1,5 @@
 import classes from './Posts.module.css';
-import User from '../../images/user.png'
+import User from '../../images/user-red.png'
 import Unavailable from '../../images/unavailable.png'
 import { faThumbsUp } from '@fortawesome/free-solid-svg-icons'
 import { faThumbsDown } from '@fortawesome/free-solid-svg-icons'
@@ -15,7 +15,9 @@ function Posts(){
         <div className={classes.containerWrap}>
             <div className={classes.post}>
                 <div className={classes.postHeader}>
-                    <img src={User}  className={classes.img}/>
+                    <div className={classes.imageContainer}>
+                        <img src={User} className={classes.image} alt="User" />
+                    </div>
                     <div className={classes.user}>
                         <label className={classes.username}>Stefan Ljubovic</label>
                         <label className={classes.smallText}>Faculty of technical science</label>
