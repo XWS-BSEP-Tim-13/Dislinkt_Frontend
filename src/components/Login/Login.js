@@ -8,7 +8,6 @@ function Login(props) {
 
     function submitHandler(event) {
         event.preventDefault();
-        console.log('Submited');
         navigate('/home');
     }
 
@@ -16,7 +15,6 @@ function Login(props) {
         <div className={classes.login}>
             <h1>Log in</h1>
             <form onSubmit={submitHandler} className={classes.form}>
-
                 <div className={classes.formItem}>
                     <input type='text' required placeholder='Username' />
                 </div>

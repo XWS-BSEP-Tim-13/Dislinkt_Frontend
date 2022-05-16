@@ -1,9 +1,8 @@
-.login {
+.register {
     width: 50%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 8vh;
 }
 
 .form {
@@ -21,10 +20,10 @@ h1 {
     margin: 0.5rem 0;
 }
 
-.formItem input {
+.formItem * {
     background-color: rgb(235, 235, 235);
     border: none;
-    border-bottom: 2px solid #ccc;
+    border-radius: 4px;
     height: 2rem;
     width: 22rem;
     font-size: 1rem;
@@ -33,7 +32,15 @@ h1 {
     padding: 0 0.5rem;
 }
 
-.formItem input:focus {
+.formItem *:hover {
+    background-color: rgb(226, 226, 226);
+}
+
+.formItem select {
+    color: rgb(109, 109, 109);
+}
+
+.formItem *:focus {
     outline: none;
 }
 
@@ -44,15 +51,21 @@ h1 {
     margin-bottom: 1rem;
     height: 3rem;
     font-size: 1rem;
-    background-color: rgb(53, 108, 145);
+    background-color: rgba(106, 0, 0, 0.9);
     color: white;
     border: none;
+    border-radius: 25px;
     font-family: inherit;
+}
+
+.buttonLogIn:hover,
+.buttonLogIn:active {
+    background-color: rgba(128, 0, 0, 0.9);
 }
 
 .registerLink {
     font-size: 0.8rem;
-    color: rgb(36, 72, 97);
+    color: var(--dark-red);
     align-self: center;
 }
 
@@ -61,16 +74,16 @@ h1 {
         font-size: 3rem;
     }
 
-    .formItem input {
+    .formItem * {
         width: 19rem;
     }
 }
 
 @media (max-width: 40rem) {
 
-    .login {
+    .register {
         width: 100%;
         margin-top: 2vh;
-        margin-bottom: 15vh;
+        margin-bottom: 6vh;
     }
 }
