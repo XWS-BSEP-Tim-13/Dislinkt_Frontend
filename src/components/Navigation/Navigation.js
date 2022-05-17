@@ -20,7 +20,6 @@ function Navigation() {
 
     useEffect(() => {
         setRoute(location.pathname.split('/')[1]);
-        console.log(location.pathname.split('/')[1])
     }, [route, location.pathname])
 
     function changeRoute(route) {

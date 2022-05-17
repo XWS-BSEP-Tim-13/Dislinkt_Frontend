@@ -2,7 +2,7 @@
     background-color: #ffffff;
     border-radius: 7px;
     height: 100%;
-    border: 0.5px solid #eae9e7;
+    border: 1px solid #cccccc;
     width: 100%;
 }
 
@@ -66,6 +66,10 @@
     color: #616365;
     width: 70%;
     padding-right: 1rem;
+}
+
+.buttonIcon {
+    color: #4e4e4e;
 }
 
 .name {

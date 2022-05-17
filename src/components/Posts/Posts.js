@@ -7,6 +7,9 @@ import { faComment } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useState } from 'react';
 
+const postLiked = true;
+const postDisliked = false;
+
 function Posts() {
 
     const [commentSection, setCommentSection] = useState(false)
@@ -36,11 +39,11 @@ function Posts() {
                 </div>
 
                 <div className={classes.footer}>
-                    <div className={classes.footerPart}>
+                    <div className={`${classes.footerPart} ${postLiked ? classes.footerPartReacted : null}`}>
                         <FontAwesomeIcon icon={faThumbsUp} />
                         <label className={classes.lblMargin}>Like</label>
                     </div>
-                    <div className={classes.footerPart}>
+                    <div className={`${classes.footerPart} ${postDisliked ? classes.footerPartReacted : null}`}>
                         <FontAwesomeIcon icon={faThumbsDown} />
                         <label className={classes.lblMargin}>Dislike</label>
                     </div>
@@ -56,8 +59,7 @@ function Posts() {
                             <div className={classes.imageContainer}>
                                 <img src={User} className={classes.image} alt="User" />
                             </div>
-                            <div className={classes.createComment}>
-                                <textarea type="text" placeholder='Add a comment' className={classes.commentInput} />
+                            <div className={classes.createComment} contenteditable="true" placeholder="Add a comment...">
                             </div>
                         </div>
                         <div className={classes.comments}>
@@ -70,7 +72,7 @@ function Posts() {
                                         <div className={classes.commentDiv}>
                                             <div className={classes.commentHeader}>
                                                 <label>Stefan Ljubovic</label>
-                                                <label>4d</label>
+                                                <label className={classes.headerDate}>4d</label>
                                             </div>
                                             <label className={classes.commentConent}>{dummyData}</label>
                                         </div>
