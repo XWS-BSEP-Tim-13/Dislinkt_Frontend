@@ -8,9 +8,11 @@ import Skills from "../Skills/Skills"
 import Interests from "../Interests/Interests"
 import { useEffect, useState } from "react"
 import {getUserByUsername} from "../../../api/UserProfile/UserProfileApi"
+import AddExperience from "../AddExperience/AddExperience"
 
 const UserProfile = () => {
     const [user, setUser] = useState({});
+    const [addExperienceVisible, setAddExperienceVisible] = useState(false);
 
     useEffect(() => {
         async function getUser(){
@@ -22,17 +24,20 @@ const UserProfile = () => {
         console.log('inside use effect')
     }, [])
 
-    console.log(user)
+    function toggleAddExperienceModal(){
+        setAddExperienceVisible(!addExperienceVisible);
+    }
 
     return (
         <div className={classes.container}>
             <ProfileCover />
             <ProfileInfo user={user}/>
             <AboutUser bio={user.biography}/>
-            {user.experiences && <Experiences experiences={user.experiences}/>}
+            {user.experiences && <Experiences experiences={user.experiences} toggleAddExperience={toggleAddExperienceModal}/>}
             {user.educations && <Educations educations={user.educations}/>}
             {user.skills && <Skills skills={user.skills}/>}
             {user.interests && <Interests interests={user.interests}/>}
+            {addExperienceVisible && <AddExperience toggleAddExperience={toggleAddExperienceModal}/>}
         </div>
 
     )
