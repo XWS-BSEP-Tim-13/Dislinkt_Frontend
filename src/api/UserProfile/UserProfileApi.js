@@ -11,3 +11,13 @@ export async function getCompanyById(id) {
     const response = await axiosInstance.get(`company/${id}`);
     return response.data.company;
 }
+
+export async function addExperience(newExperience) {
+    const response = await axiosInstance.put('user/experience', newExperience);
+    return response;
+}
+
+export async function removeExperience(experience) {
+    const response = await axiosInstance.put('user/experience/delete', experience);
+    return response;
+}

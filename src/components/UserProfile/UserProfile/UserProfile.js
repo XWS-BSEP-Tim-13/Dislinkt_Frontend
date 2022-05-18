@@ -16,6 +16,12 @@ const UserProfile = () => {
     const [user, setUser] = useState({});
     const [addExperienceVisible, setAddExperienceVisible] = useState(false);
 
+    async function reload() {
+        const user = await getUserByUsername("suki");
+        setUser(user);
+        console.log("reloaded", user);
+    }
+
     useEffect(() => {
         async function getUser() {
             const user = await getUserByUsername("suki");
@@ -38,15 +44,16 @@ const UserProfile = () => {
                     <ProfileInfo user={user} />
                 </div>
                 <AboutUser bio={user.biography} />
-                {user.experiences && <Experiences experiences={user.experiences} toggleAddExperience={toggleAddExperienceModal} />}
+                {user.experiences && <Experiences experiences={user.experiences} toggleAddExperience={toggleAddExperienceModal} userId={user.id} reload={reload} />}
                 {user.educations && <Educations educations={user.educations} />}
                 {user.skills && <Skills skills={user.skills} />}
                 {user.interests && <Interests interests={user.interests} />}
-                {addExperienceVisible && <AddExperience toggleAddExperience={toggleAddExperienceModal} />}
+                {addExperienceVisible && <AddExperience toggleAddExperience={toggleAddExperienceModal} user={user} reload={reload} />}
             </div>
             <div className={classes.suggestions}>
                 <SuggestionsHomepage />
             </div>
+
         </div>
 
     )

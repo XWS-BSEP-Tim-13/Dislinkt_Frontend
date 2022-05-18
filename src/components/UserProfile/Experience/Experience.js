@@ -2,8 +2,11 @@ import React from 'react'
 //import google from '../../../images/google.jpg'
 import facebook from '../../../images/facebook.png'
 import classes from './Experience.module.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrash } from '@fortawesome/free-solid-svg-icons'
+import { removeExperience } from '../../../api/UserProfile/UserProfileApi'
 
-const Experience = ({ experience }) => {
+const Experience = ({ experience, userId, reload }) => {
 
     function formatEmploymentType(type) {
         if (type === "FULL_TIME")
@@ -13,6 +16,15 @@ const Experience = ({ experience }) => {
         else if (type === "INTERNSHIP")
             return "internship"
         return ""
+    }
+
+    function onRemoveExperience(){
+        const removalRequest = {
+            userId: userId,
+            experienceId: experience.id
+        }
+        console.log(removalRequest);
+        removeExperience(removalRequest).then(() => reload());
     }
 
     return (
@@ -26,6 +38,7 @@ const Experience = ({ experience }) => {
                 <div className={classes.workingDate}> Since <span className={classes.date}>{new Date(experience.startDate).toLocaleDateString()}</span> </div>
                 <div className={classes.description}> {experience.description} </div>
             </div>
+            <FontAwesomeIcon icon={faTrash} className={classes.icon}  onClick={onRemoveExperience} />
         </div>
     )
 }
