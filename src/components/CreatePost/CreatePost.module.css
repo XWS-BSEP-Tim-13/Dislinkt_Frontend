@@ -17,12 +17,13 @@
     background-color: var(--red);
     border-radius: 30px;
     align-self: center;
+    overflow: hidden;
 }
 
 .image {
-    height: 3.1rem;
-    width: 3rem;
-    margin-top: 0.2rem;
+    height: 3.3rem;
+    width: 3.3rem;
+    margin-left: -0.15rem;
 }
 
 .post{
@@ -33,6 +34,7 @@
     display: flex;
     padding: 1rem;
     cursor: pointer;
+    flex: 1;
 }
 
 .post > label {

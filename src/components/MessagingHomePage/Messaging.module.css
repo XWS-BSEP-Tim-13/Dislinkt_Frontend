@@ -15,6 +15,11 @@
     padding-top: 0.5rem;
 }
 
+.messaging {
+    display: flex;
+    align-items: center;
+}
+
 .imageContainer {
     height: 2rem;
     width: 2rem;
@@ -23,13 +28,13 @@
     background-color: var(--red);
     border-radius: 30px;
     display: inline-block;
+    overflow: hidden;
 }
 
 .image {
-    height: 2.1rem;
-    width: 2rem;
-    margin-right: 0;
-    margin-top: 0.2rem;
+    height: 2.3rem;
+    width: 2.3rem;
+    margin-left: -0.15rem;
 }
 
 .header{
@@ -76,6 +81,7 @@
     color: #616365;
     width: 70%;
     padding-right: 1rem;
+    flex: 1;
 }
 
 .content > label {

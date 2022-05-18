@@ -30,11 +30,13 @@ function App() {
                 <Route path='/in' element={<UserProfile />} />
             </Routes>
 
-            <div className={`messaging transform ${messagesOpen ? "transformActive" : ""}`}>
-                <Messaging clickHandler={() => setMessagesOpen(!messagesOpen)}
-                    isMessagesOpen={messagesOpen} page="app">
-                </Messaging>
-            </div>
+            {location.pathname !== '/' ?
+                <div className={`messaging transform ${messagesOpen ? "transformActive" : ""}`}>
+                    <Messaging clickHandler={() => setMessagesOpen(!messagesOpen)}
+                        isMessagesOpen={messagesOpen} page="app">
+                    </Messaging>
+                </div> : null
+            }
         </div>
     );
 }

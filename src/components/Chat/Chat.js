@@ -27,12 +27,10 @@ const Chat = () => {
                 {
                     messages.map((message, i) =>
                         <div className={classes.message}>
-                            <div className={classes.dateWrap}>
-                                <hr />
-                                <label className={classes.date}>May 1</label>
-                                <hr />
+                            <div className={classes.messageHeader}>
+                                <label className={`${true ? classes.personFrom : classes.personTo}`}>Ana Gavrilovic</label>
+                                <label className={classes.date}>15:39, May 1</label>
                             </div>
-                            <label className={`${true ? classes.personFrom : classes.personTo}`}>Ana Gavrilovic</label>
                             <div className={`${true ? classes.contentFrom : classes.contentTo}`}>
                                 <label>{messageContent}</label>
                             </div>
@@ -51,7 +49,7 @@ const Chat = () => {
                 </div>
 
                 <div className={classes.send}>
-                    <button className={classes.sendBtn}><FontAwesomeIcon icon={faPaperPlane}/></button>
+                    <button className={classes.sendBtn}><FontAwesomeIcon icon={faPaperPlane} /></button>
                 </div>
             </div>
         </div>

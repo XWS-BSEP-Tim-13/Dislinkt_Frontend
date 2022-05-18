@@ -1,6 +1,6 @@
 import classes from './ProfileSummary.module.css'
 import Background from '../../images/maroon-bg.jpg'
-import User from '../../images/user-128.png'
+import User from '../../images/avatar.jfif'
 import { useNavigate } from 'react-router-dom';
 
 function ProfileSummary() {

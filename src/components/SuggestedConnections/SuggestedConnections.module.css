@@ -53,12 +53,13 @@
     position: absolute;
     top: 3rem;
     left: calc(50% - 5rem / 2);
+    overflow: hidden;
 }
 
 .image {
-    height: 5.1rem;
-    width: 5rem;
-    margin-top: 0.4rem;
+    height: 5.4rem;
+    width: 5.3rem;
+    margin-left: -0.15rem;
 }
 
 .description{

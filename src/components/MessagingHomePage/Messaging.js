@@ -14,7 +14,7 @@ function Messaging(props) {
     return (
         <div className={`${props.page === 'app' ? classes.containerWrap : classes.containerWrapMessages}`}>
             <div className={classes.header}>
-                <div>
+                <div className={classes.messaging}>
                     <div className={classes.imageContainer}>
                         <img src={User} className={classes.image} alt="Profile" />
                     </div>

@@ -34,12 +34,13 @@
     width: 3rem;
     background-color: var(--red);
     border-radius: 30px;
+    overflow: hidden;
 }
 
 .image {
-    height: 3.1rem;
-    width: 3rem;
-    margin-top: 0.2rem;
+    height: 3.3rem;
+    width: 3.3rem;
+    margin-left: -0.15rem;
 }
 
 .postImage{
