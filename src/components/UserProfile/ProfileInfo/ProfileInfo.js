@@ -1,20 +1,18 @@
 import classes from './ProfileInfo.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUserEdit, faLocation } from '@fortawesome/free-solid-svg-icons'
+import { faUserEdit } from '@fortawesome/free-solid-svg-icons'
 
-const ProfileInfo = () => {
-  return (
-    <div className={classes.flexRow}>
-        <div className={classes.info}>
-            <h2> Elon Musk </h2>
-            <p className={classes.subtitle}> Entrepreneur, investor, and business magnate.</p>
-            <div className={classes.location}>
-                <FontAwesomeIcon icon={faLocation}/> Pretoria, South Africa 
+const ProfileInfo = ({ user }) => {
+    console.log('aaa', user)
+    return (
+        <div className={classes.flexRow}>
+            <div className={classes.info}>
+                <h2> {user.firstName} {user.lastName} </h2>
+                <p className={classes.subtitle}> @{user.username} </p>
             </div>
+            <FontAwesomeIcon icon={faUserEdit} className={classes.editIcon} />
         </div>
-        <FontAwesomeIcon icon={faUserEdit} className={classes.editIcon}/>
-    </div>
-  )
+    )
 }
 
 export default ProfileInfo

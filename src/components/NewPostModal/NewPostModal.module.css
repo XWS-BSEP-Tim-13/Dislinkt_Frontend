@@ -4,7 +4,7 @@
     justify-content: center;
     align-items: flex-start;
     left: 0;
-    top: -5vh;
+    top: 0vh;
     width: 100vw;
     min-height: 100vh;
     overflow-x: hidden;
@@ -109,12 +109,13 @@
 }
 
 .pictureIcon:hover{
-    color:#0a66c2;
+    color: var(--red);
+    background-color: #ffff;
 }
 
 .postBtn{
     border-radius: 15px;
-    background-color: #0a66c2;
+    background-color: var(--red);
     color: #ffff;
     width: 5rem;
     border: none;
@@ -123,7 +124,7 @@
 }
 
 .postBtn:hover{
-    background-color: #094c90;
+    background-color: var(--red);
 }
 
 .imgDiv{
@@ -135,6 +136,7 @@
 .img{
     width: 100%;
     height: auto;
+    background-color: var(--red);
 }
 
 .imgIcon{
@@ -160,4 +162,21 @@
 .deleteImage {
     color: white;
     font-size: xx-large;
+}
+
+.image {
+    height: 3.3rem;
+    width: 3.3rem;
+    margin-left: -0.15rem;
+}
+
+.imageContainer {
+    height: 3rem;
+    width: 3rem;
+    margin-right: 1rem;
+    align-self: center;
+    background-color: var(--red);
+    border-radius: 30px;
+    display: inline-block;
+    overflow: hidden;
 }

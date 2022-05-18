@@ -2,64 +2,104 @@
     background-color: #ffffff;
     border-radius: 7px;
     height: 100%;
-   border: 0.5px solid #eae9e7;;
-   position:sticky;
-   bottom: 0;
-   padding: 1rem;
+    border: 1px solid #cccccc;
+    width: 100%;
 }
 
-.img{
-    height: 50px;
-    width: 50px;
+.containerWrapMessages {
+    background-color: #ffffff;
+    border-top-left-radius: 7px;
+    height: 100%;
+    border: 1px solid #eae9e7;
+    width: 100%;
+    padding-top: 0.5rem;
+}
+
+.messaging {
+    display: flex;
+    align-items: center;
+}
+
+.imageContainer {
+    height: 2rem;
+    width: 2rem;
     margin-right: 1rem;
+    align-self: center;
+    background-color: var(--red);
+    border-radius: 30px;
+    display: inline-block;
+    overflow: hidden;
+}
+
+.image {
+    height: 2.3rem;
+    width: 2.3rem;
+    margin-left: -0.15rem;
 }
 
 .header{
     display: flex;
-    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #eae9e7;;
+    border-bottom: 1px solid #eae9e7;
+    padding: 0.5rem 1rem;
 }
 
-.messages{
-    display: flex;
-    flex-direction: column;
+.openCloseButton {
+    background-color: transparent;
+    border-color: transparent;
+    border-radius: 20px;
+    height: 2.5rem;
+    width: 2.5rem;
+    font-size: 1.5rem;
 }
 
-.message{
+.openCloseButton:hover {
+    background-color: var(--light-grey);
+}
+
+.message {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     border-bottom: 1px solid #eae9e7;
-    margin: 1rem;
-    max-height: 4rem;
+    height: 6rem;
     cursor: pointer;
+    padding: 1rem;
 }
 
 .message:hover{
-    background-color: #f3f2ef;
+    background-color: var(--light-grey);
 }
 
-.content{
-    display: flex;
-    flex-direction: column;
+.content {
     overflow: hidden;
     text-overflow: ellipsis;
-    cursor: pointer;
-}
-
-.content{
+    cursor: inherit;
     text-align: start;
     font-size: small;
     color: #616365;
     width: 70%;
+    padding-right: 1rem;
+    flex: 1;
 }
 
-.date{
-    clear: both;
-    display: inline-block;
+.content > label {
+    cursor: inherit;
+}
+
+.buttonIcon {
+    color: #4e4e4e;
+}
+
+.name {
+    color: black;
+    font-size: 0.9rem;
+}
+
+.date {
     overflow: hidden;
-    white-space: nowrap;
     font-size: small;
     color: #616365;
-    cursor: pointer;
+    cursor: inherit;
 }

@@ -3,11 +3,12 @@ import classes from './NewPostModal.module.css';
 import { faX,faXmark } from '@fortawesome/free-solid-svg-icons'
 import { faImage } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import User from '../../images/user.png'
+import User from '../../images/user-red.png'
 import TextareaAutosize from 'react-textarea-autosize';
 import ImageService from '../../services/ImageService';
 import { useState,useRef } from 'react';
 import PostService from '../../services/PostService';
+
 const NewPostModal = (props) => {
     const [imageFile, setImageFile] = useState(null)
     const [content, setContent] = useState();
@@ -37,9 +38,6 @@ const NewPostModal = (props) => {
         const post={
             content : content,
             image : imagePath,
-            likes : [],
-            dislikes: [],
-            comments: []
         }
         PostService.save(post).then(res=>{
             console.log(res.data)
@@ -69,7 +67,9 @@ const NewPostModal = (props) => {
                 <FontAwesomeIcon icon={faX} className={classes.icon} onClick={() => props.changeState()}/>
             </div>
             <div className={classes.user}>
-                <img src={User} alt="" className={classes.logo}/>
+                <div className={classes.imageContainer}>
+                    <img src={User} className={classes.image} alt="Profile" />
+                </div>
                 <h6 className={classes.headerH3}>Stefan Ljubovic</h6>
             </div>
             <TextareaAutosize className={classes.textarea} placeholder="What do you want to talk about?" value={content} onChange={handleChange}/>

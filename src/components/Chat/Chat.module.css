@@ -1,115 +1,170 @@
-.wrapper{
+.wrapper {
+    background-color: white;
+    border-top-right-radius: 7px;
+    border: 1px solid #eae9e7;
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
-    margin-left: 1%;
+    height: 100%;
 }
+
 .header{
-    height: 7%;
-    background-color: #ffffff;
-    border-radius: 7px;
-    border: 0.5px solid #eae9e7;
-    padding: 2%;
+    padding: 1rem;
+    height: auto;
+    text-align: left;
+    border-bottom: 1px solid #eae9e7;
 }
-.messages{
-    display: flex;
-    flex-direction: column;
-    overflow: auto;
-    max-height: 50vh;
-}
+
 .contact{
     display: flex;
-    flex-direction: column;
-    align-items: baseline;
-    padding: 2%;
-    background-color: #ffffff;
-    border-radius: 7px;
-    border: 0.5px solid #eae9e7;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid #eae9e7;
+    margin-bottom: 1.5rem;
 }
-.contact > h5{
-    margin-top: 3%;
+
+.contactInfo {
+    text-align: left;
 }
-.message{
-    display: flex;
-    flex-direction: column;
-    background-color: #ffffff;
-}
-.message:hover{
-    background-color: #f3f2ef;
-}
-.date{
-    clear: both;
+
+.imageContainer {
+    height: 5rem;
+    width: 5rem;
+    margin-right: 1rem;
+    background-color: var(--red);
+    border-radius: 40px;
     display: inline-block;
     overflow: hidden;
-    white-space: nowrap;
-    font-size: small;
+}
+
+.image {
+    height: 5.4rem;
+    width: 5.3rem;
+    margin-left: -0.15rem;
+}
+
+.messages {
+    overflow: auto;
+    height: 60vh;
+}
+
+.message:hover {
+    background-color: var(--light-grey);
+}
+
+.message {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 1rem;
+    width: 60%;
+}
+
+.messageHeader {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 1.7rem;
+    font-size: 0.8rem;
+    color: #656565;
+}
+
+.personFrom {
+    align-self: flex-start;
+}
+
+.personTo {
+    align-self: flex-end;
+}
+
+.date {
+    font-size: 0.7rem;
+    margin: 0 0.5rem;
+}
+
+.contentFrom {
+    padding: 0.7rem;
+    font-size: 0.9rem;
+    color: white;
+    background-color: var(--red);
+    align-self: flex-start;
+    margin: 0 1rem;
+    text-align: left;
+    border-radius: 10px;
+}
+
+.contentTo {
+    padding: 1rem;
+    font-size: 0.9rem;
+    color: white;
+    background-color: #656565;
+    width: 60%;
+    align-self: flex-end;
+    margin: 0 1rem;
+    text-align: left;
+    border-radius: 10px;
+}
+
+.newMessage {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid #eae9e7;
+    margin-top: 0rem;
+    padding-top: 1rem;
+}
+
+.messageInput {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.writeMessage {
+    width: 100%;
+    height: 5.5rem;
+    border: 1px solid #eae9e7;
+    padding: 0.5rem;
+    border-radius: 7px;
+    margin: 0 0.3rem;
+    text-align: left;
+    
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+[contenteditable=true][placeholder]:empty:before{
+    content: attr(placeholder);
+    color:grey;
+    cursor: text;
+}
+
+.writeMessage:focus {
+    outline: none;
+}
+
+.media {
+    display: flex;
+}
+
+.icon {
+    width: 1.3rem;
+    height: 1.3rem;
+    padding: 0.5rem;
     color: #616365;
     cursor: pointer;
 }
-.dateWrap{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-}
-.dateWrap > hr{
-    width: 40%;
-    margin: 0%;
-}
-.img{
-    height: 50px;
-    width: 50px;
-    margin-right: 1rem;
-}
-.user{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: 2%;
-    background-color: #ffffff;
-    border-radius: 7px;
 
+.icon:hover {
+    color: black;
 }
-.content{
-    padding: 2%;
-    font-size: small;
-    color: #616365;
-    width: 100%
-}
-.newMessage{
-    display: flex;
-    flex-direction: column;
-}
-.newMessage > textarea{
-    width: 100%;
-    height: 100px;
-    border-radius: 10px;
-    border: 0.5px solid #cdcbc9;
-    text-indent: 10px;
-}
-.messageMedia{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    background-color: #ffffff;
-    border-radius: 7px;
+
+.sendBtn {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
     border: 0.5px solid #eae9e7;
-    height: 5vh;
+    margin: 0 1rem;
+    color: white;
+    background-color: var(--red);
 }
-.media{
-    display: flex;
-    flex-direction: row;
-    width: 50%;
-}
-.sendBtn{
-    width: 15%;
-    height: 3vh;
-    border-radius: 5px;
-    border: 0.5px solid #eae9e7;
-    margin: 1% 5%;
-}
-.icon{
-    width: 3vh;
-    height: 3vh;
-    padding: 2%;
+
+.sendBtn:hover {
+    background-color: rgb(128, 0, 0, 0.8);
 }

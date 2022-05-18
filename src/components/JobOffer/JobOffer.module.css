@@ -1,37 +1,59 @@
-.wrapper{
+.wrapper {
     display: flex;
-    flex-direction: row;
-    margin: 2% 20%;
-    background-color: #ffffff;
-    border-radius: 10px;
-    border: 0.5px solid #eae9e7;
+    align-items: center;
+    padding: 1rem;
 }
-.imgWrapper{
-    width: 20%;
-}
-.img{
-    height: 90px;
-    width: 90px;
+
+.imageContainer {
+    height: 5rem;
+    width: 5rem;
     margin-right: 1rem;
+    background-color: var(--red);
+    border-radius: 40px;
+    display: inline-block;
+    overflow: hidden;
 }
-.jobDescription{
+
+.image {
+    height: 5.4rem;
+    width: 5.3rem;
+    margin-left: -0.15rem;
+}
+
+.jobDescription {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    flex: 1;
+}
+
+.job {
+    text-align: left;
+}
+
+.job > h2 {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.job > h3 {
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.job > label {
+    font-size: 0.9rem;
+}
+
+.offerStatus {
     display: flex;
     flex-direction: column;
-    padding: 2% 1%;
-    align-items: flex-start;
-    width: 80%;
+    font-size: 0.8rem;
+    justify-content: center;
+    align-items: flex-end;
 }
-.jobDescription > h5{
-    color: rgb(37, 80, 109);
-}
-.offerStatus{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-top: 5%;
-    font-size: smaller;
-    width: 50%;
-}
-.applicants{
-    color: rgb(15, 145, 82);
+
+.applicants {
+    color: var(--red);
+    font-weight: bold;
 }

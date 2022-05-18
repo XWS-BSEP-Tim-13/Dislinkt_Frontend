@@ -1,77 +1,78 @@
-
-
 .container{
     display: flex;
-    width: 50%;
-    border-radius:7px ;
-    background-color: #ffff;
+    border-radius: 7px;
+    background-color: white;
     padding: 1rem;
+    border: 1px solid #eae9e7;
+    width: 100%;
 }
 
 .conection{
-    display: flex;
-    flex-direction: row;   
+    display: flex;  
+    justify-content: space-between;
     padding: 1rem;
     border-top: 1px solid #eae9e7;
-    flex-grow: 1;
+}
+
+.connectionDetails {
+    display: flex;
+}
+
+.imageContainer {
+    height: 3rem;
+    width: 3rem;
+    background-color: var(--red);
+    border-radius: 30px;
+    overflow: hidden;
+}
+
+.image {
+    height: 3.3rem;
+    width: 3.3rem;
+    margin-left: -0.15rem;
 }
 
 .conContainer{
     width: 100%;
+    text-align: left;
 }
 
-.img{
-    width: 50px;
-    height: 50px;
-    margin-right: 1rem;
+.conContainer > label {
+    padding-bottom: 1rem;
 }
 
 .content{
-    display: flex;
-    flex-direction: column;
     overflow: hidden;
-    text-overflow: ellipsis;
-    flex:2
+    margin-left: 1rem;
 }
 
-.content{
+.contentProffesion{
     text-align: start;
     font-size: small;
     color: #616365;
     width: 70%;
 }
 
-.date{
-    clear: both;
-    display: inline-block;
-    overflow: hidden;
-    white-space: nowrap;
-    font-size: small;
-    color: #616365;
-    display: flex;
-}
-
-.right{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    flex:1;
-    align-items: flex-end;
-}
-
 .buttonDiv{
     display: flex;
-    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.icon{
-    font-size: xx-large;
-   color:#97bee5;
-   margin-left: 2rem;
-   cursor: pointer;
+.date{
+    overflow: hidden;
+    font-size: small;
+    color: #616365;
+    margin-left: 2rem;
+}
 
+.icon {
+    font-size: xx-large;
+    color: var(--red);
+    margin-left: 2rem;
+    cursor: pointer;
 }
 
 .icon:hover{
-    color: #0a66c2;
+    color: rgba(128, 0, 0, 0.8);
 }

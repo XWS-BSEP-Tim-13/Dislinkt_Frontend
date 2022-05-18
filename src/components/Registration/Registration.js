@@ -11,8 +11,12 @@ function Registration(props) {
         navigate('/home');
     }
 
-    return(
-        <div className={classes.login}>
+    function handleSelectGender(event) {
+        event.target.style.color = 'black';
+    }
+
+    return (
+        <div className={classes.register}>
             <h1>Register now!</h1>
             <form onSubmit={submitHandler} className={classes.form}>
 
@@ -23,13 +27,26 @@ function Registration(props) {
                     <input type='text' required placeholder='Last name' />
                 </div>
                 <div className={classes.formItem}>
-                    <input type='text' required placeholder='Age' />
+                    <input type='text' required placeholder='Email' />
                 </div>
                 <div className={classes.formItem}>
-                    <input type='text' required placeholder='Address' />
+                    <input type='text' required placeholder='Phone number' />
                 </div>
                 <div className={classes.formItem}>
-                    <input type='text' required placeholder='Company' />
+                    <input type='text' required placeholder='Gender' />
+                </div>
+                <div className={classes.formItem}>
+                    <input type='text' required placeholder='Date of birth' onFocus={(e) => (e.target.type = "date")} onBlur={(e) => (e.target.type = "text")}/>
+                </div>
+                <div className={classes.formItem}>
+                    <select name="Gender" defaultValue="" onChange={handleSelectGender}>
+                        <option value="" disabled>Gender</option>
+                        <option value="MALE" >Male</option>
+                        <option value="FEMALe" >Female</option>
+                    </select>
+                </div>
+                <div className={classes.formItem}>
+                    <input type='password' required placeholder='Username' />
                 </div>
                 <div className={classes.formItem}>
                     <input type='password' required placeholder='Password' />

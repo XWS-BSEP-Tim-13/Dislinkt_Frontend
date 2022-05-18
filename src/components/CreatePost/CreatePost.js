@@ -1,18 +1,19 @@
 import classes from './CreatePost.module.css';
-import Logo from '../../images/user.png'
 import {useSelector, useDispatch} from 'react-redux';
-import {login} from '../../store/actions'
 import NewPostModal from '../NewPostModal/NewPostModal';
 import { useState } from 'react';
-function CreatePost(){
+import Logo from '../../images/user-red.png'
+import { login } from '../../store/actions'
+
+function CreatePost() {
 
     const [showModal,setShowModal] = useState(false)
     const dispatch = useDispatch();
-    function test(){
-        const auth ={
-            token : 'aaa',
-            role : 'bbb',
-            expire : 'ccc'
+    function test() {
+        const auth = {
+            token: 'aaa',
+            role: 'bbb',
+            expire: 'ccc'
         }
         dispatch(login(auth))
     }
@@ -28,10 +29,12 @@ function CreatePost(){
 	    document.getElementById('appContainer').style.height = 'unset';
     }
 
-    return(
+    return (
         <div className={classes.containerWrap}>
             <div className={classes.row} onClick={test}>
-                <img src={Logo} alt="" className={classes.img}/>
+                <div className={classes.imageContainer}>
+                    <img src={Logo} className={classes.image} alt="User" />
+                </div>
                 <div className={classes.post} onClick={showModalFunc}>
                     <label>Start a post</label>
                 </div>

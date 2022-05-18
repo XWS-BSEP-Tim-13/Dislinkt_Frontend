@@ -1,40 +1,47 @@
-
 .containerWrap{
-    width: 80%;
-    height: 7rem;
+    width: 100%;
     border: 1px solid #eae9e7;
     border-radius: 7px;
     background-color: #ffff;
-    display: flex;
-    flex-direction: column;
     padding: 1rem;
 }
 
-.row{
+.row {
     display: flex;
-    flex-direction: row;
     justify-content: flex-start;
 }
 
-.img{
-    height: 50px;
-    width: 50px;
+.imageContainer {
+    height: 3rem;
+    width: 3rem;
+    background-color: var(--red);
+    border-radius: 30px;
+    align-self: center;
+    overflow: hidden;
+}
+
+.image {
+    height: 3.3rem;
+    width: 3.3rem;
+    margin-left: -0.15rem;
 }
 
 .post{
-    border:1px solid #616365;
-    border-radius: 15px;
+    border:1px solid #b8b8b8;
+    border-radius: 30px;
     width: 100%;
-    height: 90%;
     margin-left: 1rem;
     display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
     padding: 1rem;
     cursor: pointer;
+    flex: 1;
+}
+
+.post > label {
+    color: #838383;
+    cursor: inherit;
 }
 
 .post:hover{
-    background-color: #f3f2ef;
+    background-color: #f5f5f5;
 }

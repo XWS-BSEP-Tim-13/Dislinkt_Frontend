@@ -1,5 +1,4 @@
-//import { useEffect } from 'react';
-//import axios from 'axios';
+import { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { useLocation } from 'react-router-dom'
 import Homepage from './pages/Homepage/Homepage';
@@ -10,32 +9,36 @@ import Jobs from './pages/Jobs/Jobs';
 import './App.css';
 import Navigation from "../src/components/Navigation/Navigation";
 import UserProfile from './components/UserProfile/UserProfile/UserProfile';
-import { isCompositeComponent } from 'react-dom/test-utils';
+import Messaging from "./components/MessagingHomePage/Messaging";
 
 
 function App() {
+   
+    const [messagesOpen, setMessagesOpen] = useState(false);
 
-  /*useEffect(() => {
-    axios.get('http://localhost:8081/')
-    .then((res) => {
-        console.log(res.data)
-    })
-  }, []);*/
-  const location = useLocation();
+    const location = useLocation();
 
-  return (
-    <div className="App" id="appContainer">
-          { location.pathname !== '/' ? <Navigation /> : null }
-        <Routes>
-            <Route path='/' element={<Mainpage />} />
-            <Route path='/home' element={<Homepage />} />
-            <Route path='/network' element={<Network />} />
-            <Route path='/messaging' element={<MessagingPage />} />
-            <Route path='/jobs' element={<Jobs />} />
-            <Route path='/in' element={<UserProfile />} />
-        </Routes>
-    </div>
-  );
+    return (
+        <div className="App" id="appContainer">
+            {location.pathname !== '/' ? <Navigation /> : null}
+            <Routes>
+                <Route path='/' element={<Mainpage />} />
+                <Route path='/home' element={<Homepage />} />
+                <Route path='/network' element={<Network />} />
+                <Route path='/messaging' element={<MessagingPage />} />
+                <Route path='/jobs' element={<Jobs />} />
+                <Route path='/in' element={<UserProfile />} />
+            </Routes>
+
+            {location.pathname !== '/' ?
+                <div className={`messaging transform ${messagesOpen ? "transformActive" : ""}`}>
+                    <Messaging clickHandler={() => setMessagesOpen(!messagesOpen)}
+                        isMessagesOpen={messagesOpen} page="app">
+                    </Messaging>
+                </div> : null
+            }
+        </div>
+    );
 }
 
 export default App;

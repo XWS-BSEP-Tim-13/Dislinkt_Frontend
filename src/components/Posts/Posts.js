@@ -13,10 +13,9 @@ function Posts(){
     useEffect(() => {
         setLoading(true)
         const data = {
-            "username": "ljubo",
+            "username": "stefanljubovic",
             "page" : pageNumber
         }
-        console.log('aaa')
         UserService.feed(data)
             .then(res=>{
                 setHasMore(res.data.lastPage !== pageNumber)
@@ -24,6 +23,7 @@ function Posts(){
                     return [...new Set([...prevPosts, ...res.data.posts.map(post=> post)])]
                   })
                   setLoading(false)
+                  console.log(res.data)
             })
       }, [pageNumber])
 
@@ -34,8 +34,7 @@ function Posts(){
         dataLength={posts.length}
         next={()=>setPageNumber(prevPageNumber => prevPageNumber + 1)} 
         hasMore={hasMore}>
-            {
-                
+            {   
                 posts.map((post,i) => 
                         <Post key={i}/>
                 )}
