@@ -24,7 +24,7 @@ function App() {
   const location = useLocation();
 
   return (
-    <div className="App">
+    <div className="App" id="appContainer">
           { location.pathname !== '/' ? <Navigation /> : null }
         <Routes>
             <Route path='/' element={<Mainpage />} />

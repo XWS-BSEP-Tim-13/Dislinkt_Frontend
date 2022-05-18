@@ -1,0 +1,163 @@
+#app {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    left: 0;
+    top: -5vh;
+    width: 100vw;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.modalOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 98;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.modalInner {
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30%;
+    min-height: 20rem;
+    background-color: #ffff;
+    z-index: 1000;
+    position: fixed;
+    border-radius: 16px;
+    padding: 25px;
+    margin-top: 4rem;
+}
+
+.header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    border-bottom: 1px solid #eae9e7;
+    align-items: center;
+}
+
+.headerH3{
+    color:#616365;
+}
+
+.icon{
+    font-size: larger;
+    cursor: pointer;
+}
+
+.user{
+    display: flex;
+    flex-direction: row;
+    margin-top: 2rem;
+    align-items: center;
+}
+
+.logo{
+    margin-right: 1rem;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.textarea{
+    margin-top: 1rem;
+    border:none;
+    width:100%;
+    resize: none;
+}
+
+.textarea:focus{
+    border: 0 none #FFF;
+    overflow: hidden;
+    outline:none;
+}
+
+.space{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    flex-grow: 1;
+    min-height: 17rem;
+}
+
+.footer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-grow: 1;
+     align-items: stretch;
+    height: 100%;
+    align-items: center;
+}
+
+.pictureIcon{
+    color: #616365;
+    font-size: xx-large;
+    cursor: pointer;
+}
+
+.pictureIcon:hover{
+    color:#0a66c2;
+}
+
+.postBtn{
+    border-radius: 15px;
+    background-color: #0a66c2;
+    color: #ffff;
+    width: 5rem;
+    border: none;
+    height: 2rem;
+    cursor: pointer;
+}
+
+.postBtn:hover{
+    background-color: #094c90;
+}
+
+.imgDiv{
+    width: 100%;
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+.img{
+    width: 100%;
+    height: auto;
+}
+
+.imgIcon{
+    position:absolute;
+    top: 7rem;
+    right: 0;
+    color: #ffff;
+}
+
+.buttonImage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #121212;
+    position: absolute;
+    right: 0.5rem;
+    top: 1rem;
+    border-radius: 100px;
+    width: 3rem;
+    height: 3rem;
+}
+
+.deleteImage {
+    color: white;
+    font-size: xx-large;
+}
