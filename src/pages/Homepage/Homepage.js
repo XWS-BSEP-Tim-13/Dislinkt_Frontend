@@ -1,15 +1,12 @@
 import classes from './Homepage.module.css';
-import Messaging from "../../components/MessagingHomePage/Messaging";
 import CreatePost from "../../components/CreatePost/CreatePost";
 import ProfileSummary from "../../components/ProfileSummary/ProfileSummary";
 import SuggestionsHomepage from "../../components/SuggestionsHomepage/SuggestionsHomepage";
 import Posts from "../../components/Posts/Posts";
 import { useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 function Homepage() {
-
-    const [messagesOpen, setMessagesOpen] = useState(false);
 
     const auth = useSelector(state => state.loginReducer);
 
@@ -41,11 +38,6 @@ function Homepage() {
                 </div>
                 <div className={classes.suggestions}>
                     <SuggestionsHomepage></SuggestionsHomepage>
-                </div>
-                <div className={`${classes.messaging} ${classes.transform} ${messagesOpen ? classes.transformActive : null}`}>
-                    <Messaging clickHandler={() => setMessagesOpen(!messagesOpen)} 
-                        isMessagesOpen={messagesOpen}>
-                    </Messaging>
                 </div>
             </div>
         </div>

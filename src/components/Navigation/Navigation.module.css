@@ -86,8 +86,10 @@
 
 .navigationIcon {
     font-size: large;
+    cursor: pointer;
 }
 
 .navigationLabel {
     font-size: small;
+    cursor: pointer;
 }

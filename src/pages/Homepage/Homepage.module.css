@@ -21,28 +21,6 @@
     width: 30%;
 }
 
-.messaging {
-    width: 25%;
-    height: 85vh;
-    position: fixed;
-    bottom: 0;
-    right: 0;
-    margin-right: 0.4rem;    
-    transform: translateY(calc(85vh - 3.5rem));
-}
-
-.transform {
-    -webkit-transition: all 1s ease;  
-    -moz-transition: all 1s ease;  
-    -o-transition: all 1s ease;  
-    -ms-transition: all 1s ease;  
-    transition: all 1s ease;
-}
-
-.transformActive {
-    transform: translateY(0);
-}
-
 .parts{
     display: flex;
     flex-direction: row;

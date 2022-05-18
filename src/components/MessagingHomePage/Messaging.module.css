@@ -6,6 +6,15 @@
     width: 100%;
 }
 
+.containerWrapMessages {
+    background-color: #ffffff;
+    border-top-left-radius: 7px;
+    height: 100%;
+    border: 1px solid #eae9e7;
+    width: 100%;
+    padding-top: 0.5rem;
+}
+
 .imageContainer {
     height: 2rem;
     width: 2rem;
@@ -47,6 +56,7 @@
 .message {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     border-bottom: 1px solid #eae9e7;
     height: 6rem;
     cursor: pointer;
@@ -54,10 +64,10 @@
 }
 
 .message:hover{
-    background-color: #f3f2ef;
+    background-color: var(--light-grey);
 }
 
-.content{
+.content {
     overflow: hidden;
     text-overflow: ellipsis;
     cursor: inherit;
@@ -66,6 +76,10 @@
     color: #616365;
     width: 70%;
     padding-right: 1rem;
+}
+
+.content > label {
+    cursor: inherit;
 }
 
 .buttonIcon {

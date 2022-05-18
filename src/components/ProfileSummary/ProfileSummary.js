@@ -24,6 +24,10 @@ function ProfileSummary() {
                 <label>Connections</label>
                 <label>152</label>
             </div>
+            <div className={classes.companies}>
+                <label>Companies</label>
+                <label>35</label>
+            </div>
             <div className={classes.viewProfile}>
                 <button className={classes.btnViewProfile} onClick={viewProfileHandler}>View profile</button>
             </div>

@@ -30,7 +30,7 @@ function Posts() {
                 </div>
 
                 <label className={classes.description}>{dummyData}</label>
-                {false && <img src={Unavailable} className={classes.postImage} />}
+                {false && <img src={Unavailable} className={classes.postImage} alt=""/>}
 
                 <div className={classes.likeSection}>
                     <label className={classes.smallText1}><FontAwesomeIcon icon={faThumbsUp} className={classes.likeIcon} />Ana and 300 others</label>

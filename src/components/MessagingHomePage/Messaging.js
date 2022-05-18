@@ -12,7 +12,7 @@ function Messaging(props) {
     const [dummyData, setDummyData] = useState("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod");
 
     return (
-        <div className={classes.containerWrap}>
+        <div className={`${props.page === 'app' ? classes.containerWrap : classes.containerWrapMessages}`}>
             <div className={classes.header}>
                 <div>
                     <div className={classes.imageContainer}>
@@ -20,12 +20,14 @@ function Messaging(props) {
                     </div>
                     <label>Messaging</label>
                 </div>
-                <button className={classes.openCloseButton} onClick={props.clickHandler}>
-                    { props.isMessagesOpen ? 
-                        <FontAwesomeIcon icon={faAngleDown} className={classes.buttonIcon}/> :
-                        <FontAwesomeIcon icon={faAngleUp} className={classes.buttonIcon}/>
-                    }
-                </button>
+                { props.page === 'app' ? 
+                    <button className={classes.openCloseButton} onClick={props.clickHandler}>
+                        { props.isMessagesOpen ? 
+                            <FontAwesomeIcon icon={faAngleDown} className={classes.buttonIcon}/> :
+                            <FontAwesomeIcon icon={faAngleUp} className={classes.buttonIcon}/>
+                        }
+                    </button> : null 
+                }
             </div>
             <div className={classes.messages}>
                 {
