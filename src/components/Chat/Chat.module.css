@@ -44,7 +44,7 @@
 
 .messages {
     overflow: auto;
-    height: 55vh;
+    height: 60vh;
 }
 
 .message:hover {
@@ -105,6 +105,9 @@
 .newMessage {
     display: flex;
     justify-content: space-between;
+    border-top: 1px solid #eae9e7;
+    margin-top: 0rem;
+    padding-top: 1rem;
 }
 
 .messageInput {
@@ -116,7 +119,7 @@
 .writeMessage {
     width: 100%;
     height: 5.5rem;
-    border: 1px solid #b8b8b8;
+    border: 1px solid #eae9e7;
     padding: 0.5rem;
     border-radius: 7px;
     margin: 0 0.3rem;

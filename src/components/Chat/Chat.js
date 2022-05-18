@@ -38,7 +38,7 @@ const Chat = () => {
                     )
                 }
             </div>
-            <hr />
+
             <div className={classes.newMessage}>
                 <div className={classes.messageInput}>
                     <div className={classes.writeMessage} contenteditable="true" placeholder="Write a message..."></div>
