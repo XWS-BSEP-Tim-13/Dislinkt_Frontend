@@ -53,7 +53,6 @@ const UserProfile = () => {
             <div className={classes.suggestions}>
                 <SuggestionsHomepage />
             </div>
-
         </div>
 
     )

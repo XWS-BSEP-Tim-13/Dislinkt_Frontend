@@ -13,7 +13,7 @@ function SuggestionsHomepage() {
             <label className={classes.suggestionsCaption}>Add to your feed</label>
             {
                 connections.map((connection, index) =>
-                    <div className={classes.conection}>
+                    <div className={classes.conection} key={index}>
                         <div className={classes.imageContainer}>
                             <img src={User} className={classes.image} alt="User" />
                         </div>
