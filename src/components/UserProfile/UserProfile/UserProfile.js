@@ -37,8 +37,8 @@ const UserProfile = () => {
     return (
         <div className={classes.container}>
             <ProfileCover />
-            <ProfileInfo user={user}/>
-            <AboutUser bio={user.biography}/>
+            {user.username && <ProfileInfo user={user}/>}
+            {user.biography && <AboutUser bio={user.biography}/>}
             {user.experiences && <Experiences experiences={user.experiences} toggleAddExperience={toggleAddExperienceModal} userId={user.id} reload={reload}/>}
             {user.educations && <Educations educations={user.educations}/>}
             {user.skills && <Skills skills={user.skills}/>}
