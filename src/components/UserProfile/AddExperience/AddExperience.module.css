@@ -83,3 +83,14 @@
     border-radius: 20px;
     border-style: none;
 }
+
+.fieldTitle {
+    display: flex;
+    align-items: flex-end;
+}
+
+.error {
+    font-size: 0.7rem;
+    color: red;
+    margin-left: 1rem;
+}

@@ -1,8 +1,11 @@
 import React from 'react'
 import company from '../../../images/company.png'
 import classes from './Experience.module.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrash } from '@fortawesome/free-solid-svg-icons'
+import { removeExperience } from '../../../api/UserProfile/UserProfileApi'
 
-const Experience = ({ experience }) => {
+const Experience = ({ experience, userId, reload }) => {
 
     function formatEmploymentType(type){
         if(type === "FULL_TIME")
@@ -14,10 +17,19 @@ const Experience = ({ experience }) => {
         return ""
     }
 
+    function onRemoveExperience(){
+        const removalRequest = {
+            userId: userId,
+            experienceId: experience.id
+        }
+        console.log(removalRequest);
+        removeExperience(removalRequest).then(() => reload());
+    }
+
     return (
         <div className={classes.card}>
             <div >
-                <img src={company} alt="company icon" className={classes.image} />
+                <img src={company} alt="company icon" className={classes.image}/>
             </div>
             <div className={classes.info}>
                 <div className={classes.title}> {experience.title} </div>
@@ -26,6 +38,9 @@ const Experience = ({ experience }) => {
                 <div className={classes.description}> {experience.description} </div>
             </div>
 
+            <FontAwesomeIcon icon={faTrash} className={classes.icon}  onClick={onRemoveExperience} />
+
+            
         </div>
     )
 }
