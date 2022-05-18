@@ -26,9 +26,6 @@ function Homepage() {
                             <div>
                                 <CreatePost></CreatePost>
                                 <Posts ></Posts>
-                                <Posts ></Posts>
-                                <Posts ></Posts>
-                                <Posts ></Posts>
                             </div>
                         </div>
                         <div className={classes.connect}>
