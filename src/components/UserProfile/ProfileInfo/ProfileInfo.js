@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserEdit } from '@fortawesome/free-solid-svg-icons'
 
 const ProfileInfo = ({ user }) => {
-    console.log('aaa', user)
     return (
         <div className={classes.flexRow}>
             <div className={classes.info}>

@@ -60,7 +60,6 @@ const AddExperience = ({ toggleAddExperience, user, reload }) => {
         };
 
         addExperience(newExperience).then(() => reload());
-        console.log(newExperience);
         toggleAddExperience();
     }
 

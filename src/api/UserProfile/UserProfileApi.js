@@ -21,3 +21,13 @@ export async function removeExperience(experience) {
     const response = await axiosInstance.put('user/experience/delete', experience);
     return response;
 }
+
+export async function addEducation(newEducation) {
+    const response = await axiosInstance.put('user/education', newEducation);
+    return response;
+}
+
+export async function removeEducation(education) {
+    const response = await axiosInstance.put('user/education/delete', education);
+    return response;
+}
