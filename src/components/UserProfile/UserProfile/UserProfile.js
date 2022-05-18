@@ -10,16 +10,17 @@ import { useEffect, useState } from "react"
 import { getUserByUsername } from "../../../api/UserProfile/UserProfileApi"
 import AddExperience from "../AddExperience/AddExperience"
 import SuggestionsHomepage from "../../SuggestionsHomepage/SuggestionsHomepage"
+import AddEducation from "../AddEducation/AddEducation"
 
 const UserProfile = () => {
 
     const [user, setUser] = useState({});
     const [addExperienceVisible, setAddExperienceVisible] = useState(false);
+    const [addEducationVisible, setAddEducationVisible] = useState(false);
 
     async function reload() {
         const user = await getUserByUsername("suki");
         setUser(user);
-        console.log("reloaded", user);
     }
 
     useEffect(() => {
@@ -29,11 +30,14 @@ const UserProfile = () => {
         }
 
         getUser()
-        console.log('inside use effect')
     }, [])
 
     function toggleAddExperienceModal() {
         setAddExperienceVisible(!addExperienceVisible);
+    }
+
+    function toggleAddEducationModal(){
+        setAddEducationVisible(!addEducationVisible);
     }
 
     return (
@@ -41,18 +45,20 @@ const UserProfile = () => {
             <div className={classes.userProfile}>
                 <div className={classes.header}>
                     <ProfileCover />
-                    <ProfileInfo user={user} />
+                    {user.username && <ProfileInfo user={user}/>}
                 </div>
-                <AboutUser bio={user.biography} />
-                {user.experiences && <Experiences experiences={user.experiences} toggleAddExperience={toggleAddExperienceModal} userId={user.id} reload={reload} />}
-                {user.educations && <Educations educations={user.educations} />}
-                {user.skills && <Skills skills={user.skills} />}
-                {user.interests && <Interests interests={user.interests} />}
-                {addExperienceVisible && <AddExperience toggleAddExperience={toggleAddExperienceModal} user={user} reload={reload} />}
+                {user.biography && <AboutUser bio={user.biography}/>}
+            {user.experiences && <Experiences experiences={user.experiences} toggleAddExperience={toggleAddExperienceModal} userId={user.id} reload={reload}/>}
+            {user.educations && <Educations educations={user.educations} toggleAddEducation={toggleAddEducationModal} userId={user.id} reload={reload}/>}
+            {user.skills && <Skills skills={user.skills}/>}
+            {user.interests && <Interests interests={user.interests}/>}
+            {addExperienceVisible && <AddExperience toggleAddExperience={toggleAddExperienceModal} user={user} reload={reload}/>}
+            {addEducationVisible && <AddEducation toggleAddEducation={toggleAddEducationModal} user={user} reload={reload}/>}
             </div>
             <div className={classes.suggestions}>
                 <SuggestionsHomepage />
             </div>
+
         </div>
 
     )
