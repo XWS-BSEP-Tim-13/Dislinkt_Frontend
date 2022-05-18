@@ -1,5 +1,5 @@
 import React from 'react'
-import company from '../../../images/company.png'
+import company from '../../../images/levi9.png'
 import classes from './Interest.module.css'
 
 const Interest = ({companyName}) => {

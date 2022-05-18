@@ -1,12 +1,14 @@
 .card {
     display: flex;
-    justify-content: flex-start;
     align-items: center;
     margin-top: 1rem;
+    border-top: 1px solid #eae9e7;
+    padding: 1rem;
 }
 
 .title {
     font-weight: bold;
+    font-size: 0.95rem;
 }
 
 .date {
@@ -19,14 +21,14 @@
 }
 
 .info {
-    display: flex;
-    justify-content: flex-start;
-    flex-direction: column;
-    align-items: flex-start;
+    text-align: left;
+    font-size: 0.9rem;
 }
 
 .image {
     width: 5rem;
     height: 5rem;
     margin-right: 2rem;
+    border-radius: 7px;
 }
+
