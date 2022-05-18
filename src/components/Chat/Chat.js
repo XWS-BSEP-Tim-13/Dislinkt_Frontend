@@ -14,7 +14,7 @@ const Chat = () => {
             <div className={classes.header}>
                 <label>Ana Gavrilovic</label>
             </div>
-            <div className={classes.messages}>
+            <div className={classes.messagesWindow}>
                 <div className={classes.contact}>
                     <div className={classes.imageContainer}>
                         <img src={User} className={classes.image} alt="Profile" />
@@ -24,19 +24,23 @@ const Chat = () => {
                         <h6> Faculty of tehnical sciences</h6>
                     </div>
                 </div>
-                {
-                    messages.map((message, i) =>
-                        <div className={classes.message}>
-                            <div className={classes.messageHeader}>
-                                <label className={`${true ? classes.personFrom : classes.personTo}`}>Ana Gavrilovic</label>
-                                <label className={classes.date}>15:39, May 1</label>
+                <div className={classes.messages}>
+                    {
+                        messages.map((message, i) =>
+                            <div className={classes.message}>
+                                <div className={`${true ? classes.messageFrom : classes.messageTo}`}>
+                                    <div className={`${true ? classes.messageHeaderFrom : classes.messageHeaderTo}`}>
+                                        <label className={`${true ? classes.personFrom : classes.personTo}`}>Ana Gavrilovic</label>
+                                        <label className={classes.date}>15:39, May 1</label>
+                                    </div>
+                                    <div className={`${true ? classes.contentFrom : classes.contentTo}`}>
+                                        <label>{messageContent}</label>
+                                    </div>
+                                </div>
                             </div>
-                            <div className={`${true ? classes.contentFrom : classes.contentTo}`}>
-                                <label>{messageContent}</label>
-                            </div>
-                        </div>
-                    )
-                }
+                        )
+                    }
+                </div>
             </div>
 
             <div className={classes.newMessage}>

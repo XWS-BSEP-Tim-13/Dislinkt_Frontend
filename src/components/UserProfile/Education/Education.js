@@ -1,12 +1,12 @@
 import React from 'react'
-import school from '../../../images/school.png'
+import harvard from '../../../images/harvard.png'
 import classes from './Education.module.css'
 
 const Education = ({education}) => {
   return (
     <div className={classes.card}> 
         <div >
-            <img src={school} alt="school icon" className={classes.image}/>
+            <img src={harvard} alt="school icon" className={classes.image}/>
         </div>
         <div className={classes.info}>
             <div className={classes.title}> {education.school} </div>

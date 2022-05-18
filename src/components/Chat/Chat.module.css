@@ -42,7 +42,7 @@
     margin-left: -0.15rem;
 }
 
-.messages {
+.messagesWindow {
     overflow: auto;
     height: 60vh;
 }
@@ -55,10 +55,17 @@
     display: flex;
     flex-direction: column;
     padding-bottom: 1rem;
-    width: 60%;
 }
 
-.messageHeader {
+.messageFrom {
+    align-self: flex-start;
+}
+
+.messageTo {
+    align-self: flex-end;
+}
+
+.messageHeaderFrom {
     display: flex;
     justify-content: space-between;
     margin: 0 1.7rem;
@@ -66,12 +73,13 @@
     color: #656565;
 }
 
-.personFrom {
-    align-self: flex-start;
-}
-
-.personTo {
-    align-self: flex-end;
+.messageHeaderTo {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+    margin: 0 1.7rem;
+    font-size: 0.8rem;
+    color: #656565;
 }
 
 .date {
@@ -83,8 +91,7 @@
     padding: 0.7rem;
     font-size: 0.9rem;
     color: white;
-    background-color: var(--red);
-    align-self: flex-start;
+    background-color: rgba(128, 0, 0, 0.8);
     margin: 0 1rem;
     text-align: left;
     border-radius: 10px;
@@ -95,8 +102,6 @@
     font-size: 0.9rem;
     color: white;
     background-color: #656565;
-    width: 60%;
-    align-self: flex-end;
     margin: 0 1rem;
     text-align: left;
     border-radius: 10px;

@@ -18,7 +18,9 @@ const Interests = ({interests}) => {
 
     const interestItems = companies.map(item => {
         return(
-            <Interest companyName={item} key={item}/>
+            <div className={classes.interest}>
+                <Interest companyName={item} key={item}/>
+            </div>
         )
     });
 

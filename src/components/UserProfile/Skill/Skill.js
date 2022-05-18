@@ -10,7 +10,6 @@ const Skill = ({skill}) => {
             {skill}
             <FontAwesomeIcon icon={faRemove} className={classes.icon} />
         </div>
-        <hr />
     </div>
   )
 }
