@@ -31,3 +31,13 @@ export async function removeEducation(education) {
     const response = await axiosInstance.put('user/education/delete', education);
     return response;
 }
+
+export async function addSkill(newSkill) {
+    const response = await axiosInstance.put('user/skill', newSkill);
+    return response;
+}
+
+export async function removeSkill(skill) {
+    const response = await axiosInstance.put('user/removeSkill', skill);
+    return response;
+}

@@ -23,7 +23,6 @@ const Experience = ({ experience, userId, reload }) => {
             userId: userId,
             experienceId: experience.id
         }
-        console.log(removalRequest);
         removeExperience(removalRequest).then(() => reload());
     }
 
