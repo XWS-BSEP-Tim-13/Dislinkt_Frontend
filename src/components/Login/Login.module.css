@@ -80,7 +80,7 @@ h1 {
 
     .login {
         width: 100%;
-        margin-top: 2vh;
-        margin-bottom: 15vh;
+        height: 75vh;
+        padding-top: 5vh;
     }
 }

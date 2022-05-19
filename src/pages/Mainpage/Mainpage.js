@@ -10,9 +10,11 @@ function Mainpage() {
 
     return (
         <div className={classes.page}>
-            { isLoginPage ? <Login changePage={setIsLoginPage} /> : null }
-            { !isLoginPage ? <Registration changePage={setIsLoginPage} /> : null}
-            <div className={classes.image}></div>
+            <div className={classes.form}>
+                {isLoginPage ? <Login changePage={setIsLoginPage} /> : null}
+                {!isLoginPage ? <Registration changePage={setIsLoginPage} /> : null}
+            </div>
+            <div className={`${classes.image} ${isLoginPage ? classes.loginBg : classes.registrationBg}`}></div>
         </div>
     );
 }
