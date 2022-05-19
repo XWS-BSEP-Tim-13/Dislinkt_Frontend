@@ -22,7 +22,6 @@ h1 {
 
 .formItem {
     font-size: 1rem;
-    margin: 0.5rem 0;
 }
 
 .formItem * {
@@ -32,7 +31,7 @@ h1 {
     height: 2rem;
     width: 22rem;
     font-size: 1rem;
-    margin-left: 0.5rem;
+    margin-left: 1rem;
     font-family: inherit;
     padding: 0 0.5rem;
 }
@@ -47,6 +46,14 @@ h1 {
 
 .formItem *:focus {
     outline: none;
+}
+
+.errorMessage {
+    height: 1.3rem;
+    color: rgba(180, 0, 0, 0.9);
+    font-size: 0.8rem;
+    text-align: left;
+    margin-left: 1.5rem;
 }
 
 .buttonLogIn {
