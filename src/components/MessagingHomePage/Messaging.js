@@ -32,7 +32,7 @@ function Messaging(props) {
             <div className={classes.messages}>
                 {
                     messages.map((message, i) =>
-                        <div className={classes.message}>
+                        <div className={classes.message} key={i}>
                             <div className={classes.imageContainer}>
                                 <img src={User} className={classes.image} alt="Profile" />
                             </div>

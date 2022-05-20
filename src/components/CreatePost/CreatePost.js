@@ -9,14 +9,15 @@ function CreatePost() {
 
     const [showModal,setShowModal] = useState(false)
     const dispatch = useDispatch();
-    function test() {
-        const auth = {
-            token: 'aaa',
-            role: 'bbb',
-            expire: 'ccc'
-        }
-        dispatch(login(auth))
-    }
+    // function test() {
+    //     const auth = {
+    //         token: 'aaa',
+    //         role: 'bbb',
+    //         expire: 'ccc',
+    //         username: 'stefanljubovic'
+    //     }
+    //     dispatch(login(auth))
+    // }
     function showModalFunc(){
         setShowModal(true)
         document.getElementById('appContainer').style.overflow = 'hidden';
@@ -31,7 +32,7 @@ function CreatePost() {
 
     return (
         <div className={classes.containerWrap}>
-            <div className={classes.row} onClick={test}>
+            <div className={classes.row}>
                 <div className={classes.imageContainer}>
                     <img src={Logo} className={classes.image} alt="User" />
                 </div>

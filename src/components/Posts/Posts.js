@@ -36,7 +36,7 @@ function Posts(){
         hasMore={hasMore}>
             {   
                 posts.map((post,i) => 
-                        <Post key={i}/>
+                        <Post key={i} post={post}/>
                 )}
         </InfiniteScroll>
         </div>

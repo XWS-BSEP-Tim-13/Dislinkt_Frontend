@@ -1,7 +1,8 @@
 const stateDeclaration = {
     role : '',
     token : '',
-    expire : ''
+    expire : '',
+    username : 'stefanljubovic'
 };
 
 const loginReducer = (state=stateDeclaration,action) =>{

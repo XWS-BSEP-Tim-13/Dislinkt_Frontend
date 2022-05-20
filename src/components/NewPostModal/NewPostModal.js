@@ -33,6 +33,7 @@ const NewPostModal = (props) => {
                 savePostWithImage(response.data)
             })
         }
+        props.changeState()
     }
     function savePostWithImage(imagePath){
         const post={

@@ -93,6 +93,7 @@
 }
 
 .description{
+    width: 100%;
     text-align: left;
     padding: 1rem 0;
 }
@@ -127,6 +128,7 @@
 .comment{
     display: flex;
     margin-bottom: 2rem;
+    position: relative;
 }
 
 .scroll::-webkit-scrollbar {
@@ -141,6 +143,7 @@
     margin-left: 1rem;
     background-color: #f1f1f1;
     padding: 0.5rem;
+    width: 100%;
 }
 
 .commentImageDiv{
@@ -163,4 +166,34 @@
 
 .commentConent{
     text-align: start;
+    width: 100%;
+}
+
+.textarea{
+    border:1px solid black;
+    min-height: 3rem;
+    border-radius: 7px;
+    overflow: hidden;
+    outline:none;
+    width:100%;
+    padding: 0.3rem;
+    margin-left: 1rem;
+    resize: none;
+}
+
+.postBtn{
+    border-radius: 15px;
+    background-color: var(--red);
+    color: #ffff;
+    width: 5rem;
+    border: none;
+    height: 2rem;
+    cursor: pointer;
+}
+
+.postDiv{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-top: -1rem;
 }
