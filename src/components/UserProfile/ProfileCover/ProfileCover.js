@@ -6,11 +6,13 @@ const ProfileCover = () => {
     return (
         <div>
             <div className={classes.cover}>
-                <img src={cover} alt='cover' className={classes.imgCover}/>
-                <img src={avatar} alt='avatar' className={classes.avatar}/>
+                <img src={cover} alt='cover' className={classes.imgCover} />
+                <div className={classes.avatar}>
+                    <img src={avatar} className={classes.image} alt="Profile" />
+                </div>
             </div>
         </div>
-        
+
     )
 }
 

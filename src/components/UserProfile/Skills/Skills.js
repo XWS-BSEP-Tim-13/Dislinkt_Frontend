@@ -4,11 +4,11 @@ import { faAdd } from '@fortawesome/free-solid-svg-icons'
 import classes from './Skills.module.css'
 import Skill from '../Skill/Skill'
 
-const Skills = ({skills}) => {
+const Skills = ({skills, toggleAddSkill, userId, reload}) => {
 
     const skillItems = skills.map(item => {
         return(
-            <Skill skill={item} key={item}/>
+            <Skill skill={item} key={item} userId={userId} reload={reload}/>
         )
     });
 
@@ -17,7 +17,7 @@ const Skills = ({skills}) => {
             <div className={classes.title}> 
                 <h3> Skills </h3>
                 <div className={classes.titleIcons}>
-                    <FontAwesomeIcon icon={faAdd} className={classes.icon}/>
+                    <FontAwesomeIcon icon={faAdd} className={classes.icon} onClick={toggleAddSkill}/>
                 </div>
             </div>
             {skillItems}

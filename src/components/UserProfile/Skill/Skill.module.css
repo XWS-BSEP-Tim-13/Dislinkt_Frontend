@@ -1,13 +1,18 @@
 .skill {
-    font-weight: bold;
     display: flex;
     justify-content: space-between;
-    margin-top: 2vh;
+    border-bottom: 1px solid #eae9e7;
+    padding: 0.5rem;
 }
 
 .icon {
+    color: #4b4b4b;
     width: 1rem;
     height: 1rem;
-    padding-left: 1vw;
+    padding-left: 1rem;
     cursor: pointer;
+}
+
+.icon:hover {
+    color: black;
 }
