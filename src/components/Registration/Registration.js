@@ -1,14 +1,42 @@
 import { useNavigate } from 'react-router-dom';
+import { useForm } from "react-hook-form";
+import { yupResolver } from '@hookform/resolvers/yup';
+import schema from "../../validationSchemas/RegisterValidationSchema";
 
 import classes from './Registration.module.css';
+import { useState } from 'react';
 
 function Registration(props) {
     const navigate = useNavigate();
 
-    function submitHandler(event) {
-        event.preventDefault();
-        console.log('Submited');
-        navigate('/home');
+    const { register, handleSubmit, formState:{ errors } } = useForm({
+        resolver: yupResolver(schema)
+    });
+
+    const [serverError, setServerError] = useState({
+        emailError: false,
+        usernameError: false
+    })
+
+    function submitHandler(data) {
+        console.log(data);
+
+        const registrationRequest = {
+            username: data.username,
+            password: data.password,
+            role: "ROLE_USER",
+            first_name: data.firstName,
+            last_name: data.lastName,
+            email: data.email,
+            phone_number: data.phoneNumber,
+            gender: data.gender === 'MALE' ? 0 : 1,
+            date_of_birth: data.dateOfBirth+"T00:00",
+            is_private: true
+        }
+
+        console.log(registrationRequest);
+
+        //navigate('/home');
     }
 
     function handleSelectGender(event) {
@@ -18,64 +46,91 @@ function Registration(props) {
     return (
         <div className={classes.register}>
             <h1>Register now!</h1>
-            <form onSubmit={submitHandler} className={classes.form}>
+            <form onSubmit={handleSubmit(submitHandler)} className={classes.form}>
                 <div className={classes.formItems}>
                     <div>
                         <div className={classes.formItem}>
-                            <input type='text' required placeholder='First name' />
+                            <input type='text' placeholder='First name'
+                                className={errors.firstName ? classes.errorInput : ''}
+                                {...register("firstName")} />
                         </div>
-                        <div className={classes.errorMessage}></div>
+                        <div className={classes.errorMessage}>{errors.firstName?.message}</div>
 
                         <div className={classes.formItem}>
-                            <input type='text' required placeholder='Last name' />
+                            <input type='text' placeholder='Last name'
+                                className={errors.lastName ? classes.errorInput : ''}
+                                {...register("lastName")} />
                         </div>
-                        <div className={classes.errorMessage}></div>
+                        <div className={classes.errorMessage}>{errors.lastName?.message}</div>
 
                         <div className={classes.formItem}>
-                            <input type='text' required placeholder='Email' />
+                            <input type='text' placeholder='Email' 
+                                className={errors.email ? classes.errorInput : ''}
+                                {...register("email")}/>
                         </div>
-                        <div className={classes.errorMessage}></div>
+                        <div className={classes.errorMessage}>{errors.email?.message} 
+                            {serverError.emailError ? "Account with this e-mail already exists." : ""}</div>
 
                         <div className={classes.formItem}>
-                            <input type='text' required placeholder='Phone number' />
+                            <input type='text' placeholder='Phone number' 
+                                className={errors.phoneNumber ? classes.errorInput : ''}
+                                {...register("phoneNumber")}/>
                         </div>
-                        <div className={classes.errorMessage}></div>
+                        <div className={classes.errorMessage}>{errors.phoneNumber?.message}</div>
 
                         <div className={classes.formItem}>
-                            <select name="Gender" defaultValue="" onChange={handleSelectGender}>
+                            <select name="Gender" defaultValue=""
+                                className={errors.gender ? classes.errorInput : ''}
+                                {...register("gender")}
+                                onChange={handleSelectGender} >
                                 <option value="" disabled>Gender</option>
                                 <option value="MALE" >Male</option>
-                                <option value="FEMALe" >Female</option>
+                                <option value="FEMALE" >Female</option>
                             </select>
                         </div>
-                        <div className={classes.errorMessage}></div>
+                        <div className={classes.errorMessage}>{errors.gender?.message}</div>
                     </div>
 
                     <div>
                         <div className={classes.formItem}>
-                            <input type='text' required placeholder='Date of birth' onFocus={(e) => (e.target.type = "date")} onBlur={(e) => (e.target.type = "text")} />
+                            <input type='text' placeholder='Date of birth' onFocus={(e) => (e.target.type = "date")} onBlur={(e) => (e.target.type = "text")} 
+                            className={errors.dateOfBirth ? classes.errorInput : ''}
+                            {...register("dateOfBirth")}/>
                         </div>
-                        <div className={classes.errorMessage}></div>
+                        <div className={classes.errorMessage}>{errors.dateOfBirth?.message}</div>
 
                         <div className={classes.formItem}>
-                            <input type='text' required placeholder='Short biography' />
+                            <input type='text' placeholder='Short biography'
+                                className={errors.biography ? classes.errorInput : ''}
+                                {...register("biography")} />
                         </div>
-                        <div className={classes.errorMessage}></div>
+                        <div className={classes.errorMessage}>{errors.biography?.message}</div>
 
                         <div className={classes.formItem}>
-                            <input type='text' required placeholder='Username' />
+                            <input type='text' placeholder='Username'
+                                className={errors.username ? classes.errorInput : ''}
+                                {...register("username")} />
                         </div>
-                        <div className={classes.errorMessage}></div>
+                        <div className={classes.errorMessage}>{errors.username?.message}
+                            {serverError.usernameError ? "Username already taken." : ""}</div>
+
+                        <div className={`${classes.formItem} ${classes.password}`}>
+                            <input type='password' placeholder='Password'
+                                className={`${errors.password?.message === 'Password is too weak.' || errors.password?.message === 'Password is required.' ? classes.errorInput : ''}
+                                ${errors.password?.message === 'Password has medium strength.' ? classes.mediumStrengthPassword : ''}
+                                ${!errors?.password && false ? classes.passwordStrong : ''}`}
+                                {...register("password")}/>
+                            <div className={classes.tooltip}>Strong password must be at least 10 characters long, including at least 1 uppercase letter, 1 lowercase letter, 1 numeric character and 1 special character.</div>
+                        </div>
+                        <div className={`${classes.errorMessage} 
+                            ${errors.password?.message === 'Password has medium strength.' ? classes.errorMessagePasswordWeak : ''}`}>{errors.password?.message}</div>
 
                         <div className={classes.formItem}>
-                            <input type='password' required placeholder='Password' />
+                            <input type='password' placeholder='Confirm password'
+                                className={errors.confirmPassword ? classes.errorInput : ''}
+                                {...register("confirmPassword")} />
                         </div>
-                        <div className={classes.errorMessage}></div>
-
-                        <div className={classes.formItem}>
-                            <input type='password' required placeholder='Confirm password' />
-                        </div>
-                        <div className={classes.errorMessage}></div>
+                        <div className={classes.errorMessage}>{errors.confirmPassword?.message}</div>
                     </div>
 
                 </div>

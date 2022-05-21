@@ -13,6 +13,7 @@
 
 h1 {
     font-size: 3.5rem;
+    margin-bottom: 3rem;
 }
 
 .formItems {
@@ -48,12 +49,21 @@ h1 {
     outline: none;
 }
 
+.errorInput {
+    border: 2px solid rgba(180, 0, 0, 0.9);
+}
+
 .errorMessage {
     height: 1.3rem;
     color: rgba(180, 0, 0, 0.9);
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     text-align: left;
     margin-left: 1.5rem;
+    font-weight: bold;
+}
+
+.errorMessagePasswordWeak {
+    color: rgb(255, 208, 0);
 }
 
 .buttonLogIn {
@@ -79,6 +89,39 @@ h1 {
     font-size: 0.8rem;
     color: var(--dark-red);
     align-self: center;
+}
+
+.password {
+    position: relative;
+}
+
+.password .tooltip {
+    visibility: hidden;
+    width: 20rem;
+    height: auto;
+    background-color: rgb(39, 39, 39);
+    color: white;
+    font-size: 0.9rem;
+    text-align: left;
+    word-wrap: normal;
+    border-radius: 6px;
+    padding: 0.3rem;
+
+    position: absolute;
+    z-index: 1;
+    bottom: 2.5rem;
+}
+
+.password:hover .tooltip {
+    visibility: visible;
+}
+
+.mediumStrengthPassword {
+    border: 2px solid rgb(255, 208, 0);
+}
+
+.passwordStrong {
+    border: 2px solid rgb(67, 148, 0);
 }
 
 @media (max-width: 60rem) {

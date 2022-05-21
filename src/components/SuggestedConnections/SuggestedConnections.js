@@ -15,7 +15,7 @@ const SuggestedConnections = () => {
             <div className={classes.connectionWrap}>
                 {
                     requsts.map((connection, index) =>
-                        <div className={classes.connection}>
+                        <div className={classes.connection} key={index}>
                             <img src={Background} alt="" className={classes.background} />
                             <div className={classes.imageContainer}>
                                 <img src={User} className={classes.image} alt="User" />

@@ -21,17 +21,8 @@ function Homepage() {
                     <ProfileSummary />
                 </div>
                 <div className={classes.feed}>
-                    <div className={classes.parts}>
-                        <div className={classes.main}>
-                            <div>
-                                <CreatePost></CreatePost>
-                                <Posts ></Posts>
-                            </div>
-                        </div>
-                        <div className={classes.connect}>
-
-                        </div>
-                    </div>
+                    <CreatePost></CreatePost>
+                    <Posts ></Posts>
                 </div>
                 <div className={classes.suggestions}>
                     <SuggestionsHomepage></SuggestionsHomepage>

@@ -30,7 +30,7 @@ function Posts(){
     return(
         <div className={classes.containerWrap}>
         <InfiniteScroll
-        loader={<h4>Loading...</h4>}
+        loader={<h4 className={classes.loading}>Loading...</h4>}
         dataLength={posts.length}
         next={()=>setPageNumber(prevPageNumber => prevPageNumber + 1)} 
         hasMore={hasMore}>
