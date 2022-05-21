@@ -3,7 +3,6 @@ import {useSelector, useDispatch} from 'react-redux';
 import NewPostModal from '../NewPostModal/NewPostModal';
 import { useState } from 'react';
 import Logo from '../../images/user-red.png'
-import { login } from '../../store/actions'
 
 function CreatePost() {
 

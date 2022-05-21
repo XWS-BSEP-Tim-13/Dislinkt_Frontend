@@ -10,7 +10,7 @@ import './App.css';
 import Navigation from "../src/components/Navigation/Navigation";
 import UserProfile from './components/UserProfile/UserProfile/UserProfile';
 import Messaging from "./components/MessagingHomePage/Messaging";
-
+import ForgotPassword from './components/ForgotPassword/ForgotPassword';
 
 function App() {
    
@@ -20,7 +20,7 @@ function App() {
 
     return (
         <div className="App" id="appContainer">
-            {location.pathname !== '/' ? <Navigation /> : null}
+            {location.pathname !== '/' && location.pathname !== '/forgot-password'  ? <Navigation /> : null}
             <Routes>
                 <Route path='/' element={<Mainpage />} />
                 <Route path='/home' element={<Homepage />} />
@@ -28,6 +28,7 @@ function App() {
                 <Route path='/messaging' element={<MessagingPage />} />
                 <Route path='/jobs' element={<Jobs />} />
                 <Route path='/in' element={<UserProfile />} />
+                <Route path='/forgot-password' element={< ForgotPassword/>} />
             </Routes>
 
             {location.pathname !== '/' ?

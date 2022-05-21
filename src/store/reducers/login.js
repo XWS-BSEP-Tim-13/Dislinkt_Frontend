@@ -1,13 +1,13 @@
 const stateDeclaration = {
     role : '',
     token : '',
-    expire : '',
     username : 'stefanljubovic'
 };
 
 const loginReducer = (state=stateDeclaration,action) =>{
     switch(action.type){
         case 'LOGIN':
+            console.log(action.data)
             return state =action.data
         case 'LOGOUT':
             return state =stateDeclaration
