@@ -1,15 +1,15 @@
-import { useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
-import schema from "../../validationSchemas/RegisterValidationSchema";
+import schema from "../../../validationSchemas/RegisterCompanyValidationSchema";
 
-import classes from './Registration.module.css';
+import classes from './RegisterCompany.module.css';
 import { useState } from 'react';
+import { axiosInstance } from "../../../api/AxiosInstance"
 
-function Registration(props) {
-    const navigate = useNavigate();
 
-    const { register, handleSubmit, formState:{ errors } } = useForm({
+function RegisterCompany(props) {
+
+    const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: yupResolver(schema)
     });
 
@@ -19,24 +19,33 @@ function Registration(props) {
     })
 
     function submitHandler(data) {
-        console.log(data);
 
         const registrationRequest = {
             username: data.username,
             password: data.password,
-            role: "ROLE_USER",
-            first_name: data.firstName,
-            last_name: data.lastName,
+            role: "COMPANY",
+            company_name: data.companyName,
+            location: data.location,
             email: data.email,
             phone_number: data.phoneNumber,
-            gender: data.gender === 'MALE' ? 0 : 1,
-            date_of_birth: data.dateOfBirth+"T00:00",
-            is_private: true
+            website: data.website,
+            company_size: data.companySize,
+            industry: data.industry,
+            is_private: false,
+            is_company: true
         }
 
-        console.log(registrationRequest);
-
-        //navigate('/home');
+        axiosInstance.post("registration", registrationRequest)
+            .then(() => {
+                props.changeMode('emailSent');
+            })
+            .catch((error) => {
+                if (error.response.data.includes("Username already exists!")) {
+                    setServerError({ emailError: false, usernameError: true });
+                } else if (error.response.data.includes("Email already exists!")) {
+                    setServerError({ emailError: true, usernameError: false });
+                }
+            })
     }
 
     function handleSelectGender(event) {
@@ -44,67 +53,61 @@ function Registration(props) {
     }
 
     return (
-        <div className={classes.register}>
-            <h1>Register now!</h1>
+        <div>
             <form onSubmit={handleSubmit(submitHandler)} className={classes.form}>
                 <div className={classes.formItems}>
                     <div>
                         <div className={classes.formItem}>
-                            <input type='text' placeholder='First name'
-                                className={errors.firstName ? classes.errorInput : ''}
-                                {...register("firstName")} />
+                            <input type='text' placeholder='Company name'
+                                className={errors.companyName ? classes.errorInput : ''}
+                                {...register("companyName")} />
                         </div>
-                        <div className={classes.errorMessage}>{errors.firstName?.message}</div>
+                        <div className={classes.errorMessage}>{errors.companyName?.message}</div>
 
                         <div className={classes.formItem}>
-                            <input type='text' placeholder='Last name'
-                                className={errors.lastName ? classes.errorInput : ''}
-                                {...register("lastName")} />
+                            <input type='text' placeholder='Location'
+                                className={errors.location ? classes.errorInput : ''}
+                                {...register("location")} />
                         </div>
-                        <div className={classes.errorMessage}>{errors.lastName?.message}</div>
+                        <div className={classes.errorMessage}>{errors.location?.message}</div>
 
                         <div className={classes.formItem}>
-                            <input type='text' placeholder='Email' 
+                            <input type='text' placeholder='Email'
                                 className={errors.email ? classes.errorInput : ''}
-                                {...register("email")}/>
+                                {...register("email")} />
                         </div>
-                        <div className={classes.errorMessage}>{errors.email?.message} 
+                        <div className={classes.errorMessage}>{errors.email?.message}
                             {serverError.emailError ? "Account with this e-mail already exists." : ""}</div>
 
                         <div className={classes.formItem}>
-                            <input type='text' placeholder='Phone number' 
+                            <input type='text' placeholder='Phone number'
                                 className={errors.phoneNumber ? classes.errorInput : ''}
-                                {...register("phoneNumber")}/>
+                                {...register("phoneNumber")} />
                         </div>
                         <div className={classes.errorMessage}>{errors.phoneNumber?.message}</div>
 
                         <div className={classes.formItem}>
-                            <select name="Gender" defaultValue=""
-                                className={errors.gender ? classes.errorInput : ''}
-                                {...register("gender")}
-                                onChange={handleSelectGender} >
-                                <option value="" disabled>Gender</option>
-                                <option value="MALE" >Male</option>
-                                <option value="FEMALE" >Female</option>
-                            </select>
+                            <input type='text' placeholder='Website'
+                                className={errors.website ? classes.errorInput : ''}
+                                {...register("website")} />
                         </div>
-                        <div className={classes.errorMessage}>{errors.gender?.message}</div>
+                        <div className={classes.errorMessage}>{errors.website?.message}</div>
                     </div>
 
                     <div>
                         <div className={classes.formItem}>
-                            <input type='text' placeholder='Date of birth' onFocus={(e) => (e.target.type = "date")} onBlur={(e) => (e.target.type = "text")} 
-                            className={errors.dateOfBirth ? classes.errorInput : ''}
-                            {...register("dateOfBirth")}/>
+                            <input type='text' placeholder='Company size'
+                                className={errors.companySize ? classes.errorInput : ''}
+                                {...register("companySize")} />
                         </div>
-                        <div className={classes.errorMessage}>{errors.dateOfBirth?.message}</div>
+                        <div className={classes.errorMessage}>{errors.companySize?.message}</div>
 
                         <div className={classes.formItem}>
-                            <input type='text' placeholder='Short biography'
-                                className={errors.biography ? classes.errorInput : ''}
-                                {...register("biography")} />
+                            <input type='text' placeholder='Industry'
+                                className={errors.industry ? classes.errorInput : ''}
+                                {...register("industry")} />
                         </div>
-                        <div className={classes.errorMessage}>{errors.biography?.message}</div>
+                        <div className={classes.errorMessage}>{errors.industry?.message}</div>
 
                         <div className={classes.formItem}>
                             <input type='text' placeholder='Username'
@@ -119,7 +122,7 @@ function Registration(props) {
                                 className={`${errors.password?.message === 'Password is too weak.' || errors.password?.message === 'Password is required.' ? classes.errorInput : ''}
                                 ${errors.password?.message === 'Password has medium strength.' ? classes.mediumStrengthPassword : ''}
                                 ${!errors?.password && false ? classes.passwordStrong : ''}`}
-                                {...register("password")}/>
+                                {...register("password")} />
                             <div className={classes.tooltip}>Strong password must be at least 10 characters long, including at least 1 uppercase letter, 1 lowercase letter, 1 numeric character and 1 special character.</div>
                         </div>
                         <div className={`${classes.errorMessage} 
@@ -136,12 +139,9 @@ function Registration(props) {
                 </div>
 
                 <button className={classes.buttonLogIn}>Register</button>
-                <a href="/#" className={classes.registerLink} onClick={() => props.changePage(true)}>
-                    Already have an account? Log in here!
-                </a>
             </form>
         </div>
     );
 }
 
-export default Registration;
+export default RegisterCompany;

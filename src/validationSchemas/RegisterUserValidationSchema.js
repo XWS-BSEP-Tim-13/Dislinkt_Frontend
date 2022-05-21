@@ -46,7 +46,9 @@ const schema = yup.object().shape({
     confirmPassword: 
         yup.string()
         .oneOf([yup.ref("password")], "Passwords do not match.")
-        .required("Please confirm your password.")
+        .required("Please confirm your password."),
+    isPrivate: 
+        yup.boolean()
 });
 
 export default schema;

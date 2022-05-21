@@ -1,5 +1,5 @@
 import Login from "../../components/Login/Login";
-import Registration from "../../components/Registration/Registration";
+import Registration from "../../components/RegistrationComponents/Registration/Registration";
 
 import classes from './Mainpage.module.css';
 
