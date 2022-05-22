@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const ImageService = {
 
-    baseURL : "http://localhost:8083/",
+    baseURL : "https://localhost:8083/",
 
     uploadImage: function(image) {
         console.log('bbbbbb')
