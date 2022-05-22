@@ -16,6 +16,18 @@ const AuthentificationService = {
         })
 
     },
+
+    forgotPassword: function(email) {
+        return axios.post(this.baseURL+`forgot-password/`+email, {
+            headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json',
+            }
+        })
+
+    },
+
+
 }
 
 export default AuthentificationService;

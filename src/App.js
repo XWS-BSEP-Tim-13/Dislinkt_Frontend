@@ -11,6 +11,7 @@ import Navigation from "../src/components/Navigation/Navigation";
 import UserProfile from './components/UserProfile/UserProfile/UserProfile';
 import Messaging from "./components/MessagingHomePage/Messaging";
 import ForgotPassword from './components/ForgotPassword/ForgotPassword';
+import ChangePassword from './components/ChangePassword/ChangePassword';
 
 function App() {
    
@@ -20,7 +21,7 @@ function App() {
 
     return (
         <div className="App" id="appContainer">
-            {location.pathname !== '/' && location.pathname !== '/forgot-password'  ? <Navigation /> : null}
+            {location.pathname !== '/' && location.pathname !== '/forgot-password' && location.pathname !== '/change-password'  ? <Navigation /> : null}
             <Routes>
                 <Route path='/' element={<Mainpage />} />
                 <Route path='/home' element={<Homepage />} />
@@ -29,9 +30,10 @@ function App() {
                 <Route path='/jobs' element={<Jobs />} />
                 <Route path='/in' element={<UserProfile />} />
                 <Route path='/forgot-password' element={< ForgotPassword/>} />
+                <Route path='/change-password' element={< ChangePassword/>} />
             </Routes>
 
-            {location.pathname !== '/' ?
+            {location.pathname !== '/' && location.pathname !== '/forgot-password' && location.pathname !== '/change-password' ?
                 <div className={`messaging transform ${messagesOpen ? "transformActive" : ""}`}>
                     <Messaging clickHandler={() => setMessagesOpen(!messagesOpen)}
                         isMessagesOpen={messagesOpen} page="app">

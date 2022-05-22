@@ -2,6 +2,7 @@ import React from 'react'
 import classes from './ForgotPassword.module.css';
 import {useForm} from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
+import AuthentificationService from '../../services/AuthentificationService';
 const ForgotPassword = () => {
     
     const navigate = useNavigate();
@@ -9,7 +10,10 @@ const ForgotPassword = () => {
 
 
     const onSubmit = handleSubmit((data) =>{
-          
+        console.log(data.email)
+          AuthentificationService.forgotPassword(data.email).then(resp=>{
+              console.log('aa')
+          })
     })
 
     function back(){
@@ -17,12 +21,12 @@ const ForgotPassword = () => {
     }
 
   return (
-    <div className={classes.container}>
-        <form onSubmit={onSubmit}>
-        <div className={classes.main}>
-            <h2 className={classes.headerText}>Forgot Password?</h2>
-            <div className={classes.input}>
-                <input
+<div className={classes.page}>
+    <div className={classes.login}>
+    <h1>Forgot password?</h1>
+    <form onSubmit={onSubmit} className={classes.form}>
+        <div className={classes.formItem}>
+        <input
                 {...register("email", {required: {value:true,message:'Email is required'},pattern:{value:  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,message:'Wrong email format'}})}
                 type="text" 
                 placeholder="Email"
@@ -30,15 +34,13 @@ const ForgotPassword = () => {
                  {
                    errors.email && <div className={classes.error}>{errors.email.message}</div>
                 }
-            </div>
-            <div className={classes.btnDiv}>
-                <button className={classes.confirm}>Resset password</button>
-                <button onClick={back}>Back</button>
-            </div>
         </div>
-        </form>
-
-    </div>
+        <button className={classes.buttonLogIn}>Reset password</button>
+        <button onClick={back}  className={classes.buttonBack}>Back</button>
+    </form>
+</div>  
+<div className={classes.image}></div>
+</div>
   )
 }
 
