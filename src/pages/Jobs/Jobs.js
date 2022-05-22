@@ -17,7 +17,7 @@ const Jobs = () => {
                 <div className={classes.jobOffers}>
                     {
                         jobOffers.map((message, i) =>
-                            <div className={classes.jobOffer}>
+                            <div className={classes.jobOffer} key={i}>
                                 <JobOffer></JobOffer>
                             </div>
                         )

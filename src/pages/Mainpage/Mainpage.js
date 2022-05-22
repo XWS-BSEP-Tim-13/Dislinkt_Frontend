@@ -1,5 +1,5 @@
 import Login from "../../components/Login/Login";
-import Registration from "../../components/Registration/Registration";
+import Registration from "../../components/RegistrationComponents/Registration/Registration";
 
 import classes from './Mainpage.module.css';
 
@@ -11,17 +11,19 @@ function Mainpage() {
     const [isLoginPage, setIsLoginPage] = useState(true);
     const [isPasswordlessPage, setIsPasswordlessPage] = useState(false);
 
-    function navigateToLogin(){
+    function navigateToLogin() {
         setIsLoginPage(true);
         setIsPasswordlessPage(false);
     }
 
     return (
         <div className={classes.page}>
-            { (isLoginPage && !isPasswordlessPage) ? <Login changePage={setIsLoginPage} navigateToPasswordless={setIsPasswordlessPage}/> : null }
-            { (!isLoginPage && !isPasswordlessPage) ? <Registration changePage={setIsLoginPage} /> : null}
-            {(isPasswordlessPage) && <Passwordless navigateToLogin={navigateToLogin}/>}
-            <div className={classes.image}></div>
+            <div className={classes.form}>
+                {(isLoginPage && !isPasswordlessPage) ? <Login changePage={setIsLoginPage} navigateToPasswordless={setIsPasswordlessPage} /> : null}
+                {(!isLoginPage && !isPasswordlessPage) ? <Registration changePage={setIsLoginPage} /> : null}
+                {(isPasswordlessPage) && <Passwordless navigateToLogin={navigateToLogin} />}
+            </div>
+            <div className={`${classes.image} ${isLoginPage ? classes.loginBg : classes.registrationBg}`}></div>
         </div>
     );
 }

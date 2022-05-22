@@ -1,0 +1,49 @@
+.wrapper {
+    padding-bottom: 1.5rem;
+}
+
+.choice {
+    display: block;
+    width: 23rem;
+    margin-bottom: 1.5rem;
+
+    background-color: #f2f2f2;
+    color: #363636;
+    font-weight: bold;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 5px;
+    height: 5rem;
+}
+
+.choice:hover {
+    background-color: #e3e3e3;
+}
+
+.icon {
+    margin-right: 1rem;
+}
+
+@media (max-width: 60rem) {
+
+    .choice {
+        width: 25rem;
+    }
+}
+
+@media (max-width: 40rem) {
+
+    .register {
+        width: 100%;
+        padding-top: 2rem;
+        min-height: 75vh;
+    }
+
+    .caption {
+        font-size: 2.7rem;
+    }
+
+    .choice {
+        width: 20rem;
+    }
+}

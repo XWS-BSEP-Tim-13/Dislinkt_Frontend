@@ -21,28 +21,6 @@
     width: 30%;
 }
 
-.parts{
-    display: flex;
-    flex-direction: row;
-    height: 100%;
-}
-
-.main{
-    display: flex;
-    justify-content: flex-end;
-}
-
-.connect{
-    flex: 1;
-}
-
-.main >div {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    align-items: flex-end;
-}
-
 @media only screen and (max-width: 800px) {
     .gap{
         flex: 0;
