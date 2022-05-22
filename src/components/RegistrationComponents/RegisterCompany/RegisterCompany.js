@@ -48,10 +48,6 @@ function RegisterCompany(props) {
             })
     }
 
-    function handleSelectGender(event) {
-        event.target.style.color = 'black';
-    }
-
     return (
         <div>
             <form onSubmit={handleSubmit(submitHandler)} className={classes.form}>

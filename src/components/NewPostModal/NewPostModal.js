@@ -27,7 +27,7 @@ const NewPostModal = (props) => {
 
     function savePost() {
         console.log('Content' + content)
-        if (imagePath == '') {
+        if (imagePath === '') {
             savePostWithImage('')
         }
         else {
@@ -81,7 +81,7 @@ const NewPostModal = (props) => {
                     <TextareaAutosize className={classes.textarea} placeholder="What do you want to talk about?" value={content} onChange={handleChange} />
                     <input type="file" onChange={uploadPhoto} accept="image/*" style={{ display: 'none' }} ref={fileInput} />
                     {
-                        imagePath != '' &&
+                        imagePath !== '' &&
                         <div className={classes.imgDiv}>
                             <img src={getImage()} alt="#" className={classes.imgDivPicture} />
                             <button onClick={removeImage} className={classes.buttonImage}><FontAwesomeIcon icon={faXmark} className={classes.deleteImage} /></button>

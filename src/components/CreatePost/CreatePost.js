@@ -1,13 +1,13 @@
 import classes from './CreatePost.module.css';
-import {useSelector, useDispatch} from 'react-redux';
+//import {useDispatch} from 'react-redux';
 import NewPostModal from '../NewPostModal/NewPostModal';
 import { useState } from 'react';
 import Logo from '../../images/user-red.png'
 
 function CreatePost() {
 
-    const [showModal,setShowModal] = useState(false)
-    const dispatch = useDispatch();
+    const [showModal,setShowModal] = useState(false);
+    //const dispatch = useDispatch();
     // function test() {
     //     const auth = {
     //         token: 'aaa',
