@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const UserService = {
 
-    baseURL : "http://localhost:8083/",
+    baseURL : "https://localhost:8083/",
 
     feed: function(data) {
         return axios.post(this.baseURL+`user/feed`,data, {
