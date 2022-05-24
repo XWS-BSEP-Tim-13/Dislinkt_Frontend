@@ -46,9 +46,9 @@ function RegisterUser(props) {
                 props.changeMode('emailSent');
             })
             .catch((error) => {
-                if (error.response.data.includes("Username already exists!")) {
+                if (error.response.data.includes("username already exists")) {
                     setServerError({ emailError: false, usernameError: true });
-                } else if (error.response.data.includes("Email already exists!")) {
+                } else if (error.response.data.includes("email already exists")) {
                     setServerError({ emailError: true, usernameError: false });
                 }
             })
