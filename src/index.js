@@ -16,7 +16,7 @@ const myLogger = (store) => (next) => (action) => {
     next(action);
 };
 
-const composedEnhancer = compose(applyMiddleware(myLogger), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+const composedEnhancer = compose(applyMiddleware(myLogger))
 
 const store = createStore(allReducers, composedEnhancer
 );

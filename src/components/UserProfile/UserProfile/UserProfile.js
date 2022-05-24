@@ -20,6 +20,7 @@ const UserProfile = () => {
     const [addEducationVisible, setAddEducationVisible] = useState(false);
     const [addSkillVisible, setAddSkillVisible] = useState(false);
 
+
     async function reload() {
         const user = await getUserByUsername("suki");
         setUser(user);

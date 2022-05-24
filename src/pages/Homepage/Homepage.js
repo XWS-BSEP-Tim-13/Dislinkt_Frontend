@@ -5,6 +5,7 @@ import SuggestionsHomepage from "../../components/SuggestionsHomepage/Suggestion
 import Posts from "../../components/Posts/Posts";
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
+import { CheckUserPermission } from "../../components/Permissions/CheckUserPermission"
 
 function Homepage() {
 
@@ -25,7 +26,9 @@ function Homepage() {
                     <Posts ></Posts>
                 </div>
                 <div className={classes.suggestions}>
+                <CheckUserPermission role="USER">
                     <SuggestionsHomepage></SuggestionsHomepage>
+                </CheckUserPermission>
                 </div>
             </div>
         </div>
