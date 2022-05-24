@@ -19,7 +19,7 @@ const ConnectionRequests = () => {
                         <label>Connection requests</label>
                         {
                             connections.map((connection, index) =>
-                                <div className={classes.conection}>
+                                <div className={classes.conection} key={index}>
                                     <div className={classes.connectionDetails}>
                                         <div className={classes.imageContainer}>
                                             <img src={User} className={classes.image} alt="User" />

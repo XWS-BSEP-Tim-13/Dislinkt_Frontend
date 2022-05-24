@@ -1,6 +1,4 @@
-import axios from 'axios';
-
-export const axiosInstance = axios.create({ baseURL: 'http://localhost:8083/' });
+import { axiosInstance } from "../AxiosInstance";
 
 export async function getUserByUsername(username) {
     const response = await axiosInstance.get(`in/${username}`);

@@ -27,7 +27,7 @@ const Chat = () => {
                 <div className={classes.messages}>
                     {
                         messages.map((message, i) =>
-                            <div className={classes.message}>
+                            <div className={classes.message} key={i}>
                                 <div className={`${true ? classes.messageFrom : classes.messageTo}`}>
                                     <div className={`${true ? classes.messageHeaderFrom : classes.messageHeaderTo}`}>
                                         <label className={`${true ? classes.personFrom : classes.personTo}`}>Ana Gavrilovic</label>
@@ -45,7 +45,7 @@ const Chat = () => {
 
             <div className={classes.newMessage}>
                 <div className={classes.messageInput}>
-                    <div className={classes.writeMessage} contenteditable="true" placeholder="Write a message..."></div>
+                    <div className={classes.writeMessage} contentEditable="true" placeholder="Write a message..."></div>
                     <div className={classes.media}>
                         <FontAwesomeIcon icon={faImage} className={classes.icon} />
                         <FontAwesomeIcon icon={faLink} className={classes.icon} />

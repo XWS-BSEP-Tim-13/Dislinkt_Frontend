@@ -1,6 +1,6 @@
 import classes from './Post.module.css';
 import User from '../../images/user-red.png'
-import Unavailable from '../../images/unavailable.png'
+//import Unavailable from '../../images/unavailable.png'
 import { faThumbsUp } from '@fortawesome/free-solid-svg-icons'
 import { faThumbsDown } from '@fortawesome/free-solid-svg-icons'
 import { faComment } from '@fortawesome/free-solid-svg-icons'
@@ -23,45 +23,45 @@ const Post = (props) => {
     const [content,setContent] = useState('')
     useEffect(() => {
         setPost(props.post)
-        if(props.post.likes != undefined)
+        if(props.post.likes !== undefined)
         props.post.likes.map(like =>{
-            if(like == auth.username){
+            if(like === auth.username){
                 setPostLiked(true)
                 return 
             }
         })
-        if(props.post.dislikes != undefined)
+        if(props.post.dislikes !== undefined)
         props.post.dislikes.map(dislike =>{
-            if(dislike == auth.username){
+            if(dislike === auth.username){
                 setPostDisliked(true)
                 return 
             }
         })
-        if (props.post.image != undefined){
+        if (props.post.image !== undefined){
             setImage('loading')
             ImageService.getImage(props.post.image).then(resp=>{
                 console.log(resp.data)
                 setImage("data:image/gif;base64,"+resp.data.image)
             })
         }
-    }, [])
+    }, [auth.username, props.post])
 
     function getLikes(){
-        if(post.likes == undefined || post.likes.length==0) return "None"
+        if(post.likes === undefined || post.likes.length===0) return "None"
         let likes = post.likes?.length -1
         if (post.likes.length -1 < 1) return post.likes[0]
         return post?.likes[0] +' and '+likes+' others'
     }
 
     function getDislikes(){
-        if(post.dislikes == undefined || post.dislikes.length==0 ) return "None"
+        if(post.dislikes === undefined || post.dislikes.length===0 ) return "None"
         let likes = post.dislikes.length -1
         if (post.dislikes.length -1 <1) return post.dislikes[0]
         return post.dislikes[0] +' and '+likes+' others'
     }
 
     function getComments(){
-        if(post.comments == undefined || post.comments.length==0 ) return "None"
+        if(post.comments === undefined || post.comments.length===0 ) return "None"
         return post.comments.length+ ' comments'
     }
 
@@ -70,12 +70,12 @@ const Post = (props) => {
         setPostLiked(true)
         let dislikes = post.dislikes
         let likes = post.likes
-        if(post.likes != undefined && post.likes.indexOf(auth.username) >-1){
-            likes = post.likes.filter(like => like != auth.username)
+        if(post.likes !== undefined && post.likes.indexOf(auth.username) >-1){
+            likes = post.likes.filter(like => like !== auth.username)
             setPostLiked(false)
         }else{
-            if(post.dislikes != undefined) dislikes=dislikes.filter(dislike => dislike != auth.username)
-            if(likes == undefined) likes = [auth.username]
+            if(post.dislikes !== undefined) dislikes=dislikes.filter(dislike => dislike !== auth.username)
+            if(likes === undefined) likes = [auth.username]
             else likes.push(auth.username)
         }
         setPost({...post , dislikes : dislikes, likes : likes})
@@ -95,12 +95,12 @@ const Post = (props) => {
         setPostLiked(false)
         let likes = post.likes
         let dislikes = post.dislikes
-        if(post.dislikes != undefined && post.dislikes.indexOf(auth.username) >-1){
-            dislikes = post.dislikes.filter(dislikes => dislikes != auth.username)
+        if(post.dislikes !== undefined && post.dislikes.indexOf(auth.username) >-1){
+            dislikes = post.dislikes.filter(dislikes => dislikes !== auth.username)
             setPostDisliked(false)
         }else{
-            if(post.likes != undefined) likes=likes.filter(like => like != auth.username)
-            if(dislikes == undefined) dislikes = [auth.username]
+            if(post.likes !== undefined) likes=likes.filter(like => like !== auth.username)
+            if(dislikes === undefined) dislikes = [auth.username]
             else dislikes.push(auth.username)
         }
         setPost({...post , dislikes : dislikes, likes : likes})
@@ -127,7 +127,7 @@ const Post = (props) => {
         }
         PostService.createCommentOnPost(commentRequest).then(resp=>{
             commentRequest.comment.id = resp.data
-            if(post.comments == undefined)  comments = []
+            if(post.comments === undefined)  comments = []
             comments.push(commentRequest.comment)
             console.log(comments)
             setPost({...post , comments : comments})
@@ -136,11 +136,11 @@ const Post = (props) => {
     }
 
     function getDate(time){
-        if(time == undefined) return "Today"
+        if(time === undefined) return "Today"
         const date = new Date((time.seconds+time.nanos/100000000)*1000)
         const now = new Date()
         let difference = dateDiffInDays(now, date);
-        if(difference ==0) return "Today"
+        if(difference ===0) return "Today"
         return difference+'d'
     }
 
@@ -166,8 +166,8 @@ const Post = (props) => {
                 <div className={classes.description}>
                     <Linkify>{post.content}</Linkify>
                 </div>
-                {  (image != undefined && image !='loading') && <img src={image} className={classes.postImage} alt=""/>}
-                {image == 'loading' && <h1>Loading image....</h1>}
+                {  (image !== undefined && image !=='loading') && <img src={image} className={classes.postImage} alt=""/>}
+                {image === 'loading' && <h1>Loading image....</h1>}
 
                 <div className={classes.likeSection}>
                     <label className={classes.smallText1}><FontAwesomeIcon icon={faThumbsUp} className={classes.likeIcon} />{getLikes()}</label>
@@ -200,12 +200,12 @@ const Post = (props) => {
                         </div>
                         <div className={classes.postDiv}>
                         {
-                                content != '' && <button className={classes.postBtn} onClick={addComment}>Post</button>
+                                content !== '' && <button className={classes.postBtn} onClick={addComment}>Post</button>
                         }
                         </div>
                         <div className={classes.comments}>
                             {
-                                post.comments !=undefined &&  post.comments.map((comment, i) =>
+                                post.comments !==undefined &&  post.comments.map((comment, i) =>
                                     <div className={classes.commentImageDiv} key={i}>
                                         <div className={classes.imageContainer}>
                                             <img src={User} className={classes.image} alt="User" />
