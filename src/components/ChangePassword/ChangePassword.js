@@ -1,15 +1,34 @@
-import React from 'react'
+import React ,{useEffect} from 'react'
 import classes from './ChangePassword.module.css';
 import {useForm} from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import AuthentificationService from '../../services/AuthentificationService';
-
+import {useParams} from "react-router-dom";
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 const ChangePassword = () => {
     
     const navigate = useNavigate();
     const {register,handleSubmit, formState: { errors },watch} = useForm({})
+    const {token} = useParams()
+    const MySwal = withReactContent(Swal)
+
     const onSubmit = handleSubmit((data) =>{
         console.log(data.password)
+        const dto ={
+            password : data.password,
+            confirmPassword : data.confirmPassword,
+            token : token
+        }
+        console.log(dto)
+        AuthentificationService.changePassword(dto).then(resp=>{
+            MySwal.fire(
+                'Success!',
+                'Password changed succesfully.',
+                'success'
+              )
+              navigate(`/`);
+        })
     })
 
     function back(){
@@ -23,12 +42,12 @@ const ChangePassword = () => {
     <form onSubmit={onSubmit} className={classes.form}>
         <div className={classes.formItem}>
         <input
-                {...register("password", {required: {value:true,message:'Password is required'},pattern:{value:  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,message:'Wrong email format'}})}
+                {...register("password", {required: {value:true,message:'Password is required'},pattern:{value:  /^(?=.*\d)(?=.*[a-z])(?=.*[!@#$%^&*])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*]{8,}$/,message:'Password should contain one upper case letter, one down case, one number and one special character!'}})}
                 type="password" 
                 placeholder="New password"
                  />
                  {
-                   errors.password && <div className={classes.error}>{errors.password.message}</div>
+                   errors.password && <div className={classes.error}><label>{errors.password.message}</label></div>
                 }
         </div>
         <div className={classes.formItem}>
@@ -45,7 +64,7 @@ const ChangePassword = () => {
                 placeholder="Retype new Password"
                  />
                  {
-                   errors.confirmPassword && <div className={classes.error}>{errors.confirmPassword.message}</div>
+                   errors.confirmPassword && <div className={classes.error}><label>{errors.confirmPassword.message}</label></div>
                 }
         </div>
         <button className={classes.buttonLogIn}>Reset password</button>

@@ -21,7 +21,7 @@ function App() {
 
     return (
         <div className="App" id="appContainer">
-            {location.pathname !== '/' && location.pathname !== '/forgot-password' && location.pathname !== '/change-password'  ? <Navigation /> : null}
+            {location.pathname !== '/' && location.pathname !== '/forgot-password' && !location.pathname.includes("/change-password/")  ? <Navigation /> : null}
             <Routes>
                 <Route path='/' element={<Mainpage />} />
                 <Route path='/home' element={<Homepage />} />
@@ -30,10 +30,10 @@ function App() {
                 <Route path='/jobs' element={<Jobs />} />
                 <Route path='/in' element={<UserProfile />} />
                 <Route path='/forgot-password' element={< ForgotPassword/>} />
-                <Route path='/change-password' element={< ChangePassword/>} />
+                <Route path='/change-password/:token'  exact  element={< ChangePassword/>} />
             </Routes>
 
-            {location.pathname !== '/' && location.pathname !== '/forgot-password' && location.pathname !== '/change-password' ?
+            {location.pathname !== '/' && location.pathname !== '/forgot-password' && !location.pathname.includes("/change-password/") ?
                 <div className={`messaging transform ${messagesOpen ? "transformActive" : ""}`}>
                     <Messaging clickHandler={() => setMessagesOpen(!messagesOpen)}
                         isMessagesOpen={messagesOpen} page="app">

@@ -3,16 +3,23 @@ import classes from './ForgotPassword.module.css';
 import {useForm} from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import AuthentificationService from '../../services/AuthentificationService';
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 const ForgotPassword = () => {
     
     const navigate = useNavigate();
-    const {register,handleSubmit, formState: { errors }} = useForm({})
-
+    const {register,handleSubmit, formState: { errors },setValue} = useForm({})
+    const MySwal = withReactContent(Swal)
 
     const onSubmit = handleSubmit((data) =>{
         console.log(data.email)
           AuthentificationService.forgotPassword(data.email).then(resp=>{
-              console.log('aa')
+            MySwal.fire(
+                'Success!',
+                'Email has been sent.',
+                'success'
+              )
+              setValue('email', '', { shouldValidate: false })
           })
     })
 

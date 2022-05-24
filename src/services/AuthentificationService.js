@@ -27,6 +27,15 @@ const AuthentificationService = {
 
     },
 
+    changePassword: function(data){
+        return axios.put(this.baseURL+`change-password`,data, {
+            headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json',
+            }
+        })
+    }
+
 
 }
 

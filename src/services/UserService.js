@@ -21,7 +21,6 @@ const UserService = {
                 Accept: 'application/json',
             },
         })
-
     },
 
     checkIfUserCanReadPosts: function(){
