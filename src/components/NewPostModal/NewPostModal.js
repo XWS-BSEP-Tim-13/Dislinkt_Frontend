@@ -26,7 +26,6 @@ const NewPostModal = (props) => {
     }
 
     function savePost() {
-        console.log('Content' + content)
         if (imagePath == '') {
             savePostWithImage('')
         }
@@ -45,7 +44,6 @@ const NewPostModal = (props) => {
             image: imagePath,
         }
         PostService.save(post).then(res => {
-            console.log(res.data)
         })
     }
 
