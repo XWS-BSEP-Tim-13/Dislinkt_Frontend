@@ -4,18 +4,24 @@ import {useDispatch} from 'react-redux';
 import { login } from '../../../store/actions'
 import { useNavigate } from 'react-router-dom';
 import classes from "./PasswordlessCode.module.css"
+import schema from '../../../validationSchemas/VerifyEmailValidationSchema';
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 const PasswordlessCode = ({ navigateToLogin, email }) => {
-    const [code, setCode] = useState('')
     const [error, setError] = useState('')
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    function onLogin(e) {
-        e.preventDefault();
+    const { register, handleSubmit, formState: { errors } } = useForm({
+        resolver: yupResolver(schema)
+    });
+
+    function onLogin(data) {
+        setError("");
         const loginRequest = {
             email: email,
-            code: code
+            code: data.code
         }
         passwordlessLogin(loginRequest).then((res) => {
             console.log(res.data);
@@ -30,27 +36,24 @@ const PasswordlessCode = ({ navigateToLogin, email }) => {
         })
     }
 
-    function onCodeChange(e) {
-        setCode(e.target.value);
-    }
-
     return (
         <div className={classes.login}>
             <h1>Verify your email</h1>
             <p className={classes.subtitle}>
                 Six digit code has been sent to specified email address.
             </p>
-            <form className={classes.form}>
+            <form className={classes.form} onSubmit={handleSubmit(onLogin)}>
                 <div className={classes.formItem}>
                     <input type='text' value={email} disabled />
                 </div>
                 <div className={classes.formItem}>
-                    <input type='password' required placeholder='6-digit code' onChange={onCodeChange} />
+                    <input type='password' required placeholder='6-digit code' {...register("code")}/>
                 </div>
-                <div className={classes.error}>
+                <div className={classes.errorMessage}>
                     {error}
                 </div>
-                <button className={classes.buttonLogIn} onClick={onLogin}>Log In</button>
+                <div className={classes.errorMessage}>{errors.code?.message} </div>
+                <input type="submit" className={classes.buttonLogIn} value="Log In"/>
                 <a href='/#' className={classes.backToLogin} onClick={() => navigateToLogin()}>
                     Back to login?
                 </a>
