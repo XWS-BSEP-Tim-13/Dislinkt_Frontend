@@ -10,7 +10,7 @@ const UserService = {
             headers: {
                 'Content-Type': 'application/json',
                 Accept: 'application/json',
-                'Authorization': `Bearer ${store.getState().loginReducer.token}`
+                'Authorization': `${store.getState().loginReducer.token}`
             }
         })
 

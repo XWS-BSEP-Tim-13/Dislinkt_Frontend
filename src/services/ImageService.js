@@ -29,7 +29,7 @@ const ImageService = {
             headers: {
                 'Content-Type': 'application/json;charset=UTF-8',
                 Accept: 'application/json',
-                'Authorization': `Bearer ${store.getState().loginReducer.token}`
+                'Authorization': `${store.getState().loginReducer.token}`
             }
         })
 

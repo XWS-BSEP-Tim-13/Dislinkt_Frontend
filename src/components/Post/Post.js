@@ -11,7 +11,7 @@ import ImageService from '../../services/ImageService'
 import PostService from '../../services/PostService';
 import TextareaAutosize from 'react-textarea-autosize';
 import Linkify from 'react-linkify';
-
+import { CheckUserPermission } from '../Permissions/CheckUserPermission';
 const Post = (props) => {
 
     const [postLiked,setPostLiked] =useState(false)
@@ -175,7 +175,7 @@ const Post = (props) => {
                     <label className={classes.smallText1} onClick={() => setCommentSection(!commentSection)}>{getComments()}</label>
                 </div>
 
-                <div className={classes.footer}>
+                <CheckUserPermission role="['ADMIN', 'USER', 'COMPANY']"> <div className={classes.footer}>
                     <div className={`${classes.footerPart} ${postLiked ? classes.footerPartReacted : null}`} onClick={likePost}>
                         <FontAwesomeIcon icon={faThumbsUp} />
                         <label className={classes.lblMargin}>Like</label>
@@ -189,15 +189,16 @@ const Post = (props) => {
                         <label className={classes.lblMargin}>Comment</label>
                     </div>
                 </div>
-
+                </CheckUserPermission>
                 {commentSection &&
                     <div className={classes.commentSection}>
-                        <div className={classes.comment}>
+                         <CheckUserPermission role="['ADMIN', 'USER', 'COMPANY']"> <div className={classes.comment}>
                             <div className={classes.imageContainer}>
                                 <img src={User} className={classes.image} alt="User" />
                             </div>
                             <TextareaAutosize className={classes.textarea} placeholder="What do you want to talk about?" value={content} onChange={handleChange}/>
                         </div>
+                        </CheckUserPermission>
                         <div className={classes.postDiv}>
                         {
                                 content !== '' && <button className={classes.postBtn} onClick={addComment}>Post</button>
