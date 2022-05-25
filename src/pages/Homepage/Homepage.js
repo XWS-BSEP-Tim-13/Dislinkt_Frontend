@@ -5,6 +5,7 @@ import SuggestionsHomepage from "../../components/SuggestionsHomepage/Suggestion
 import Posts from "../../components/Posts/Posts";
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
+import { CheckUserPermission } from "../../components/Permissions/CheckUserPermission"
 
 function Homepage() {
 
@@ -18,14 +19,14 @@ function Homepage() {
         <div className={classes.containerWrap}>
             <div className={classes.content}>
                 <div className={classes.profileSummary}>
-                    <ProfileSummary />
+                    <CheckUserPermission role="['ADMIN', 'USER', 'COMPANY']"> <ProfileSummary /> </CheckUserPermission>
                 </div>
                 <div className={classes.feed}>
-                    <CreatePost></CreatePost>
+                    <CheckUserPermission role="['ADMIN', 'USER', 'COMPANY']"> <CreatePost></CreatePost> </CheckUserPermission>
                     <Posts ></Posts>
                 </div>
                 <div className={classes.suggestions}>
-                    <SuggestionsHomepage></SuggestionsHomepage>
+                    <CheckUserPermission role="['ADMIN', 'USER']"> <SuggestionsHomepage></SuggestionsHomepage></CheckUserPermission>
                 </div>
             </div>
         </div>
