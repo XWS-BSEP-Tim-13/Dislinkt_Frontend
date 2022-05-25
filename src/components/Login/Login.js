@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { Link } from "react-router-dom";
 import classes from './Login.module.css';
 import AuthentificationService from '../../services/AuthentificationService';
-import {useDispatch} from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { login } from '../../store/actions'
 
 function Login(props) {
@@ -10,14 +10,14 @@ function Login(props) {
     const dispatch = useDispatch();
     function submitHandler(event) {
         event.preventDefault();
-        const credentials ={
-            username : event.target[0].value,
-            password : event.target[1].value
+        const credentials = {
+            username: event.target[0].value,
+            password: event.target[1].value
         }
-        AuthentificationService.login(credentials).then(resp=>{
+        AuthentificationService.login(credentials).then(resp => {
             dispatch(login(resp.data))
-            navigate('/home'); 
-        }).catch(err=>{
+            navigate('/home');
+        }).catch(err => {
             console.log(err)
         })
     }

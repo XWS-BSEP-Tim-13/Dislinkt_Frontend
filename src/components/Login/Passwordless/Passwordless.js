@@ -38,12 +38,12 @@ const Passwordless = ({ navigateToLogin }) => {
 
     return (
         <div className={classes.login}>
-            <h1>Paswordless</h1>
+            <h1 className={classes.caption}>Paswordless</h1>
             <form className={classes.form} onSubmit={handleSubmit(sendCodeRequest)}>
                 <div className={classes.formItem}>
-                    <input type='text' required placeholder='Email' {...register("email")}/>
+                    <input type='text' placeholder='Email' {...register("email")}  className={errors.email ? classes.errorInput : null}/>
+                    <div className={classes.errorMessage}>{errors.email ? errors.email?.message : null} </div>
                 </div>
-                <div className={classes.errorMessage}>{errors.email?.message} </div>
                 <div className={classes.serverError}> {error} </div>
                 <input type="submit" className={classes.buttonLogIn} value="Request code"/>
                 <a href='/#' className={classes.backToLogin} onClick={() => navigateToLogin()}>
