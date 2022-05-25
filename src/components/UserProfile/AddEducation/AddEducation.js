@@ -7,7 +7,7 @@ import schema from '../../../validationSchemas/EducationValidationSchema';
 
 const AddEducation = ({ toggleAddEducation, user, reload }) => {
     const [education, setEducation] = useState({ degree: 0 });
-    const [schoolError, setSchoolError] = useState('');
+    const [dateError, setDateError] = useState('');
 
     const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: yupResolver(schema)
@@ -31,7 +31,10 @@ const AddEducation = ({ toggleAddEducation, user, reload }) => {
     }
 
     function onSaveEducation(data) {
-        console.log(data);
+        if(new Date(data.startDate) > new Date(data.endDate)){
+            setDateError("Start date must be before end date.");
+            return;
+        }
 
         data.startDate = new Date(data.startDate).toISOString();
         data.endDate = new Date(data.endDate).toISOString();
@@ -43,23 +46,7 @@ const AddEducation = ({ toggleAddEducation, user, reload }) => {
             education: data
         }
 
-        console.log(newEducation);
-
-        addEducation(newEducation).then(() => reload()).catch(function (error) {
-            if (error.response) {
-                // Request made and server responded
-                console.log(error.response.data);
-                console.log(error.response.status);
-                console.log(error.response.headers);
-            } else if (error.request) {
-                // The request was made but no response was received
-                console.log(error.request);
-            } else {
-                // Something happened in setting up the request that triggered an Error
-                console.log('Error', error.message);
-            }
-
-        });
+        addEducation(newEducation).then(() => reload());
         toggleAddEducation();
     }
 
@@ -105,7 +92,7 @@ const AddEducation = ({ toggleAddEducation, user, reload }) => {
                             <label> End date </label>
                         </div>
                         <input type="date" className={classes.input} id="endDate" {...register("endDate")}></input>
-                        <span className={classes.error}> {errors.endDate?.message} </span>
+                        <span className={classes.error}> {errors.endDate?.message} {dateError}</span>
 
                         <label> Description </label>
                         <input type="text" className={classes.input} id="description" onChange={onEducationChange}></input>

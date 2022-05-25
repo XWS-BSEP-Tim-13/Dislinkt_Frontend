@@ -59,7 +59,6 @@
 
 .input {
     width: 100%;
-    margin-bottom: 0.7rem;
     height: 2rem;
 }
 
@@ -82,6 +81,7 @@
     color: white;
     border-radius: 20px;
     border-style: none;
+    margin-top: 1.5rem;
 }
 
 .fieldTitle {
@@ -90,7 +90,13 @@
 }
 
 .error {
-    font-size: 0.7rem;
-    color: red;
-    margin-left: 1rem;
+    color: rgba(180, 0, 0, 0.9);
+    font-size: 0.75rem;
+    text-align: left;
+    font-weight: bold;
+    height: 1.5rem;
+}
+
+select {
+    margin-bottom: 1.5rem;
 }

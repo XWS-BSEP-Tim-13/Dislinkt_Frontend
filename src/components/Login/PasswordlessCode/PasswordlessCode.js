@@ -24,7 +24,7 @@ const PasswordlessCode = ({ navigateToLogin, email }) => {
             code: data.code
         }
         passwordlessLogin(loginRequest).then((res) => {
-            console.log(res.data);
+            localStorage.setItem("token-ls", res.data.token);
             dispatch(login(res.data))
             navigate('/home');
         }).catch((err) => {

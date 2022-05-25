@@ -15,7 +15,8 @@ function Login(props) {
             password : event.target[1].value
         }
         AuthentificationService.login(credentials).then(resp=>{
-            dispatch(login(resp.data))
+            localStorage.setItem("token-ls", resp.data.token);
+            dispatch(login(resp.data));
             navigate('/home'); 
         }).catch(err=>{
             console.log(err)

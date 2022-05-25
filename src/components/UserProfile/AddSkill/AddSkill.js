@@ -40,10 +40,9 @@ const AddSkill = ({ toggleAddSkill, user, reload }) => {
                 <div className={classes.body}>
                     <div className={classes.fieldTitle}>
                         <span> Skill </span>
-                        <span className={classes.error}> {skillError} </span>
                     </div>
                     <input type="text" className={classes.input} id="skill" onChange={onSkillChange}></input>
-
+                    <span className={classes.error}> {skillError} </span>
                 </div>
 
                 <div className={classes.footer}>
