@@ -12,7 +12,7 @@
 }
 
 .caption {
-    font-size: 2.7rem;
+    font-size: 2rem;
     margin-bottom: 2rem;
 }
 
@@ -41,17 +41,10 @@
     outline: none;
 }
 
-.buttons {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 2rem;
-    padding: 0 1rem;
-}
-
 .buttonLogIn {
-    width: 48%;
+    width: 50%;
+    align-self: center;
+    margin-bottom: 1rem;
     height: 2.5rem;
     font-size: 1rem;
     background-color: rgba(106, 0, 0, 0.9);
@@ -61,29 +54,12 @@
     font-family: inherit;
 }
 
-.buttonBack {
-    width: 48%;
-    height: 2.5rem;
-    font-size: 1rem;
-    border: none;
-    border-radius: 25px;
-    font-family: inherit;
-}
-
-.forgotPasswordDiv{
-    display: flex;
-    width: 100%;
-    flex-direction: row;
-    justify-content: flex-start;
-    padding: 0.5rem;
-}
-
 .buttonLogIn:hover,
 .buttonLogIn:active {
     background-color: rgba(128, 0, 0, 0.9);
 }
 
-.registerLink {
+.backToLogin {
     font-size: 0.8rem;
     color: var(--dark-red);
     align-self: center;
@@ -93,7 +69,7 @@
     border: 2px solid rgba(180, 0, 0, 0.9);
 }
 
-.error{
+.errorMessage {
     height: 1.3rem;
     color: rgba(180, 0, 0, 0.9);
     font-size: 0.75rem;
@@ -102,48 +78,22 @@
     font-weight: bold;
 }
 
-.page {
-    display: flex;
-    align-items: center;
-    height: 100vh;
-    background-color: white;
-}
-
-
-.image {
-    width: 50%;
-    background: linear-gradient(to left, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1)), 
-    url('../../images/network2.png') right/cover;
-    height: 100%;
-}
-
 
 @media (max-width: 60rem) {
     .caption {
-        font-size: 2.2rem;
+        font-size: 1.5rem;
     }
-
     .formItem input {
         width: 19rem;
     }
 }
 
 @media (max-width: 40rem) {
-    .page {
-        flex-direction: column-reverse;
-    }
 
-    .image {
-        width: 100%;
-        height: 25vh;
-        background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 30%, rgba(255, 255, 255, 1)), 
-        url('../../images/network2.png') right/cover;
-    }
 
     .login {
         width: 100%;
         height: 75vh;
         padding-top: 5rem;
     }
-
 }

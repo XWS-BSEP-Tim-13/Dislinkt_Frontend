@@ -44,7 +44,7 @@ h1 {
 .buttonLogIn {
     width: 45%;
     align-self: center;
-    margin-top: 3rem;
+    margin-top: 2rem;
     height: 2.5rem;
     font-size: 1rem;
     background-color: rgba(106, 0, 0, 0.9);
@@ -65,6 +65,12 @@ h1 {
 }
 
 .registerLink {
+    font-size: 0.8rem;
+    color: var(--dark-red);
+    align-self: center;
+}
+
+.resendLink {
     font-size: 0.8rem;
     color: var(--dark-red);
     align-self: center;
