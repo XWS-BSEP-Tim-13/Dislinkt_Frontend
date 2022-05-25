@@ -10,7 +10,7 @@ const Jobs = () => {
     return (
         <div className={classes.pageWrapper}>
             <div className={classes.profileSummary}>
-                <ProfileSummary/>
+                <CheckUserPermission role="['ADMIN', 'USER', 'COMPANY']"> <ProfileSummary/> </CheckUserPermission>
             </div>
             <div className={classes.wrapper}>
                 <label className={classes.header}>Explore job offers</label>

@@ -1,18 +1,10 @@
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 const CheckUserPermissionComponent = (props) => {
-    const couldShow = props.loggedUserRole === props.role;
+    const auth = useSelector(state => state.loginReducer);
+
+    const couldShow = props.role.includes(auth.role);
     return couldShow ? props.children : null;
 };
 
-CheckUserPermissionComponent.propTypes = {
-    loggedUserRole: PropTypes.string.isRequired
-};
-
-
-const mapStateToProps = state => ({
-    loggedUserRole: state.loginReducer.role 
-});
-
-export const CheckUserPermission = connect(mapStateToProps)(CheckUserPermissionComponent);
+export const CheckUserPermission = (CheckUserPermissionComponent);

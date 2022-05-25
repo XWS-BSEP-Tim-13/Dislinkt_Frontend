@@ -19,16 +19,14 @@ function Homepage() {
         <div className={classes.containerWrap}>
             <div className={classes.content}>
                 <div className={classes.profileSummary}>
-                    <ProfileSummary />
+                    <CheckUserPermission role="['ADMIN', 'USER', 'COMPANY']"> <ProfileSummary /> </CheckUserPermission>
                 </div>
                 <div className={classes.feed}>
-                    <CreatePost></CreatePost>
+                    <CheckUserPermission role="['ADMIN', 'USER', 'COMPANY']"> <CreatePost></CreatePost> </CheckUserPermission>
                     <Posts ></Posts>
                 </div>
                 <div className={classes.suggestions}>
-                <CheckUserPermission role="USER">
-                    <SuggestionsHomepage></SuggestionsHomepage>
-                </CheckUserPermission>
+                    <CheckUserPermission role="['ADMIN', 'USER']"> <SuggestionsHomepage></SuggestionsHomepage></CheckUserPermission>
                 </div>
             </div>
         </div>
