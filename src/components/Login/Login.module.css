@@ -11,9 +11,9 @@
     align-items: flex-end;
 }
 
-h1 {
-    font-size: 4rem;
-    margin-bottom: 2rem;
+.caption {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
 }
 
 .formItem {
@@ -109,9 +109,19 @@ h1 {
     align-self: center;
 }
 
+.errorMessage {
+    height: 1.3rem;
+    color: rgba(180, 0, 0, 0.9);
+    font-size: 0.75rem;
+    text-align: center;
+    margin-left: 1.5rem;
+    font-weight: bold;
+    width: 100%;
+}
+
 @media (max-width: 60rem) {
-    h1 {
-        font-size: 3.5rem;
+    .caption {
+        font-size: 3rem;
     }
     
     .formItem input {

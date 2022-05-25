@@ -76,7 +76,7 @@ const AddExperience = ({ toggleAddExperience, user, reload }) => {
                         <span className={classes.error}> {errors.title?.message} </span>
 
                         <label>Employment type</label>
-                        <select className={classes.input} id="employmentType" onChange={onExperienceChange}>
+                        <select className={`${classes.input} ${classes.select}`} id="employmentType" onChange={onExperienceChange}>
                             <option value="0">Full time</option>
                             <option value="1">Part time</option>
                             <option value="2">Internship</option>

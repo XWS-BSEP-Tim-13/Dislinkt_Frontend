@@ -167,7 +167,7 @@ const Post = (props) => {
                     <Linkify>{post.content}</Linkify>
                 </div>
                 {  (image !== undefined && image !=='loading') && <img src={image} className={classes.postImage} alt=""/>}
-                {image === 'loading' && <h1>Loading image....</h1>}
+                {image === 'loading' && <p>Loading image....</p>}
 
                 <div className={classes.likeSection}>
                     <label className={classes.smallText1}><FontAwesomeIcon icon={faThumbsUp} className={classes.likeIcon} />{getLikes()}</label>
