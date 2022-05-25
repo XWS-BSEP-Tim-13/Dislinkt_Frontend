@@ -12,7 +12,7 @@
 }
 
 .caption {
-    font-size: 3rem;
+    font-size: 2rem;
     margin-bottom: 2rem;
 }
 
@@ -78,18 +78,10 @@
     font-weight: bold;
 }
 
-.serverError {
-    height: 1.3rem;
-    color: rgba(180, 0, 0, 0.9);
-    font-size: 0.75rem;
-    text-align: left;
-    margin-left: 1rem;
-    font-weight: bold;
-}
 
 @media (max-width: 60rem) {
     .caption {
-        font-size: 2.7rem;
+        font-size: 1.5rem;
     }
     .formItem input {
         width: 19rem;

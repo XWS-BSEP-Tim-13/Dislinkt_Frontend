@@ -30,7 +30,7 @@ function Registration(props) {
                 <a href="/#" className={classes.registerLink} onClick={() => setRegisterMode('select')}>
                     Go back to register start page.
                 </a> : null}
-            <a href="/#" className={classes.registerLink} onClick={() => props.changePage(true)}>
+            <a href="/#" className={classes.registerLink} onClick={() => props.navigateToLogin()}>
                 Already have an account? Log in here!
             </a>
         </div>

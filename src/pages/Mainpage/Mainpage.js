@@ -5,25 +5,51 @@ import classes from './Mainpage.module.css';
 
 import { useState } from 'react';
 import Passwordless from "../../components/Login/Passwordless/Passwordless";
-import PasswordlessCode from "../../components/Login/PasswordlessCode/PasswordlessCode";
+import ResendActivationLink from "../../components/RegistrationComponents/ResendActivationLink/ResendActivationLink"
 
 function Mainpage() {
     const [isLoginPage, setIsLoginPage] = useState(true);
+    const [isRegisterPage, setisRegisterPage] = useState(false);
+    const [isResendActivationPage, setisResendActivationPage] = useState(false);
     const [isPasswordlessPage, setIsPasswordlessPage] = useState(false);
 
     function navigateToLogin() {
         setIsLoginPage(true);
+        setisRegisterPage(false);
+        setisResendActivationPage(false);
         setIsPasswordlessPage(false);
+    }
+
+    function navigateToRegister() {
+        setIsLoginPage(false);
+        setisRegisterPage(true);
+        setisResendActivationPage(false);
+        setIsPasswordlessPage(false);
+    }
+
+    function navigateToResend() {
+        setIsLoginPage(false);
+        setisRegisterPage(false);
+        setisResendActivationPage(true);
+        setIsPasswordlessPage(false);
+    }
+
+    function navigateToPasswordless() {
+        setIsLoginPage(false);
+        setisRegisterPage(false);
+        setisResendActivationPage(false);
+        setIsPasswordlessPage(true);
     }
 
     return (
         <div className={classes.page}>
             <div className={classes.form}>
-                {(isLoginPage && !isPasswordlessPage) ? <Login changePage={setIsLoginPage} navigateToPasswordless={setIsPasswordlessPage} /> : null}
-                {(!isLoginPage && !isPasswordlessPage) ? <Registration changePage={setIsLoginPage} /> : null}
-                {(isPasswordlessPage) && <Passwordless navigateToLogin={navigateToLogin} />}
+                {isLoginPage ? <Login navigateToRegister={navigateToRegister} navigateToPasswordless={navigateToPasswordless} navigateToResend={navigateToResend}/> : null}
+                {isRegisterPage ? <Registration navigateToLogin={navigateToLogin} /> : null}
+                {isResendActivationPage ? <ResendActivationLink navigateToLogin={navigateToLogin} /> : null}
+                {isPasswordlessPage ? <Passwordless navigateToLogin={navigateToLogin} /> : null}
             </div>
-            <div className={`${classes.image} ${isLoginPage ? classes.loginBg : classes.registrationBg}`}></div>
+            <div className={`${classes.image} ${isLoginPage || isPasswordlessPage || isResendActivationPage ? classes.loginBg : classes.registrationBg}`}></div>
         </div>
     );
 }
