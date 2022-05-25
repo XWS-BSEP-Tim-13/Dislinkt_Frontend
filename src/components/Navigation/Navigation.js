@@ -10,19 +10,22 @@ import { faUser } from '@fortawesome/free-solid-svg-icons'
 import { faDoorOpen } from '@fortawesome/free-solid-svg-icons'
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-
+import {useDispatch} from 'react-redux';
+import { logout } from '../../store/actions'
 function Navigation() {
 
     const [route, setRoute] = useState('');
 
     const navigate = useNavigate();
     const location = useLocation();
-
+    const dispatch = useDispatch();
+    
     useEffect(() => {
         setRoute(location.pathname.split('/')[1]);
     }, [route, location.pathname])
 
     function changeRoute(route) {
+        if(route == '') dispatch(logout())
         navigate(`/${route}`);
         setRoute(route);
     }

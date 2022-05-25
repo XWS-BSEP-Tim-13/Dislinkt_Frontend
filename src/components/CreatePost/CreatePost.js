@@ -7,16 +7,6 @@ import Logo from '../../images/user-red.png'
 function CreatePost() {
 
     const [showModal,setShowModal] = useState(false);
-    //const dispatch = useDispatch();
-    // function test() {
-    //     const auth = {
-    //         token: 'aaa',
-    //         role: 'bbb',
-    //         expire: 'ccc',
-    //         username: 'stefanljubovic'
-    //     }
-    //     dispatch(login(auth))
-    // }
     function showModalFunc(){
         setShowModal(true)
         document.getElementById('appContainer').style.overflow = 'hidden';

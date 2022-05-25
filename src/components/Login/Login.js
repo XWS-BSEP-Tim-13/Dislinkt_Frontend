@@ -16,7 +16,7 @@ function Login(props) {
         }
         AuthentificationService.login(credentials).then(resp=>{
             dispatch(login(resp.data))
-            navigate('/home');
+            navigate('/home'); 
         }).catch(err=>{
             console.log(err)
         })

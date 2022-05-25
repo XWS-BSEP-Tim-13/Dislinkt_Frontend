@@ -1,4 +1,5 @@
 import axios from 'axios';
+import store from '../store/store';
 
 const UserService = {
 
@@ -9,6 +10,7 @@ const UserService = {
             headers: {
                 'Content-Type': 'application/json',
                 Accept: 'application/json',
+                'Authorization': `Bearer ${store.getState().loginReducer.token}`
             }
         })
 
@@ -19,6 +21,7 @@ const UserService = {
             headers: {
                 'Content-Type': 'application/json',
                 Accept: 'application/json',
+                'Authorization': `Bearer ${store.getState().loginReducer.token}`
             },
         })
     },
@@ -33,6 +36,7 @@ const UserService = {
             headers: {
                 'Content-Type': 'application/json',
                 Accept: 'application/json',
+                'Authorization': `Bearer ${store.getState().loginReducer.token}`
             },
         })
     },
@@ -46,6 +50,7 @@ const UserService = {
             headers: {
                 'Content-Type': 'application/json',
                 Accept: 'application/json',
+                'Authorization': `Bearer ${store.getState().loginReducer.token}`
             },
         })
     },
@@ -55,6 +60,7 @@ const UserService = {
             headers: {
                 'Content-Type': 'application/json',
                 Accept: 'application/json',
+                'Authorization': `Bearer ${store.getState().loginReducer.token}`
             },
         })
     },

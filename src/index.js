@@ -5,23 +5,12 @@ import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react'
-import { persistStore } from 'redux-persist';
-import allReducers from '../src/store/reducers';
-import { createStore, applyMiddleware, compose } from 'redux';
+import { persistor } from './store/store';
+import store from './store/store'; 
 const container = document.getElementById('root');
 const root = createRoot(container);
 
 
-const myLogger = (store) => (next) => (action) => {
-    next(action);
-};
-
-const composedEnhancer = compose(applyMiddleware(myLogger), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
-
-const store = createStore(allReducers, composedEnhancer
-);
-
-const persistor = persistStore(store)
 
 root.render(
     <BrowserRouter>

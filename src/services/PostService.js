@@ -1,5 +1,5 @@
 import axios from 'axios'
-
+import store from '../store/store'
 
 const PostService = {
 
@@ -10,6 +10,7 @@ const PostService = {
             headers: {
                 'Content-Type': 'application/json',
                 Accept: 'application/json',
+                'Authorization': `Bearer ${store.getState().loginReducer.token}`
             }
         })
 
@@ -20,6 +21,7 @@ const PostService = {
             headers: {
                 'Content-Type': 'application/json',
                 Accept: 'application/json',
+                'Authorization': `Bearer ${store.getState().loginReducer.token}`
             }
         })
     },
@@ -30,6 +32,7 @@ const PostService = {
             headers: {
                 'Content-Type': 'application/json',
                 Accept: 'application/json',
+                'Authorization': `Bearer ${store.getState().loginReducer.token}`
             }
         })
     }

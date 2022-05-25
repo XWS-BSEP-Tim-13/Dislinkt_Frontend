@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { useLocation } from 'react-router-dom'
 import Homepage from './pages/Homepage/Homepage';
@@ -12,13 +12,15 @@ import UserProfile from './components/UserProfile/UserProfile/UserProfile';
 import Messaging from "./components/MessagingHomePage/Messaging";
 import ForgotPassword from './components/ForgotPassword/ForgotPassword';
 import ChangePassword from './components/ChangePassword/ChangePassword';
-
+import axios from 'axios';
+import { useSelector } from 'react-redux';
 function App() {
    
     const [messagesOpen, setMessagesOpen] = useState(false);
-
+    const auth = useSelector(state => state.loginReducer);
     const location = useLocation();
 
+      
     return (
         <div className="App" id="appContainer">
             {location.pathname !== '/' && location.pathname !== '/forgot-password' && !location.pathname.includes("/change-password/")  ? <Navigation /> : null}

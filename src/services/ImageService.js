@@ -1,5 +1,5 @@
 import axios from 'axios';
-
+import store from '../store/store';
 
 const ImageService = {
 
@@ -17,6 +17,7 @@ const ImageService = {
             headers: {
                 'Content-Type': 'application/json;charset=UTF-8',
                 Accept: 'application/json',
+                'Authorization': `Bearer ${store.getState().loginReducer.token}`
             }
         })
 
@@ -28,6 +29,7 @@ const ImageService = {
             headers: {
                 'Content-Type': 'application/json;charset=UTF-8',
                 Accept: 'application/json',
+                'Authorization': `Bearer ${store.getState().loginReducer.token}`
             }
         })
 

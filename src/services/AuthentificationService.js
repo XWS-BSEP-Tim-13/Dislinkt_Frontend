@@ -1,11 +1,11 @@
 
-
+import store from '../store/store';
 import axios from 'axios';
-
 
 const AuthentificationService = {
 
     baseURL : "https://localhost:8083/",
+
 
     login: function(data) {
         return axios.post(this.baseURL+`login`,data, {
