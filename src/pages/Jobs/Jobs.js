@@ -1,7 +1,7 @@
 import classes from './Jobs.module.css';
 import JobOffer from "../../components/JobOffer/JobOffer"
 import ProfileSummary from "../../components/ProfileSummary/ProfileSummary"
-
+import { CheckUserPermission } from "../../components/Permissions/CheckUserPermission"
 
 const Jobs = () => {
 
