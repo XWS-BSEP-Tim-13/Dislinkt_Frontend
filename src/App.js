@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
+import { GuardedRoute } from './GuardedRoute';
 import { useLocation } from 'react-router-dom'
 import Homepage from './pages/Homepage/Homepage';
 import Mainpage from './pages/Mainpage/Mainpage';
@@ -13,6 +14,7 @@ import Messaging from "./components/MessagingHomePage/Messaging";
 import ForgotPassword from './components/ForgotPassword/ForgotPassword';
 import ChangePassword from './components/ChangePassword/ChangePassword';
 
+
 function App() {
    
     const [messagesOpen, setMessagesOpen] = useState(false);
@@ -21,19 +23,17 @@ function App() {
 
     return (
         <div className="App" id="appContainer">
-            {location.pathname !== '/' && location.pathname !== '/forgot-password' && !location.pathname.includes("/change-password/")  ? <Navigation /> : null}
-            <Routes>
-                <Route path='/' element={<Mainpage />} />
-                <Route path='/home' element={<Homepage />} />
-                <Route path='/network' element={<Network />} />
-                <Route path='/messaging' element={<MessagingPage />} />
-                <Route path='/jobs' element={<Jobs />} />
-                <Route path='/in' element={<UserProfile />} />
-                <Route path='/forgot-password' element={< ForgotPassword/>} />
-                <Route path='/change-password/:token'  exact  element={< ChangePassword/>} />
+            {location.pathname !== '/' && location.pathname !== '/forgot-password'  ? <Navigation /> : null}
+            <Routes>         
+                    <Route path='/'          element={<Mainpage />} />
+                    <Route path='/home'      element={<Homepage />} />
+                    <Route path='/network'   element={<GuardedRoute Component = {Network} Roles="['COMPANY', 'USER']"/>} />
+                    <Route path='/messaging' element={<GuardedRoute Component = {MessagingPage} Roles="['COMPANY', 'USER']"/>} />
+                    <Route path='/jobs'      element={<Jobs />} />
+                    <Route path='/in'        element={<GuardedRoute Component = {UserProfile} Roles="['COMPANY', 'USER', 'ADMIN']"/>} />
+                    <Route path='/forgot-password' element={<GuardedRoute Component = {ForgotPassword} Roles="['COMPANY', 'USER', 'ADMIN']"/>} />
             </Routes>
-
-            {location.pathname !== '/' && location.pathname !== '/forgot-password' && !location.pathname.includes("/change-password/") ?
+            {location.pathname !== '/' ?
                 <div className={`messaging transform ${messagesOpen ? "transformActive" : ""}`}>
                     <Messaging clickHandler={() => setMessagesOpen(!messagesOpen)}
                         isMessagesOpen={messagesOpen} page="app">
