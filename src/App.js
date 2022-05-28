@@ -32,7 +32,7 @@ function App() {
                     <Route path='/jobs'      element={<Jobs />} />
                     <Route path='/in'        element={<GuardedRoute Component = {UserProfile} Roles="['COMPANY', 'USER', 'ADMIN']"/>} />
                     <Route path='/forgot-password' element={<ForgotPassword/>} />
-                    <Route path='/change-password/:token'  exact  element={<GuardedRoute Component = {ChangePassword} Roles="['COMPANY', 'USER', 'ADMIN']"/>} />
+                    <Route path='/change-password/:token'  exact  element= {<ChangePassword /> } />
             </Routes>
             {location.pathname !== '/'  && location.pathname !== '/forgot-password' && !location.pathname.includes("/change-password/")?
                 <div className={`messaging transform ${messagesOpen ? "transformActive" : ""}`}>
