@@ -76,7 +76,7 @@ const NewPostModal = (props) => {
                         <div className={classes.imageContainer}>
                             <img src={User} className={classes.image} alt="Profile" />
                         </div>
-                        <h6 className={classes.userName}>Stefan Ljubovic</h6>
+                        <h6 className={classes.userName}>{props.user.firstName} {props.user.lastName}</h6>
                     </div>
                     <TextareaAutosize className={classes.textarea} placeholder="What do you want to talk about?" value={content} onChange={handleChange} />
                     <input type="file" onChange={uploadPhoto} accept="image/*" style={{ display: 'none' }} ref={fileInput} />

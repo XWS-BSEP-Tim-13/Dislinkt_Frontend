@@ -29,8 +29,8 @@ function Homepage() {
                     <CheckUserPermission role="['ADMIN', 'USER', 'COMPANY']"> <ProfileSummary user={user}/> </CheckUserPermission>
                 </div>
                 <div className={classes.feed}>
-                    <CheckUserPermission role="['ADMIN', 'USER', 'COMPANY']"> <CreatePost></CreatePost> </CheckUserPermission>
-                    <Posts ></Posts>
+                    <CheckUserPermission role="['ADMIN', 'USER', 'COMPANY']"> <CreatePost user={user}></CreatePost> </CheckUserPermission>
+                    <Posts user={user}></Posts>
                 </div>
                 <div className={classes.suggestions}>
                     <CheckUserPermission role="['ADMIN', 'USER']"> <SuggestionsHomepage></SuggestionsHomepage></CheckUserPermission>
