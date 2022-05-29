@@ -1,6 +1,8 @@
 import classes from './Jobs.module.css';
 import JobOffer from "../../components/JobOffer/JobOffer"
 import ProfileSummary from "../../components/ProfileSummary/ProfileSummary"
+import { getUserByUsername } from "../../api/UserProfile/UserProfileApi"
+import { useSelector } from 'react-redux';
 import { CheckUserPermission } from "../../components/Permissions/CheckUserPermission"
 import CompanyService from '../../services/CompanyService';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -35,10 +37,21 @@ const Jobs = () => {
         console.log(jobOffer)
     })
 
+    const [user, setUser] = useState({});
+    const auth = useSelector(state => state.loginReducer);
+
+    useEffect(() => {
+        async function getUser() {
+            const userr = await getUserByUsername(auth.username);
+            setUser(userr);
+        }
+        getUser()
+    }, [auth.username])
+
     return (
         <div className={classes.pageWrapper}>
             <div className={classes.profileSummary}>
-                <CheckUserPermission role="['ADMIN', 'USER', 'COMPANY']"> <ProfileSummary/> </CheckUserPermission>
+                <CheckUserPermission role="['ADMIN', 'USER', 'COMPANY']"> <ProfileSummary user={user}/> </CheckUserPermission>
             </div>
             <div className={classes.wrapper}>
                 <form onSubmit={onSubmit}>

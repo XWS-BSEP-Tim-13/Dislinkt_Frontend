@@ -4,7 +4,7 @@ import NewPostModal from '../NewPostModal/NewPostModal';
 import { useState } from 'react';
 import Logo from '../../images/user-red.png'
 
-function CreatePost() {
+const CreatePost = ({ user }) => {
 
     const [showModal,setShowModal] = useState(false);
     function showModalFunc(){
@@ -29,7 +29,7 @@ function CreatePost() {
                     <label>Start a post</label>
                 </div>
             </div>
-            {showModal && <NewPostModal changeState={() =>hideModal()}/>}
+            {showModal && <NewPostModal user={user} changeState={() =>hideModal()}/>}
         </div>
     );
 }

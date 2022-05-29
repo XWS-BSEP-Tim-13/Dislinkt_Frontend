@@ -7,6 +7,7 @@ import TextareaAutosize from 'react-textarea-autosize';
 const CreateJobOffer = () => {
     const {register,handleSubmit, formState: { errors },watch} = useForm({})
     const [companies,setCompanies] = useState([])
+    
     const onSubmit = handleSubmit((data) =>{
         console.log(companies)
         console.log(data)

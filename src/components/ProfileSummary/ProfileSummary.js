@@ -5,7 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPen } from '@fortawesome/free-solid-svg-icons'
-function ProfileSummary() {
+
+const ProfileSummary= ({ user }) => {
     const navigate = useNavigate();
 
     function viewProfileHandler() {
@@ -25,7 +26,7 @@ function ProfileSummary() {
                 <img src={User} className={classes.image} alt="User" />
             </div>
             <div className={classes.description}>
-                <label>Srdjan Sukovic</label>
+                <label>{user.firstName} {user.lastName}</label>
                 <label className={classes.descriptionProffesion}>Faculty of technical science, Novi Sad (student)</label>
             </div>
             <div className={classes.connections}>

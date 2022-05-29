@@ -4,7 +4,7 @@ import Post from '../Post/Post';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import UserService from '../../services/UserService'
 
-function Posts(){
+const Posts= ({ user }) =>{
     const [pageNumber, setPageNumber] = useState(1)
     const [posts,setPosts] =useState([])
     const [loading,setLoading] = useState(false)
