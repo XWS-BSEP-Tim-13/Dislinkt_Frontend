@@ -15,8 +15,8 @@
     display: flex;
     align-items: center;
     width: 30%;
+    position: relative;
 }
-
 .logo {
     max-width: 70%;
     max-height: 70%;

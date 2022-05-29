@@ -79,3 +79,17 @@
     margin-top: -1px;
     background-color: #fff7f7;
 }
+
+.buttonJobs{
+    border: 1px solid var(--red);
+    color: var(--red);
+    margin-top: 2rem;
+    padding: 0.5rem;
+    border-radius: 15px;
+    width: 80%;
+}
+
+.buttonJobs:hover{
+    border: 2px solid var(--red);
+    background-color: #fff7f7;
+}
