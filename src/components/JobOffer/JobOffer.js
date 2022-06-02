@@ -1,11 +1,15 @@
 import classes from './JobOffer.module.css';
 import Levi9 from '../../images/levi9.png'
 import JobOfferModal from './JobOfferModal/JobOfferModal';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 
 const JobOffer = (props) => {
 
     const [displayModal,setDisplayModal]= useState(false)
+
+    useEffect(()=>{
+        console.log(props.jobOffer)
+    },[])
 
     function getEmpType(job){
         if(job.employmentType == "FULL_TIME") return "Full time"
@@ -14,21 +18,14 @@ const JobOffer = (props) => {
     }
 
     function getDate(time){
-        if(time === undefined) return "Today"
-        const date = new Date((time.seconds+time.nanos/100000000)*1000)
+        let date = new Date(time)
+        if(time === undefined || time ==null) return "Today"
         const now = new Date()
-        let difference = dateDiffInDays(now, date);
+        let difference = Math.abs(now.getDay() - date.getDay())
         if(difference ===0) return "Today"
         return difference+' days ago'
     }
 
-    function dateDiffInDays(a, b) {
-        const _MS_PER_DAY = 1000 * 60 * 60 * 24;
-        const utc1 = Date.UTC(a.getFullYear(), a.getMonth(), a.getDate());
-        const utc2 = Date.UTC(b.getFullYear(), b.getMonth(), b.getDate());
-      
-        return Math.floor((utc2 - utc1) / _MS_PER_DAY);
-      }
 
     return (
         <div>

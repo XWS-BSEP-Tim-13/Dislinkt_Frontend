@@ -8,7 +8,7 @@ import CompanyService from '../../services/CompanyService';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 import { useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { set, useForm } from 'react-hook-form';
 
 const Jobs = () => {
 
@@ -21,19 +21,22 @@ const Jobs = () => {
         })
         CompanyService.getAll().then(resp=>{
             setCompanies(resp.data.companies)
+            console.log(resp.data.companies)
         })
     },[])
 
         
     const onSubmit = handleSubmit((data) =>{
-        console.log(data)
-        let company = companies.filter(comp=> comp.id == data.company)
         const jobOffer = {
             position : data.position,
-            company : data.company,
-            employment_type: parseInt(data.type),
+            companyId : data.company,
+            type: parseInt(data.type),
             date : parseInt(data.date)
         }
+        CompanyService.filterJobs(jobOffer).then(resp=>{
+            setJobOffers(resp.data.jobs)
+            console.log(resp.data)
+        })
         console.log(jobOffer)
     })
 

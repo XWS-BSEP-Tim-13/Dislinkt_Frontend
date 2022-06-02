@@ -3,11 +3,12 @@ import classes from './CreateJobOffer.module.css';
 import { useForm } from 'react-hook-form';
 import CompanyService from '../../services/CompanyService';
 import TextareaAutosize from 'react-textarea-autosize';
+import { useNavigate } from 'react-router';
 
 const CreateJobOffer = () => {
     const {register,handleSubmit, formState: { errors },watch} = useForm({})
     const [companies,setCompanies] = useState([])
-    
+        const navigate = useNavigate()
     const onSubmit = handleSubmit((data) =>{
         console.log(companies)
         console.log(data)
@@ -22,6 +23,7 @@ const CreateJobOffer = () => {
         console.log(jobOffer)
         CompanyService.saveJob(jobOffer).then(resp=>{
             console.log(resp.data)
+            navigate('/jobs')
         })
     })
 
@@ -30,7 +32,9 @@ const CreateJobOffer = () => {
             setCompanies(resp.data.companies)
         })
     },[])
-
+    function getBack(){
+        navigate('/jobs')
+    }
   return (
     <div className={classes.page}>
             <div className={classes.form}>
@@ -112,7 +116,7 @@ const CreateJobOffer = () => {
         </div>
 
         <button className={classes.buttonLogIn}>Create job offer</button>
-        <button className={classes.buttonBack}>Back</button>
+        <button className={classes.buttonBack} onClick={getBack}>Back</button>
     </form>
             </div>
             <div className={`${classes.image} ${true ? classes.loginBg : classes.registrationBg}`}></div>

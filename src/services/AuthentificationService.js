@@ -1,6 +1,6 @@
 
 import axios from 'axios';
-
+import store from '../store/store'
 const AuthentificationService = {
 
     baseURL : "https://localhost:8083/",
@@ -31,6 +31,16 @@ const AuthentificationService = {
             headers: {
                 'Content-Type': 'application/json',
                 Accept: 'application/json',
+            }
+        })
+    },
+
+    sendApiToken: function(){
+        return axios.get(this.baseURL+`send-token`, {
+            headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json',
+                'Authorization': `Bearer ${store.getState().loginReducer.token}`
             }
         })
     }

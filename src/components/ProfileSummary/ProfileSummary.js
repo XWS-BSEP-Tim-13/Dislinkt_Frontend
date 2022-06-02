@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPen } from '@fortawesome/free-solid-svg-icons'
-
+import AuthentificationService from '../../services/AuthentificationService';
 const ProfileSummary= ({ user }) => {
     const navigate = useNavigate();
 
@@ -16,6 +16,12 @@ const ProfileSummary= ({ user }) => {
 
     function navigateToCreateJobs(){
         navigate(`/jobs/create-job-offer`);
+    }
+
+    function sendApiToken(){
+        AuthentificationService.sendApiToken().then(resp=>{
+            
+        })
     }
 
     return (
@@ -42,7 +48,10 @@ const ProfileSummary= ({ user }) => {
             </div>
         </div>
         {
-        location.pathname == '/jobs' && <button className={classes.buttonJobs} onClick={()=> navigateToCreateJobs()}> <FontAwesomeIcon icon={faPen} className={classes.searchIcon} /> &nbsp;Post a free job</button>
+        location.pathname == '/jobs' && <div>
+            <button className={classes.buttonJobs} onClick={()=> navigateToCreateJobs()}> <FontAwesomeIcon icon={faPen} className={classes.searchIcon} /> &nbsp;Post a free job</button>
+            <button className={classes.buttonJobs} onClick={()=> sendApiToken()}> <FontAwesomeIcon icon={faPen} className={classes.searchIcon} /> &nbsp;Post a job from joberty</button>
+            </div>
         }
         </div>
     );
