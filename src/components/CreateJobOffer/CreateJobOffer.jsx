@@ -15,7 +15,7 @@ const CreateJobOffer = () => {
         let company = companies.filter(comp=> comp.id == data.company)
         const jobOffer = {
             position : data.position,
-            jobDescription : data.description,
+            job_description : data.description,
             prerequisites : data.prerequisites,
             company : company[0],
             employment_type: parseInt(data.type)

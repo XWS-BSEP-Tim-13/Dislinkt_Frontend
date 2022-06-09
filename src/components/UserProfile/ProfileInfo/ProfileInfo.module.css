@@ -9,6 +9,26 @@
     text-align: left;
 }
 
+.divMfa {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.divMfa button{
+    margin-left: 1rem;
+    border: 1px solid var(--red);
+    color: var(--red);
+    background-color: transparent;
+    width: 8rem;
+}
+
+.divMfa button:hover{
+    color: var(--dark-red);
+    border: 1px solid var(--dark-red);
+}
+
+
 .subtitle {
     font-weight: lighter;
     color: #656565;

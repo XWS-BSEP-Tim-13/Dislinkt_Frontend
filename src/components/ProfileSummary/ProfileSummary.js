@@ -20,7 +20,7 @@ const ProfileSummary= ({ user }) => {
 
     function sendApiToken(){
         AuthentificationService.sendApiToken().then(resp=>{
-            
+            navigate(`/jobs/token`)
         })
     }
 

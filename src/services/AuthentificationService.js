@@ -1,6 +1,7 @@
 
 import axios from 'axios';
 import store from '../store/store'
+
 const AuthentificationService = {
 
     baseURL : "https://localhost:8083/",
@@ -43,9 +44,67 @@ const AuthentificationService = {
                 'Authorization': `Bearer ${store.getState().loginReducer.token}`
             }
         })
-    }
+    },
+    getQRCode: function() {
+        return axios.get(this.baseURL+`generate-qrcode`, {
+            headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json',
+                'Authorization': `Bearer ${store.getState().loginReducer.token}`
+            }
+        })
+    },
 
+    checkMFACode: function(code) {
+        return axios.get(this.baseURL+`mfa/`+code, {
+            headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json',
+                'Authorization': `Bearer ${store.getState().loginReducer.token}`
+            }
+        })
+    },
 
+    checkMFACodeUnauthorized: function(code,token) {
+        return axios.get(this.baseURL+`mfa/`+code, {
+            headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        })
+    },
+
+    checkMFAActive: function() {
+        return axios.get(this.baseURL+`mfa/check`, {
+            headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json',
+                'Authorization': `Bearer ${store.getState().loginReducer.token}`
+            }
+        })
+    },
+
+    checkMFAActiveUnauthorized: function(token) {
+        return axios.get(this.baseURL+`mfa/check`, {
+            headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        })
+    },
+
+    resetMFAAuth: function() {
+        const body={}
+        return axios.put(this.baseURL+`mfa/reset`,body, {
+            headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json',
+                'Authorization': `Bearer ${store.getState().loginReducer.token}`
+            }
+        })
+    },
 }
 
 export default AuthentificationService;

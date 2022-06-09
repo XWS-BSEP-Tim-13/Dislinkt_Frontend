@@ -21,9 +21,14 @@ function Login(props) {
             password: event.target[1].value
         }
         AuthentificationService.login(credentials).then(resp => {
-            localStorage.setItem("token-ls", resp.data.token);
-            dispatch(login(resp.data));
-            navigate('/home');
+            AuthentificationService.checkMFAActiveUnauthorized(resp.data.token).then(resp1=>{
+                if(resp1.data.isActive) props.navigateToMFA(resp.data)
+                else{
+                    localStorage.setItem("token-ls", resp.data.token);
+                    dispatch(login(resp.data));
+                    navigate('/home');
+                }
+            })
         }).catch(error => {
             if (error.response.data.message.includes("Bad credentials")) {
                 setError(true);
