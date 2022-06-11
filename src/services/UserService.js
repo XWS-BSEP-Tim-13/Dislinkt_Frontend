@@ -65,6 +65,26 @@ const UserService = {
         })
     },
 
+    filter: function(filter){
+        return axios.get(this.baseURL+`user/filter/`+filter, {
+            headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json',
+                'Authorization': `Bearer ${store.getState().loginReducer.token}`
+            },
+        })
+    },
+
+    getConnectionRequestsForUser(username){
+        return axios.get(this.baseURL+`connection-request/by-user/`+username, {
+            headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json',
+                'Authorization': `Bearer ${store.getState().loginReducer.token}`
+            },
+        })
+    }
+
 
 
 }

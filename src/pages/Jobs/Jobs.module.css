@@ -27,3 +27,94 @@
 .jobOffer {
     border-top: 1px solid #eae9e7;
 }
+
+.searchDiv{
+    display: flex;
+    flex-direction: row;
+    height: 5rem;
+    width: 100%;
+}
+
+.searchbar {
+    display: flex;
+    align-items: center;
+    background-color: #f0f0f0;
+    height: 50%;
+    border-radius: 4px;
+    margin-left: 0.5rem;
+}
+
+.searchInput {
+    border: none;
+    background-color: var(--light-grey);
+    width: 100%;
+    font-size: 0.9rem;
+}
+
+.searchInput:focus {
+    outline: none;
+}
+
+.searchIcon {
+    color: #616365;
+    margin: 0 0.5rem;
+}
+
+.searchDiv{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    font-size: clamp(0.8rem, 2vw, 1rem);
+}
+
+.searchWrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+
+.searchWrapper div{
+    width: 80%;
+    
+}
+
+.filter{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    width: 96%;
+}
+
+.filter button{
+    border: none;
+    background-color:  var(--red);
+    color:#ffff;
+    border-radius: 5px;
+    width: 21%;
+    height :2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: clamp(0.8rem, 2vw, 1.5rem);
+}
+
+.filter button:hover{
+    background-color: var(--dark-red);
+    transition: all 0.5s ease-in;
+}
+
+@media only screen and (max-width: 40rem) {
+    .searchWrapper{
+       flex-direction: column;
+    }
+
+    .searchWrapper div{
+        width: 100%;
+        
+    }
+}
+
+
+

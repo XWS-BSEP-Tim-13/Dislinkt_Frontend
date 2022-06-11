@@ -2,6 +2,7 @@
     display: flex;
     align-items: center;
     padding: 1rem;
+    cursor: pointer;
 }
 
 .imageContainer {
@@ -55,5 +56,5 @@
 
 .applicants {
     color: var(--red);
-    font-weight: bold;
 }
+

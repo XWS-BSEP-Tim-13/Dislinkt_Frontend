@@ -13,14 +13,14 @@ import SuggestionsHomepage from "../../SuggestionsHomepage/SuggestionsHomepage"
 import AddEducation from "../AddEducation/AddEducation"
 import AddSkill from "../AddSkill/AddSkill"
 import { useSelector } from 'react-redux';
-
+import { useParams } from "react-router"
 const UserProfile = () => {
 
     const [user, setUser] = useState({});
     const [addExperienceVisible, setAddExperienceVisible] = useState(false);
     const [addEducationVisible, setAddEducationVisible] = useState(false);
     const [addSkillVisible, setAddSkillVisible] = useState(false);
-
+    const {username} = useParams()
     const auth = useSelector(state => state.loginReducer);
 
     async function reload() {
@@ -30,7 +30,9 @@ const UserProfile = () => {
 
     useEffect(() => {
         async function getUser() {
-            getUserByUsername(auth.username)
+            let userName = auth.username
+            if(username != 'me') userName = username
+            getUserByUsername(userName)
                 .catch(function (error) {
                     if (error.response) {
                         // Request made and server responded
@@ -54,7 +56,7 @@ const UserProfile = () => {
         }
 
         getUser()
-    }, [auth.username])
+    }, [auth.username,username])
 
     function toggleAddExperienceModal() {
         setAddExperienceVisible(!addExperienceVisible);

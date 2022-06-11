@@ -14,6 +14,9 @@ import Messaging from "./components/MessagingHomePage/Messaging";
 import ForgotPassword from './components/ForgotPassword/ForgotPassword';
 import ChangePassword from './components/ChangePassword/ChangePassword';
 import { useSelector } from 'react-redux';
+import CreateJobOffer from './components/CreateJobOffer/CreateJobOffer';
+import JobApiToken from './components/JobOffer/JobApiTokenSent/JobApiToken';
+import QRCode from './components/UserProfile/QRCode/QRCode';
 function App() {
    
     const [messagesOpen, setMessagesOpen] = useState(false);
@@ -30,9 +33,12 @@ function App() {
                     <Route path='/network'   element={<GuardedRoute Component = {Network} Roles="['COMPANY', 'USER']"/>} />
                     <Route path='/messaging' element={<GuardedRoute Component = {MessagingPage} Roles="['COMPANY', 'USER']"/>} />
                     <Route path='/jobs'      element={<Jobs />} />
-                    <Route path='/in'        element={<GuardedRoute Component = {UserProfile} Roles="['COMPANY', 'USER', 'ADMIN']"/>} />
+                    <Route path='/in/:username'        element={<GuardedRoute Component = {UserProfile} Roles="['COMPANY', 'USER', 'ADMIN']"/>} />
+                    <Route path='/jobs/create-job-offer'        element={<GuardedRoute Component = {CreateJobOffer} Roles="['COMPANY', 'USER', 'ADMIN']"/>} />
                     <Route path='/forgot-password' element={<ForgotPassword/>} />
-                    <Route path='/change-password/:token'  exact  element={<GuardedRoute Component = {ChangePassword} Roles="['COMPANY', 'USER', 'ADMIN']"/>} />
+                    <Route path='/change-password/:token'  exact  element= {<ChangePassword /> } />
+                    <Route path='/jobs/token'  element= {<JobApiToken/> } />
+                    <Route path='qr-code' element= {<QRCode/> }/>
             </Routes>
             {location.pathname !== '/'  && location.pathname !== '/forgot-password' && !location.pathname.includes("/change-password/")?
                 <div className={`messaging transform ${messagesOpen ? "transformActive" : ""}`}>

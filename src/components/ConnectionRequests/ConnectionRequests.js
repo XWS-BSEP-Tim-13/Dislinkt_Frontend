@@ -1,13 +1,21 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import classes from './ConnectionRequest.module.css';
 import User from '../../images/user-red.png'
 import { faCircleCheck } from '@fortawesome/free-solid-svg-icons'
 import { faCircleXmark } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-
+import UserService from '../../services/UserService';
+import { useSelector } from 'react-redux';
 const ConnectionRequests = () => {
 
     const [connections, setConnections] = useState([1, 2, 3])
+    const auth = useSelector(state => state.loginReducer);
+    
+    useEffect(()=>{
+        UserService.getConnectionRequestsForUser(auth.username).then(resp=>{
+            setConnections(resp.data.requests)
+        })
+    },[])
 
     return (
         <div className={classes.container}>

@@ -12,6 +12,8 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { logout } from '../../store/actions'
+import SearchResults from './SearchResults/SearchResults'
+import UserService from '../../services/UserService';
 function Navigation() {
 
     const [route, setRoute] = useState('');
@@ -19,7 +21,8 @@ function Navigation() {
     const navigate = useNavigate();
     const location = useLocation();
     const dispatch = useDispatch();
-
+    const [searchUsers,setSearchUsers] = useState([])
+    const [displaySearchDiv,setDisplaySearchDiv] =useState(false)
     useEffect(() => {
         setRoute(location.pathname.split('/')[1]);
     }, [route, location.pathname])
@@ -34,16 +37,36 @@ function Navigation() {
         setRoute(route);
     }
 
+    function filterUsers(){
+        if (!displaySearchDiv)
+        UserService.filter('').then(resp=>{
+            console.log(resp.data.users)
+            setSearchUsers(resp.data.users)
+        })
+        setDisplaySearchDiv(true)
+    }
+
+    const handleChange = (e) => {
+        UserService.filter(e.target.value).then(resp=>{
+            setSearchUsers(resp.data.users)
+        })
+    }
+
     return (
         <div className={classes.wrap}>
             <div className={classes.search}>
                 <img src={Logo} className={classes.logo} alt="Dislinkt logo" />
-                <div className={classes.searchbar}>
+                <div className={classes.searchbar} onClick={() =>filterUsers()}>
                     <FontAwesomeIcon icon={faMagnifyingGlass} className={classes.searchIcon} />
-                    <input type="text" placeholder="Search for people, jobs, companies..." className={classes.searchInput}></input>
+                    <input type="text" placeholder="Search for people, jobs, companies..." className={classes.searchInput} onChange={handleChange} ></input>
                 </div>
             </div>
-            <div className={classes.navigation}>
+            {
+                displaySearchDiv &&
+                <SearchResults changeState={() =>setDisplaySearchDiv(false)} users={searchUsers}/>
+
+            }
+            <div className={classes.navigation} onClick={() =>setDisplaySearchDiv(false)}>
                 <div className={route !== 'home' ? classes.navigationDiv : classes.navigationDivActive} onClick={() => changeRoute('home')}>
                     <FontAwesomeIcon icon={faHome} className={classes.navigationIcon} />
                     <label className={classes.navigationLabel}>Home</label>
@@ -60,7 +83,7 @@ function Navigation() {
                     <FontAwesomeIcon icon={faMessage} className={classes.navigationIcon} />
                     <label className={classes.navigationLabel}>Messaging</label>
                 </div>
-                <div className={route !== 'in' ? classes.navigationDiv : classes.navigationDivActive} onClick={() => changeRoute('in')} >
+                <div className={route !== 'in' ? classes.navigationDiv : classes.navigationDivActive} onClick={() => changeRoute('in/me')} >
                     <FontAwesomeIcon icon={faUser} className={classes.navigationIcon} />
                     <label className={classes.navigationLabel}>Me</label>
                 </div>
