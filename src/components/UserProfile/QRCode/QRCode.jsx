@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router'
 import AuthentificationService from '../../../services/AuthentificationService'
 import classes from './QRCode.module.css'
+import { useRef } from 'react'
 const QRCode = () => {
     
     const [image,setImage] = useState(undefined)
@@ -11,42 +12,46 @@ const QRCode = () => {
     const [error,setError]=useState(false)
     const [success,setSuccess] =useState(false)
     const navigate =useNavigate()
+    const successRef = useRef(null);
+    successRef.current = success
+
     useEffect(()=>{
         AuthentificationService.getQRCode().then(resp=>{
             setImage("data:image/gif;base64,"+resp.data.image)
         })
-        console.log("###########################")
-        if(success) {
-            
-        }
-        // return async ()=>{
-        //     await sleep(500)
-        //     if(!success){
-        //         console.log(success)
-        //         console.log('failllll')
-        //         AuthentificationService.resetMFAAuth().then(resp=>{
-        //         })
-        //     }
-        // }
+
     },[])
 
-    function sleep(ms) {
-        return new Promise(resolve => setTimeout(resolve, ms));
+    useEffect(()=>{
+        if(success) {
+            navigate('/in/me')
     }
+    },[success])
+
+
+    useEffect(() => {
+          return () => {
+            if(!successRef.current){
+                console.log(successRef.current)
+                console.log('failllll')
+                AuthentificationService.resetMFAAuth().then(resp=>{
+                })
+            }
+          }
+        },[]);
+
 
     function save(){
         if(code == ""){
             setError(true)
             return
         }
-        AuthentificationService.checkMFACode(code).then(resp=>{
+        AuthentificationService.checkMFACode(code).then(async resp=>{
             setSuccess(true)
-            navigate('/in/me')
         }).catch(err=>{
             setError(true)
         })
     }
-
     const handleChange = (e) => {
         if(e.target.value == "") setError(true)
         else setError(false)

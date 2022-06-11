@@ -19,13 +19,18 @@ const MFA = (props) => {
             setError(true)
             return
         }
-        AuthentificationService.checkMFACodeUnauthorized(code,props.token.token).then(resp=>{
-            localStorage.setItem("token-ls", props.token.token);
-                    dispatch(login(props.token));
+        AuthentificationService.checkMFACodeUnauthorized(code,props.token.username).then(resp=>{
+            console.log(resp.data)
+            localStorage.setItem("token-ls", resp.data.token);
+                    dispatch(login(resp.data));
                     navigate('/home');
         }).catch(err=>{
             setError(true)
         })
+    }
+
+    function back(){
+        props.navigateToLogin()
     }
 
     const handleChange = (e) => {
@@ -44,7 +49,7 @@ const MFA = (props) => {
                     </div>
                     </div>
                     <button  className={classes.button} onClick={save}>Save</button>
-                    <button  className={classes.buttonBack}>Back</button>
+                    <button  className={classes.buttonBack} onClick={back}>Back</button>
                 </div>
             </div>
   )

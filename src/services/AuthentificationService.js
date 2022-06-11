@@ -65,12 +65,11 @@ const AuthentificationService = {
         })
     },
 
-    checkMFACodeUnauthorized: function(code,token) {
-        return axios.get(this.baseURL+`mfa/`+code, {
+    checkMFACodeUnauthorized: function(code,username) {
+        return axios.get(this.baseURL+`mfa-login/`+code+'/'+username, {
             headers: {
                 'Content-Type': 'application/json',
                 Accept: 'application/json',
-                'Authorization': `Bearer ${token}`
             }
         })
     },
