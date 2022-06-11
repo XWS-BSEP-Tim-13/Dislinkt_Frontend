@@ -4,11 +4,6 @@
     align-items: flex-end;
 }
 
-h1 {
-    font-size: 3.5rem;
-    margin-bottom: 3rem;
-}
-
 .formItems {
     display: flex;
     margin: 0 2vw;
