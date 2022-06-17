@@ -56,6 +56,11 @@ const QRCode = () => {
         if(e.target.value == "") setError(true)
         else setError(false)
         setCode(e.target.value)}
+
+    function back(){
+        navigate('/in/me')
+    }
+
   return (
     <div className={classes.page}>
             <div className={classes.form}>
@@ -81,7 +86,7 @@ const QRCode = () => {
                 {  (image !== undefined) && <img src={image} className={classes.postImage} alt=""/>}
                 </div>
                 <button  className={classes.button} onClick={()=>setNext(true)}>Next</button>
-                <button  className={classes.buttonBack}>Cancel</button>
+                <button  className={classes.buttonBack} onClick={back}>Cancel</button>
                 </div>
                 }
             </div>

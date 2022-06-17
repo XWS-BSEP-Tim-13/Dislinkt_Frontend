@@ -26,7 +26,7 @@ function App() {
       
     return (
         <div className="App" id="appContainer">
-            {location.pathname !== '/' && location.pathname !== '/forgot-password' && !location.pathname.includes("/change-password/") ? <Navigation /> : null}
+            {location.pathname !== '/' && location.pathname !== '/qr-code' &&  location.pathname !== '/forgot-password' && !location.pathname.includes("/change-password/") ? <Navigation /> : null}
             <Routes>         
                     <Route path='/'          element={<Mainpage />} />
                     <Route path='/home'      element={<Homepage />} />
@@ -40,7 +40,7 @@ function App() {
                     <Route path='/jobs/token'  element= {<JobApiToken/> } />
                     <Route path='qr-code' element= {<QRCode/> }/>
             </Routes>
-            {location.pathname !== '/'  && location.pathname !== '/forgot-password' && !location.pathname.includes("/change-password/")?
+            {location.pathname !== '/'  && location.pathname !== '/forgot-password' && location.pathname !== '/qr-code'  && !location.pathname.includes("/change-password/")?
                 <div className={`messaging transform ${messagesOpen ? "transformActive" : ""}`}>
                     <Messaging clickHandler={() => setMessagesOpen(!messagesOpen)}
                         isMessagesOpen={messagesOpen} page="app">
