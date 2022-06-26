@@ -76,7 +76,17 @@ const UserService = {
     },
 
     getConnectionRequestsForUser(username){
-        return axios.get(this.baseURL+`connection-request/by-user/`+username, {
+        return axios.get(this.baseURL+`conn/connection-request/by-user/`+username, {
+            headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json',
+                'Authorization': `Bearer ${store.getState().loginReducer.token}`
+            },
+        })
+    },
+
+    getConnectionSuggestionsForUser(username){
+        return axios.get(this.baseURL+`conn/user/suggested-connection-usernames/`+username, {
             headers: {
                 'Content-Type': 'application/json',
                 Accept: 'application/json',

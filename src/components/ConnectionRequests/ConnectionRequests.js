@@ -33,7 +33,8 @@ const ConnectionRequests = () => {
                                             <img src={User} className={classes.image} alt="User" />
                                         </div>
                                         <div className={classes.content}>
-                                            <label>Marija Kljestan</label>
+                                          { connection.from ? <label>Marija Kljestan</label> : <label> Ana Gavrilovic</label>}
+                                             {/* <label> {connection.from.firstName}  {connection.from.lastName} </label> */}
                                             <label className={classes.contentProffesion}>Faculty of technical science, Novi Sad</label>
                                         </div>
                                     </div>

@@ -1,20 +1,28 @@
 import React from 'react'
 import classes from './SuggestedConnections.module.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Background from '../../images/maroon-bg.jpg'
 import User from '../../images/user-128.png'
-
+import UserService from '../../services/UserService';
+import { useSelector } from 'react-redux';
 
 const SuggestedConnections = () => {
 
-    const [requsts, setRequests] = useState([1, 2, 3, 4, 5, 6, 7])
+    const [suggestions, setSuggestions] = useState([1, 2, 3])
+    const auth = useSelector(state => state.loginReducer);
+
+    useEffect(()=>{
+        UserService.getConnectionSuggestionsForUser(auth.username).then(resp=>{
+            setSuggestions(resp.data.usernames)      
+        })
+    },[])
 
     return (
         <div className={classes.container}>
             <label className={classes.headerLabel}>Suggested connections</label>
             <div className={classes.connectionWrap}>
                 {
-                    requsts.map((connection, index) =>
+                    suggestions.map((connection, index) =>
                         <div className={classes.connection} key={index}>
                             <img src={Background} alt="" className={classes.background} />
                             <div className={classes.imageContainer}>
@@ -22,7 +30,7 @@ const SuggestedConnections = () => {
                             </div>
                             <div className={classes.description}>
                                 <div>
-                                    <label>Srdjan Sukovic</label>
+                                    <label>{connection}</label>
                                     <label className={classes.descriptionProffesion}>Faculty of technical science, Novi Sad (student)</label>
                                 </div>
                                 <div>
