@@ -10,12 +10,14 @@ const ConnectionRequests = () => {
 
     const [connections, setConnections] = useState([1, 2, 3])
     const auth = useSelector(state => state.loginReducer);
-    
-    useEffect(()=>{
-        UserService.getConnectionRequestsForUser(auth.username).then(resp=>{
-            setConnections(resp.data.requests)
+
+    useEffect(() => {
+        UserService.getConnectionRequestsForUser(auth.username).then(resp => {
+            setConnections(resp.data.requests);
+
+            console.log(resp.data.requests);
         })
-    },[])
+    }, [])
 
     return (
         <div className={classes.container}>
@@ -28,21 +30,21 @@ const ConnectionRequests = () => {
                         {
                             connections.map((connection, index) =>
                                 <div className={classes.conection} key={index}>
-                                    <div className={classes.connectionDetails}>
-                                        <div className={classes.imageContainer}>
-                                            <img src={User} className={classes.image} alt="User" />
+                                        <div className={classes.connectionDetails}>
+                                            <div className={classes.imageContainer}>
+                                                <img src={User} className={classes.image} alt="User" />
+                                            </div>
+                                            <div className={classes.content}>
+                                                {<label> {connection.from != undefined ? connection.from.firstName : null}  {connection.from != undefined ? connection.from.lastName : null} </label>}
+                                                <label className={classes.contentProffesion}>{connection.from != undefined ? connection.from.experiences[-1] != '' ? connection.from.experiences[-1] : '' : null}</label>
+                                            </div>
                                         </div>
-                                        <div className={classes.content}>
-                                          { connection.from ? <label>Marija Kljestan</label> : <label> Ana Gavrilovic</label>}
-                                             {/* <label> {connection.from.firstName}  {connection.from.lastName} </label> */}
-                                            <label className={classes.contentProffesion}>Faculty of technical science, Novi Sad</label>
-                                        </div>
-                                    </div>
                                     <div className={classes.buttonDiv}>
                                         <FontAwesomeIcon icon={faCircleCheck} className={classes.icon} />
                                         <FontAwesomeIcon icon={faCircleXmark} className={classes.icon} />
                                         <label className={classes.date}>May 1</label>
                                     </div>
+
                                 </div>
                             )
                         }
