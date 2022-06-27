@@ -36,7 +36,7 @@ const ConnectionRequests = () => {
                                             </div>
                                             <div className={classes.content}>
                                                 {<label> {connection.from != undefined ? connection.from.firstName : null}  {connection.from != undefined ? connection.from.lastName : null} </label>}
-                                                <label className={classes.contentProffesion}>{connection.from != undefined ? connection.from.experiences[-1] != '' ? connection.from.experiences[-1] : '' : null}</label>
+                                                <label className={classes.contentProffesion}>{connection.from != undefined ? connection.from.experiences[-1] != undefined ? connection.from.experiences[-1].title + ' at ' + connection.from.experiences[-1].companyName : '' : null}</label>
                                             </div>
                                         </div>
                                     <div className={classes.buttonDiv}>
