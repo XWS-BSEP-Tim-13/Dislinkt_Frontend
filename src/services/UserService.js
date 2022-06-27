@@ -75,6 +75,21 @@ const UserService = {
         })
     },
 
+    createConnectionRequest: function(usernameFrom, usernameTo){
+        const data ={
+            "usernameFrom": usernameFrom,
+            "usernameTo" : usernameTo
+        }
+
+        return axios.post(this.baseURL+`conn/connection-request`, data, {
+            headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json',
+                'Authorization': `Bearer ${store.getState().loginReducer.token}`
+            },
+        })
+    },
+
     getConnectionRequestsForUser(username){
         return axios.get(this.baseURL+`conn/connection-request/by-user/`+username, {
             headers: {
@@ -94,8 +109,6 @@ const UserService = {
             },
         })
     }
-
-
 
 }
 export default UserService;

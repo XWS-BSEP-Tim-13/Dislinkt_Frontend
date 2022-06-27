@@ -17,6 +17,10 @@ const SuggestedConnections = () => {
         })
     },[])
 
+    function sendRequest(usernameTo){
+        UserService.createConnectionRequest(auth.username, usernameTo).then(() =>  console.log(usernameTo));
+    }
+
     return (
         <div className={classes.container}>
             <label className={classes.headerLabel}>Suggested connections</label>
