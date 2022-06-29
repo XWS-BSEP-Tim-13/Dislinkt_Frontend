@@ -75,8 +75,13 @@ const UserService = {
         })
     },
 
-    getConnectionRequestsForUser(username){
-        return axios.get(this.baseURL+`connection-request/by-user/`+username, {
+    createConnectionRequest: function(usernameFrom, usernameTo){
+        const data ={
+            "usernameFrom": usernameFrom,
+            "usernameTo" : usernameTo
+        }
+
+        return axios.post(this.baseURL+`conn/connection-request`, data, {
             headers: {
                 'Content-Type': 'application/json',
                 Accept: 'application/json',
@@ -103,9 +108,27 @@ const UserService = {
                 'Authorization': `Bearer ${store.getState().loginReducer.token}`
             },
         })
+    },
+
+    getConnectionRequestsForUser(username){
+        return axios.get(this.baseURL+`conn/connection-request/by-user/`+username, {
+            headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json',
+                'Authorization': `Bearer ${store.getState().loginReducer.token}`
+            },
+        })
+    },
+
+    getConnectionSuggestionsForUser(username){
+        return axios.get(this.baseURL+`conn/user/suggested-connection-usernames/`+username, {
+            headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json',
+                'Authorization': `Bearer ${store.getState().loginReducer.token}`
+            },
+        })
     }
-
-
 
 }
 export default UserService;
