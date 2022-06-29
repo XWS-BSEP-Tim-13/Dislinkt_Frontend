@@ -83,6 +83,26 @@ const UserService = {
                 'Authorization': `Bearer ${store.getState().loginReducer.token}`
             },
         })
+    },
+
+    checkIfUsersConnected(usernameFrom){
+        return axios.get(this.baseURL+`conn/user/users-connected/`+usernameFrom, {
+            headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json',
+                'Authorization': `Bearer ${store.getState().loginReducer.token}`
+            },
+        })
+    },
+
+    changePrivacy(isPrivate){
+        return axios.put(this.baseURL+`user/account-privacy/`+isPrivate,{}, {
+            headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json',
+                'Authorization': `Bearer ${store.getState().loginReducer.token}`
+            },
+        })
     }
 
 

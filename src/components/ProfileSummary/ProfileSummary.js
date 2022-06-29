@@ -10,7 +10,7 @@ const ProfileSummary= ({ user }) => {
     const navigate = useNavigate();
 
     function viewProfileHandler() {
-        navigate(`/in`);
+        navigate(`/in/me`);
     }
     const location = useLocation();
 

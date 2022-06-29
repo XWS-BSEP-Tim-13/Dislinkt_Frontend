@@ -14,6 +14,8 @@ import AddEducation from "../AddEducation/AddEducation"
 import AddSkill from "../AddSkill/AddSkill"
 import { useSelector } from 'react-redux';
 import { useParams } from "react-router"
+import { useNavigate } from "react-router"
+import UserService from "../../../services/UserService"
 const UserProfile = () => {
 
     const [user, setUser] = useState({});
@@ -22,7 +24,9 @@ const UserProfile = () => {
     const [addSkillVisible, setAddSkillVisible] = useState(false);
     const {username} = useParams()
     const auth = useSelector(state => state.loginReducer);
-
+    const navigate = useNavigate()
+    const [currentUser,setCurrentUser] =useState(true)
+    const [userStatus,setUserStatus] =useState("NONEE")
     async function reload() {
         const user = await getUserByUsername(auth.username);
         setUser(user);
@@ -31,7 +35,10 @@ const UserProfile = () => {
     useEffect(() => {
         async function getUser() {
             let userName = auth.username
-            if(username != 'me') userName = username
+            if(username != 'me') {
+                userName = username
+                setCurrentUser(true)
+            }
             getUserByUsername(userName)
                 .catch(function (error) {
                     if (error.response) {
@@ -39,6 +46,7 @@ const UserProfile = () => {
                         console.log(error.response.data);
                         console.log(error.response.status);
                         console.log(error.response.headers);
+                        navigate('/in/me')
                     } else if (error.request) {
                         // The request was made but no response was received
                         console.log(error.request);
@@ -50,6 +58,13 @@ const UserProfile = () => {
                 })
                 .then((data) => {
                     setUser(data);
+                    if(username != 'me') {
+                        console.log(data)
+                        UserService.checkIfUsersConnected(userName).then(resp=>{
+                            console.log(resp.data)
+                            setUserStatus(resp.data.connectionStatus)
+                        })
+                    }
                 }
                 );
 
@@ -70,20 +85,30 @@ const UserProfile = () => {
         setAddSkillVisible(!addSkillVisible);
     }
 
+    function checkIfVisible(){
+        if(currentUser) return true
+        if((userStatus == "NONEE" && !user.isPrivate) || userStatus=="CONNECTED") return true
+        return false
+    }
+
     return (
         <div className={classes.container}>
             <div className={classes.userProfile}>
                 <div className={classes.header}>
                     <ProfileCover />
-                    {user.username && <ProfileInfo user={user} />}
+                    {user.username && <ProfileInfo user={user} userStatus={userStatus}/>}
                 </div>
-                {user.biography && <AboutUser bio={user.biography} />}
-                {user.experiences && <Experiences experiences={user.experiences} toggleAddExperience={toggleAddExperienceModal} userId={user.id} reload={reload} />}
-                {user.educations && <Educations educations={user.educations} toggleAddEducation={toggleAddEducationModal} userId={user.id} reload={reload} />}
-                {user.skills && <Skills skills={user.skills} toggleAddSkill={toggleAddSkillModal} userId={user.id} reload={reload} />}
-                {user.interests && <Interests interests={user.interests} />}
-                {addExperienceVisible && <AddExperience toggleAddExperience={toggleAddExperienceModal} user={user} reload={reload} />}
-                {addEducationVisible && <AddEducation toggleAddEducation={toggleAddEducationModal} user={user} reload={reload} />}
+                { checkIfVisible() &&
+                <div>
+                    {user.biography && <AboutUser bio={user.biography} />}
+                    {user.experiences && <Experiences experiences={user.experiences} toggleAddExperience={toggleAddExperienceModal} userId={user.id} reload={reload} />}
+                    {user.educations && <Educations educations={user.educations} toggleAddEducation={toggleAddEducationModal} userId={user.id} reload={reload} />}
+                    {user.skills && <Skills skills={user.skills} toggleAddSkill={toggleAddSkillModal} userId={user.id} reload={reload} />}
+                    {user.interests && <Interests interests={user.interests} />}
+                    {addExperienceVisible && <AddExperience toggleAddExperience={toggleAddExperienceModal} user={user} reload={reload} />}
+                    {addEducationVisible && <AddEducation toggleAddEducation={toggleAddEducationModal} user={user} reload={reload} />}
+                </div>
+                }
             </div>
             <div className={classes.suggestions}>
                 <SuggestionsHomepage />
