@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import { removeEducation } from '../../../api/UserProfile/UserProfileApi'
 
-const Education = ({ education, userId, reload }) => {
+const Education = ({ education, userId, reload,currentUser }) => {
 
     function onRemoveExperience(){
         const removalRequest = {
@@ -25,7 +25,7 @@ const Education = ({ education, userId, reload }) => {
                 <div> {education.description} </div>
                 <div> <span className={classes.date}>{new Date(education.startDate).toLocaleDateString()} - {new Date(education.endDate).toLocaleDateString()}</span> </div>
             </div>
-            <FontAwesomeIcon icon={faTrash} className={classes.icon} onClick={onRemoveExperience} />
+            {currentUser &&<FontAwesomeIcon icon={faTrash} className={classes.icon} onClick={onRemoveExperience} />}
         </div>
     )
 }

@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react'
 import AuthentificationService from '../../../services/AuthentificationService'
 import { useSelector } from 'react-redux';
 import UserService from '../../../services/UserService'
-const ProfileInfo = ({ user,userStatus }) => {
+const ProfileInfo = ({ user,userStatus,updateStatus,currentUser }) => {
 
     const [mfaActive,setMfaActive]=useState(false)
     const auth = useSelector(state => state.loginReducer);
@@ -16,13 +16,16 @@ const ProfileInfo = ({ user,userStatus }) => {
     useEffect(()=>{
         console.log(userStatus)
         console.log(user)
-        if (user.username == auth.username) setIsLoggedUser(true)
-        setIsPrivate(user.isPrivate)
+        if (user.username == auth.username) {setIsLoggedUser(true)
         AuthentificationService.checkMFAActive().then(resp=>{
             console.log(resp.data)
             setMfaActive(resp.data.isActive)
         })
-    },[])
+    }else {setIsPrivate(user.isPrivate)
+        setIsLoggedUser(false)
+    }
+    },[user.username,userStatus])
+    
 
 
     const navigate =useNavigate()
@@ -53,10 +56,62 @@ const ProfileInfo = ({ user,userStatus }) => {
      }
 
      function optionsOnStatus(){
-        if(userStatus == "CONNECTED") return <div><button><FontAwesomeIcon icon={faUserSlash} className={classes.dots} />Remove connection</button><button><FontAwesomeIcon icon={faBan} className={classes.dots} />Block</button></div>
-        else if(userStatus == "NONEE") return <div><button><FontAwesomeIcon icon={faUserSlash} className={classes.dots} />Connect</button><button><FontAwesomeIcon icon={faBan} className={classes.dots} />Block</button></div>
-        else if(userStatus == "BLOCKED") return <div><button><FontAwesomeIcon icon={faBan} className={classes.dots} />Unblock</button></div>
-        else if(userStatus == "CONNECTION_REQUEST")  return <div><button><FontAwesomeIcon icon={faBan} className={classes.dots} />Cancel request</button></div>
+        if(userStatus == "CONNECTED") return <div><button onClick={removeConnection}><FontAwesomeIcon icon={faUserSlash} className={classes.dots} />Remove connection</button><button onClick={blockUser}><FontAwesomeIcon icon={faBan} className={classes.dots}/>Block</button></div>
+        else if(userStatus == "NONEE") return <div><button onClick={requestConnection}><FontAwesomeIcon icon={faUserSlash} className={classes.dots} />Connect</button><button onClick={blockUser}><FontAwesomeIcon icon={faBan} className={classes.dots} />Block</button></div>
+        else if(userStatus == "BLOCKED") return <div><button onClick={unblockUser}><FontAwesomeIcon icon={faBan} className={classes.dots} />Unblock</button></div>
+        else if(userStatus == "CONNECTION_REQUEST")  return <div><button onClick={deleteConnectionRequest}><FontAwesomeIcon icon={faBan} className={classes.dots} />Cancel request</button></div>
+     }
+
+     function blockUser(){
+        console.log("####################")
+        UserService.blockUser(user.username).then(resp=>{
+            console.log(resp.data)
+            updateStatus("BLOCKED")
+        })
+     }
+
+     function unblockUser(){
+        UserService.unblockUser(user.username).then(resp=>{
+            UserService.checkIfUsersConnected(user.username).then(resp=>{
+                //console.log(resp.data)
+                updateStatus(resp.data.connectionStatus)
+            })
+        })
+     }
+
+     function requestConnection(){
+        UserService.requestConnection(user.username).catch(err=>{
+            console.log(err)
+        }).then(resp=>{
+            console.log(resp.data)
+            updateStatus(resp.data.connectionStatus)
+        })
+     }
+
+     function deleteConnectionRequest(){
+        UserService.deleteConnectionRequest(user.username).catch(err=>{
+            console.log(err)
+        }).then(resp=>{
+            console.log(resp)
+            updateStatus("NONEE")
+        })
+     }
+
+     function removeConnection(){
+        UserService.removeConnection(user.username).catch(err=>{
+            console.log(err)
+        }).then(resp=>{
+            console.log(resp)
+            updateStatus("NONEE")
+        })
+     }
+
+     function acceptConnectionRequest(){
+        UserService.acceptConnectionRequest(user.username).catch(err=>{
+            console.log(err)
+        }).then(resp=>{
+            console.log(resp)
+        })
      }
 
     return (
@@ -72,7 +127,7 @@ const ProfileInfo = ({ user,userStatus }) => {
                     :
                     <button onClick={disableMFA}>Disable mfa</button>
                 }
-                { isPrivate ?
+                { user.isPrivate ?
                 <button onClick={()=>changePrivacy(false)} >Set to public</button>
                 :
                  <button onClick={()=>changePrivacy(true)}>Set to private</button>
@@ -84,7 +139,7 @@ const ProfileInfo = ({ user,userStatus }) => {
                 </div>
             </div>
             <div className={classes.left}>
-                <FontAwesomeIcon icon={faUserEdit} className={classes.editIcon} />
+                {currentUser &&<FontAwesomeIcon icon={faUserEdit} className={classes.editIcon} />}
                 <div className={classes.userStatus}>
                     { !isLoggedUser &&
                     <div>{renderOnStatus()} <FontAwesomeIcon icon={faEllipsisVertical} className={classes.dots} onClick={() =>setDisplayOptions(!displayOptions)}/></div>

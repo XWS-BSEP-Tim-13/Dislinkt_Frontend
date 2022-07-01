@@ -35,18 +35,18 @@ const UserProfile = () => {
     useEffect(() => {
         async function getUser() {
             let userName = auth.username
-            if(username != 'me') {
+            if(username != 'me' && auth.username !=username) {
                 userName = username
-                setCurrentUser(true)
+                setCurrentUser(false)
             }
             getUserByUsername(userName)
                 .catch(function (error) {
                     if (error.response) {
                         // Request made and server responded
-                        console.log(error.response.data);
-                        console.log(error.response.status);
-                        console.log(error.response.headers);
-                        navigate('/in/me')
+                        // console.log(error.response.data);
+                        // console.log(error.response.status);
+                        // console.log(error.response.headers);
+                        //navigate('/in/me')
                     } else if (error.request) {
                         // The request was made but no response was received
                         console.log(error.request);
@@ -59,9 +59,9 @@ const UserProfile = () => {
                 .then((data) => {
                     setUser(data);
                     if(username != 'me') {
-                        console.log(data)
+                        //console.log(data)
                         UserService.checkIfUsersConnected(userName).then(resp=>{
-                            console.log(resp.data)
+                            //console.log(resp.data)
                             setUserStatus(resp.data.connectionStatus)
                         })
                     }
@@ -91,19 +91,24 @@ const UserProfile = () => {
         return false
     }
 
+    function updateStatus(status){
+        console.log("$$$$$$$$$$$$$$$$$$$$$$")
+        setUserStatus(status)
+    }
+
     return (
         <div className={classes.container}>
             <div className={classes.userProfile}>
                 <div className={classes.header}>
                     <ProfileCover />
-                    {user.username && <ProfileInfo user={user} userStatus={userStatus}/>}
+                    {user.username && <ProfileInfo currentUser={currentUser} user={user} userStatus={userStatus} updateStatus={updateStatus}/>}
                 </div>
                 { checkIfVisible() &&
                 <div>
-                    {user.biography && <AboutUser bio={user.biography} />}
-                    {user.experiences && <Experiences experiences={user.experiences} toggleAddExperience={toggleAddExperienceModal} userId={user.id} reload={reload} />}
-                    {user.educations && <Educations educations={user.educations} toggleAddEducation={toggleAddEducationModal} userId={user.id} reload={reload} />}
-                    {user.skills && <Skills skills={user.skills} toggleAddSkill={toggleAddSkillModal} userId={user.id} reload={reload} />}
+                    {user.biography && <AboutUser bio={user.biography} currentUser={currentUser}/>}
+                    {user.experiences && <Experiences experiences={user.experiences} currentUser={currentUser} toggleAddExperience={toggleAddExperienceModal} userId={user.id} reload={reload} />}
+                    {user.educations && <Educations currentUser={currentUser} educations={user.educations} toggleAddEducation={toggleAddEducationModal} userId={user.id} reload={reload} />}
+                    {user.skills && <Skills currentUser={currentUser} skills={user.skills} toggleAddSkill={toggleAddSkillModal} userId={user.id} reload={reload} />}
                     {user.interests && <Interests interests={user.interests} />}
                     {addExperienceVisible && <AddExperience toggleAddExperience={toggleAddExperienceModal} user={user} reload={reload} />}
                     {addEducationVisible && <AddEducation toggleAddEducation={toggleAddEducationModal} user={user} reload={reload} />}

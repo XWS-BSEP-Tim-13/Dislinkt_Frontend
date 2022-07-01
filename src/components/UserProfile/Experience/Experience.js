@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import { removeExperience } from '../../../api/UserProfile/UserProfileApi'
 
-const Experience = ({ experience, userId, reload }) => {
+const Experience = ({ experience, userId, reload,currentUser }) => {
 
     function formatEmploymentType(type) {
         if (type === "FULL_TIME")
@@ -37,7 +37,7 @@ const Experience = ({ experience, userId, reload }) => {
                 <div className={classes.workingDate}> Since <span className={classes.date}>{new Date(experience.startDate).toLocaleDateString()}</span> </div>
                 <div className={classes.description}> {experience.description} </div>
             </div>
-            <FontAwesomeIcon icon={faTrash} className={classes.icon}  onClick={onRemoveExperience} />
+            {currentUser &&<FontAwesomeIcon icon={faTrash} className={classes.icon}  onClick={onRemoveExperience} />}
         </div>
     )
 }

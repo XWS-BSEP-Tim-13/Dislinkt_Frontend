@@ -4,7 +4,7 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import classes from './Skill.module.css'
 import { removeSkill } from '../../../api/UserProfile/UserProfileApi'
 
-const Skill = ({ skill, userId, reload }) => {
+const Skill = ({ skill, userId, reload,currentUser }) => {
 
     function onRemoveSkill(){
         const removalRequest = {
@@ -19,7 +19,7 @@ const Skill = ({ skill, userId, reload }) => {
         <div>
             <div className={classes.skill}>
                 {skill}
-                <FontAwesomeIcon icon={faTrash} className={classes.icon} onClick={onRemoveSkill}/>
+                {currentUser &&<FontAwesomeIcon icon={faTrash} className={classes.icon} onClick={onRemoveSkill}/>}
             </div>
             <hr />
         </div>

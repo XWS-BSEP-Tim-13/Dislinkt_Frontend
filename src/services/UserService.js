@@ -120,6 +120,26 @@ const UserService = {
         })
     },
 
+    blockUser(username){
+        return axios.put(this.baseURL+`conn/user/block/`+username,{}, {
+            headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json',
+                'Authorization': `Bearer ${store.getState().loginReducer.token}`
+            },
+        })
+    },
+
+    unblockUser(username){
+        return axios.put(this.baseURL+`conn/user/unblock/`+username,{}, {
+            headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json',
+                'Authorization': `Bearer ${store.getState().loginReducer.token}`
+            },
+        })
+    },
+
     getConnectionSuggestionsForUser(username){
         return axios.get(this.baseURL+`conn/user/suggested-connection-usernames/`+username, {
             headers: {
@@ -128,7 +148,47 @@ const UserService = {
                 'Authorization': `Bearer ${store.getState().loginReducer.token}`
             },
         })
-    }
+    },
+
+    requestConnection(username){
+        return axios.post(this.baseURL+`conn/connection-request/`+username,{}, {
+            headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json',
+                'Authorization': `Bearer ${store.getState().loginReducer.token}`
+            },
+        })
+    },
+
+    deleteConnectionRequest(username){
+        return axios.delete(this.baseURL+`conn/connection-request/`+username, {
+            headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json',
+                'Authorization': `Bearer ${store.getState().loginReducer.token}`
+            },
+        })
+    },
+    removeConnection(username){
+        return axios.put(this.baseURL+`conn/user/delete-connection/`+username,{}, {
+            headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json',
+                'Authorization': `Bearer ${store.getState().loginReducer.token}`
+            },
+        })
+    },
+
+    acceptConnectionRequest(username){
+        console.log(username)
+        return axios.post(this.baseURL+`conn/connection-request/accept/`+username,{}, {
+            headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json',
+                'Authorization': `Bearer ${store.getState().loginReducer.token}`
+            },
+        })
+    },
 
 }
 export default UserService;
