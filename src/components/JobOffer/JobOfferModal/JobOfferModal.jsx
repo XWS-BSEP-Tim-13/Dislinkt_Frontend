@@ -31,7 +31,6 @@ const JobOfferModal = (props) => {
     <div className={classes.modalInner}>
         <div className={classes.header}>
             <label className={classes.position}><b>{props.jobOffer.position}</b></label>
-            <FontAwesomeIcon icon={faX} className={classes.icon} onClick={() => props.changeState()} />
         </div>
         <div className={classes.postHeader}>
         <label>{props.jobOffer.company.username} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>

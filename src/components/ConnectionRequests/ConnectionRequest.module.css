@@ -64,6 +64,8 @@
     font-size: small;
     color: #616365;
     margin-left: 2rem;
+    width: 4.5rem;
+    text-align: right;
 }
 
 .icon {

@@ -41,7 +41,7 @@ const JobOffer = (props) => {
                 </div>
                 <div className={classes.offerStatus}>
                     <label>{getDate(props.jobOffer.published)}</label>
-                    <label className={classes.applicants}>15 applicants()</label>
+                    <label className={classes.applicants}>15 applicants</label>
                 </div>
             </div>
         </div>
