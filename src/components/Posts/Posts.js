@@ -12,11 +12,11 @@ const Posts= ({ user }) =>{
 
     useEffect(() => {
         setLoading(true)
-        const data = {
-            "username": "stefanljubovic",
-            "page" : pageNumber
-        }
-        UserService.feed(data)
+        // const data = {
+        //     "username": "stefanljubovic",
+        //     "page" : pageNumber
+        // }
+        UserService.feed(pageNumber)
             .then(res=>{
                 setHasMore(res.data.lastPage !== pageNumber)
                 setPosts(prevPosts => {

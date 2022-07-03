@@ -5,12 +5,12 @@ const UserService = {
 
     baseURL : "https://localhost:8083/",
 
-    feed: function(data) {
-        return axios.post(this.baseURL+`user/feed`,data, {
+    feed: function(page) {
+        return axios.get(this.baseURL+`user/feed/`+page, {
             headers: {
                 'Content-Type': 'application/json',
                 Accept: 'application/json',
-                'Authorization': `${store.getState().loginReducer.token}`
+                'Authorization': `Bearer ${store.getState().loginReducer.token}`
             }
         })
 
