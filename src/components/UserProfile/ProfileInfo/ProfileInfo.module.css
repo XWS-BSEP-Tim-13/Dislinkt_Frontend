@@ -13,6 +13,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    margin-top: 1rem;
 }
 
 .divMfa button{
@@ -21,6 +22,7 @@
     color: var(--red);
     background-color: transparent;
     width: 8rem;
+    border-radius: 20px;
 }
 
 .divMfa button:hover{
