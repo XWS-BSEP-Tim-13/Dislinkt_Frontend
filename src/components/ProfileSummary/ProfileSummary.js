@@ -71,7 +71,7 @@ const ProfileSummary = ({ user }) => {
                     <img src={User} className={classes.image} alt="User" />
                 </div>
                 <div className={classes.description}>
-                    <label>{user.firstName} {user.lastName}</label>
+                    <label>{user.firstName} {user.lastName}</label><br/>
                     <label className={classes.descriptionProffesion}> {getWorkTitle()} </label>
                 </div>
                 <div className={classes.connections}>

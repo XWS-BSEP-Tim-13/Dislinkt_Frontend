@@ -33,7 +33,7 @@ const JobOfferModal = (props) => {
             <label className={classes.position}><b>{props.jobOffer.position}</b></label>
         </div>
         <div className={classes.postHeader}>
-        <label>{props.jobOffer.company.username} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+        <label>{props.jobOffer.company.companyName} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
         <label>{props.jobOffer.company.website} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
         <label>{props.jobOffer.company.location}&nbsp;&nbsp;({getEmpType(props.jobOffer)})&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
         <label className={classes.postHeaderLabel}>{getDate(props.jobOffer.published)}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>

@@ -16,8 +16,9 @@ const Jobs = () => {
     const { register, handleSubmit, formState: { errors }, watch } = useForm({})
     const [companies, setCompanies] = useState([])
     useEffect(() => {
-        CompanyService.getAllJobs().then(resp => {
-            setJobOffers(resp.data.jobs)
+        CompanyService.getAllJobs(auth.username).then(resp => {
+            setJobOffers(resp.data.jobOffers)
+            console.log(resp.data.jobOffers)
         })
         CompanyService.getAll().then(resp => {
             setCompanies(resp.data.companies)

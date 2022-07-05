@@ -14,8 +14,8 @@ const CompanyService = {
             }
         })
     },
-    getAllJobs: function() {
-        return axios.get(this.baseURL+`company/job-offer`, {
+    getAllJobs: function(username) {
+        return axios.get(this.baseURL+`conn/suggest-job-offers/` + username, {
             headers: {
                 'Content-Type': 'application/json',
                 Accept: 'application/json',

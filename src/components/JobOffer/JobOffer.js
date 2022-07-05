@@ -40,7 +40,7 @@ const JobOffer = (props) => {
                     <label>{getEmpType(props.jobOffer)}</label>
                 </div>
                 <div className={classes.offerStatus}>
-                    <label>{getDate(props.jobOffer.published)}</label>
+                    {/*<label>{getDate(props.jobOffer.published)}</label>*/}
                     <label className={classes.applicants}>15 applicants</label>
                 </div>
             </div>
