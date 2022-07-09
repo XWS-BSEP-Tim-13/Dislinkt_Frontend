@@ -6,6 +6,7 @@ import { faHome } from '@fortawesome/free-solid-svg-icons'
 import { faPeopleGroup } from '@fortawesome/free-solid-svg-icons'
 import { faBriefcase } from '@fortawesome/free-solid-svg-icons'
 import { faMessage } from '@fortawesome/free-solid-svg-icons'
+import { faClock } from '@fortawesome/free-solid-svg-icons'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
 import { faDoorOpen } from '@fortawesome/free-solid-svg-icons'
 import { useNavigate, useLocation } from 'react-router-dom';
@@ -82,6 +83,10 @@ function Navigation() {
                 <div className={route !== 'messaging' ? classes.navigationDiv : classes.navigationDivActive} onClick={() => changeRoute('messaging')}>
                     <FontAwesomeIcon icon={faMessage} className={classes.navigationIcon} />
                     <label className={classes.navigationLabel}>Messaging</label>
+                </div>
+                <div className={route !== 'events' ? classes.navigationDiv : classes.navigationDivActive} onClick={() => changeRoute('events')}>
+                    <FontAwesomeIcon icon={faClock} className={classes.navigationIcon} />
+                    <label className={classes.navigationLabel}>Events</label>
                 </div>
                 <div className={route !== 'in' ? classes.navigationDiv : classes.navigationDivActive} onClick={() => changeRoute('in/me')} >
                     <FontAwesomeIcon icon={faUser} className={classes.navigationIcon} />
