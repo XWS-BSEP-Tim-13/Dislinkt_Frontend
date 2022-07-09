@@ -32,6 +32,7 @@ function App() {
                     <Route path='/home'      element={<Homepage />} />
                     <Route path='/network'   element={<GuardedRoute Component = {Network} Roles="['COMPANY', 'USER']"/>} />
                     <Route path='/messaging' element={<GuardedRoute Component = {MessagingPage} Roles="['COMPANY', 'USER']"/>} />
+                    <Route path='/messaging/:username' element={<GuardedRoute Component = {MessagingPage} Roles="['COMPANY', 'USER']"/>} />
                     <Route path='/jobs'      element={<Jobs />} />
                     <Route path='/in/:username'        element={<GuardedRoute Component = {UserProfile} Roles="['COMPANY', 'USER', 'ADMIN']"/>} />
                     <Route path='/jobs/create-job-offer'        element={<GuardedRoute Component = {CreateJobOffer} Roles="['COMPANY', 'USER', 'ADMIN']"/>} />

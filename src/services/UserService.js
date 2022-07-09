@@ -190,5 +190,25 @@ const UserService = {
         })
     },
 
+    getNotificationsForUser(){
+        return axios.get(this.baseURL+`user/notifications`, {
+            headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json',
+                'Authorization': `Bearer ${store.getState().loginReducer.token}`
+            },
+        })
+    },
+
+    displayNotifications(flag){
+        return axios.put(this.baseURL+`user/notifications/`+flag,{}, {
+            headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json',
+                'Authorization': `Bearer ${store.getState().loginReducer.token}`
+            },
+        })
+    },
+
 }
 export default UserService;

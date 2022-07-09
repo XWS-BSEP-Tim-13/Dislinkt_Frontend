@@ -5,19 +5,22 @@ import SuggestionsHomepage from "../../components/SuggestionsHomepage/Suggestion
 import Posts from "../../components/Posts/Posts";
 import { getUserByUsername } from "../../api/UserProfile/UserProfileApi"
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { CheckUserPermission } from "../../components/Permissions/CheckUserPermission"
-
+import { notifications } from '../../store/actions'
 function Homepage() {
 
     const [user, setUser] = useState({});
     const auth = useSelector(state => state.loginReducer);
+    const dispatch =useDispatch()
 
     useEffect(() => {
         async function getUser() {
             const userr = await getUserByUsername(auth.username);
             setUser(userr);
+            console.log(userr.notification)
+            dispatch(notifications(userr.notification));
         }
         getUser()
     }, [auth.username])

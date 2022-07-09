@@ -6,6 +6,12 @@ export const login = (data) =>{
     };
 }
 
+export const notifications = (flag) =>{
+    return{
+        type: 'NOTIFICATIONS',
+        data: flag
+    }
+}
 
 export const logout = () =>{
     return{

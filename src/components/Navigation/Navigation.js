@@ -6,7 +6,7 @@ import { faHome } from '@fortawesome/free-solid-svg-icons'
 import { faPeopleGroup } from '@fortawesome/free-solid-svg-icons'
 import { faBriefcase } from '@fortawesome/free-solid-svg-icons'
 import { faMessage } from '@fortawesome/free-solid-svg-icons'
-import { faUser } from '@fortawesome/free-solid-svg-icons'
+import { faUser,faBell } from '@fortawesome/free-solid-svg-icons'
 import { faDoorOpen } from '@fortawesome/free-solid-svg-icons'
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
@@ -14,18 +14,46 @@ import { useDispatch } from 'react-redux';
 import { logout } from '../../store/actions'
 import SearchResults from './SearchResults/SearchResults'
 import UserService from '../../services/UserService';
+import Notifications from '../Navigation/Notifications/Notifications'
+import { useRef } from 'react';
+import { useSelector } from 'react-redux';
+
+
 function Navigation() {
-
+    const notification = useSelector(state => state.notificationReducer);
     const [route, setRoute] = useState('');
-
+    const wrapperRef = useRef(null);
+    useOutsideAlerter(wrapperRef);
     const navigate = useNavigate();
     const location = useLocation();
     const dispatch = useDispatch();
     const [searchUsers,setSearchUsers] = useState([])
     const [displaySearchDiv,setDisplaySearchDiv] =useState(false)
+    const [displayNotifications,setDisplayNotifications] = useState(false)
     useEffect(() => {
         setRoute(location.pathname.split('/')[1]);
-    }, [route, location.pathname])
+        console.log(notification)
+    }, [route, location.pathname,notification])
+
+
+    function useOutsideAlerter(ref) {
+        useEffect(() => {
+          /**
+           * Alert if clicked on outside of element
+           */
+          function handleClickOutside(event) {
+            if (ref.current && !ref.current.contains(event.target)) {
+              setDisplayNotifications(false)
+            }
+          }
+          // Bind the event listener
+          document.addEventListener("mousedown", handleClickOutside);
+          return () => {
+            // Unbind the event listener on clean up
+            document.removeEventListener("mousedown", handleClickOutside);
+          };
+        }, [ref]);
+      }
 
     function changeRoute(route) {
 
@@ -52,8 +80,9 @@ function Navigation() {
         })
     }
 
+
     return (
-        <div className={classes.wrap}>
+        <div className={classes.wrap} ref={wrapperRef}>
             <div className={classes.search}>
                 <img src={Logo} className={classes.logo} alt="Dislinkt logo" />
                 <div className={classes.searchbar} onClick={() =>filterUsers()}>
@@ -87,11 +116,18 @@ function Navigation() {
                     <FontAwesomeIcon icon={faUser} className={classes.navigationIcon} />
                     <label className={classes.navigationLabel}>Me</label>
                 </div>
+                {notification &&
+                    <div className={route !== '' ? classes.navigationDiv : classes.navigationDivActive} onClick={()=>setDisplayNotifications(!displayNotifications)}>
+                    <FontAwesomeIcon icon={faBell} className={classes.navigationIcon} />
+                    <label className={classes.navigationLabel}>Notifications</label>
+                </div>
+                }
                 <div className={route !== '' ? classes.navigationDiv : classes.navigationDivActive} onClick={() => changeRoute('')}>
                     <FontAwesomeIcon icon={faDoorOpen} className={classes.navigationIcon} />
                     <label className={classes.navigationLabel}>Sign out</label>
                 </div>
             </div>
+            {displayNotifications && <Notifications/>}
         </div>
     );
 }

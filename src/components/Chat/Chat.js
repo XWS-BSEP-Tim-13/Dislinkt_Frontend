@@ -3,24 +3,71 @@ import User from '../../images/user-128.png'
 import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faImage, faLink, faPaperPlane } from '@fortawesome/free-solid-svg-icons'
+import { useEffect,useRef } from 'react';
+import { useSelector } from 'react-redux';
+import PostService from '../../services/PostService';
+const Chat = ({chat}) => {
 
-const Chat = () => {
+    const [messageContent, setMessageContent] = useState("")
+    const auth = useSelector(state => state.loginReducer);
+    const [messages,setMessages] = useState([])
+    const domInputRef = useRef(null);
+    useEffect(() => {
+      setMessages(chat.messages)
+    }, [chat])
 
-    const messages = [1, 2, 3, 4, 5];
-    const [messageContent, setMessageContent] = useState("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod")
+    useEffect(()=>{
+        var objDiv = document.getElementById("message-div");
+        objDiv.scrollTop = objDiv.scrollHeight;
+        console.log(objDiv)
+    },[messages])
+
+    function getUsername(){
+            if(auth.username != chat.firstUser) return chat.firstUser
+            return chat.secondUser
+    }
+    
+    function checkWhichMessage(message){
+        if(auth.username == message.messageFrom) return true
+        return false
+    }
+
+    function getDate(time){
+        var options = { hour: 'numeric', minute: 'numeric', month: 'long', day: 'numeric' };
+        const now = new Date(time)
+        return now.toLocaleDateString("en-US",options)
+    }
+
+    function sendMessage(){
+        let username =""
+        if(auth.username != chat.firstUser) username=chat.firstUser
+        else username= chat.secondUser
+
+        const message ={
+            "messageFrom" : auth.username,
+            "messageTo" : username,
+            "content" : messageContent
+        }
+        PostService.sendMessage(message).then(resp=>{
+            setMessages([...messages,resp.data])
+            domInputRef.current.innerText = ""
+            setMessageContent("")
+        })
+    }
+
 
     return (
         <div className={classes.wrapper}>
             <div className={classes.header}>
-                <label>Ana Gavrilovic</label>
+                <label>{getUsername()}</label>
             </div>
-            <div className={classes.messagesWindow}>
+            <div className={classes.messagesWindow} id="message-div">
                 <div className={classes.contact}>
                     <div className={classes.imageContainer}>
                         <img src={User} className={classes.image} alt="Profile" />
                     </div>
                     <div className={classes.contactInfo}>
-                        <h5>Ana Gavrilovic</h5>
+                        <h5>{getUsername()}</h5>
                         <h6> Faculty of tehnical sciences</h6>
                     </div>
                 </div>
@@ -28,13 +75,13 @@ const Chat = () => {
                     {
                         messages.map((message, i) =>
                             <div className={classes.message} key={i}>
-                                <div className={`${true ? classes.messageFrom : classes.messageTo}`}>
-                                    <div className={`${true ? classes.messageHeaderFrom : classes.messageHeaderTo}`}>
-                                        <label className={`${true ? classes.personFrom : classes.personTo}`}>Ana Gavrilovic</label>
-                                        <label className={classes.date}>15:39, May 1</label>
+                                <div className={`${checkWhichMessage(message) ? classes.messageFrom : classes.messageTo}`}>
+                                    <div className={`${checkWhichMessage(message) ? classes.messageHeaderFrom : classes.messageHeaderTo}`}>
+                                        <label className={`${checkWhichMessage(message) ? classes.personFrom : classes.personTo}`}>{message.messageFrom}</label>
+                                        <label className={classes.date}>{getDate(message.date)}</label>
                                     </div>
-                                    <div className={`${true ? classes.contentFrom : classes.contentTo}`}>
-                                        <label>{messageContent}</label>
+                                    <div className={`${checkWhichMessage(message) ? classes.contentFrom : classes.contentTo}`}>
+                                        <label>{message.content}</label>
                                     </div>
                                 </div>
                             </div>
@@ -45,7 +92,7 @@ const Chat = () => {
 
             <div className={classes.newMessage}>
                 <div className={classes.messageInput}>
-                    <div className={classes.writeMessage} contentEditable="true" placeholder="Write a message..."></div>
+                    <div className={classes.writeMessage} contentEditable="true" placeholder="Write a message..." ref={domInputRef} onInput={e => setMessageContent(e.currentTarget.textContent)} ></div>
                     <div className={classes.media}>
                         <FontAwesomeIcon icon={faImage} className={classes.icon} />
                         <FontAwesomeIcon icon={faLink} className={classes.icon} />
@@ -53,7 +100,7 @@ const Chat = () => {
                 </div>
 
                 <div className={classes.send}>
-                    <button className={classes.sendBtn}><FontAwesomeIcon icon={faPaperPlane} /></button>
+                    <button className={classes.sendBtn}><FontAwesomeIcon icon={faPaperPlane} onClick={sendMessage}/></button>
                 </div>
             </div>
         </div>

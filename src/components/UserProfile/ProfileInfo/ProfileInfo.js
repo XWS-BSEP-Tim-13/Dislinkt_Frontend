@@ -1,11 +1,13 @@
 import classes from './ProfileInfo.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUserEdit, faEllipsisVertical, faUserSlash, faBan } from '@fortawesome/free-solid-svg-icons'
+import { faUserEdit, faEllipsisVertical, faUserSlash, faBan,faMessage } from '@fortawesome/free-solid-svg-icons'
 import { useNavigate } from 'react-router'
 import { useEffect, useState } from 'react'
 import AuthentificationService from '../../../services/AuthentificationService'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import UserService from '../../../services/UserService'
+import { notifications} from '../../../store/actions'
+
 const ProfileInfo = ({ user, userStatus, updateStatus, currentUser }) => {
 
     const [mfaActive, setMfaActive] = useState(false)
@@ -13,9 +15,14 @@ const ProfileInfo = ({ user, userStatus, updateStatus, currentUser }) => {
     const [isLoggedUser, setIsLoggedUser] = useState(false)
     const [isPrivate, setIsPrivate] = useState(false)
     const [displayOptions, setDisplayOptions] = useState(false)
+    const [notificationsDisplay,setNotifications] = useState(false)
+    const dispatch =useDispatch()
+    const navigate = useNavigate()
+
     useEffect(() => {
         console.log(userStatus)
         console.log(user)
+        setNotifications(user.notification)
         if (user.username == auth.username) {
             setIsLoggedUser(true)
             AuthentificationService.checkMFAActive().then(resp => {
@@ -30,7 +37,6 @@ const ProfileInfo = ({ user, userStatus, updateStatus, currentUser }) => {
 
 
 
-    const navigate = useNavigate()
     function mfaEnable() {
         navigate('/qr-code')
     }
@@ -58,7 +64,7 @@ const ProfileInfo = ({ user, userStatus, updateStatus, currentUser }) => {
     }
 
     function optionsOnStatus() {
-        if (userStatus == "CONNECTED") return <div><button onClick={removeConnection}><FontAwesomeIcon icon={faUserSlash} className={classes.dots} />Remove connection</button><button onClick={blockUser}><FontAwesomeIcon icon={faBan} className={classes.dots} />Block</button></div>
+        if (userStatus == "CONNECTED") return <div><button onClick={removeConnection}><FontAwesomeIcon icon={faUserSlash} className={classes.dots} />Remove connection</button><button onClick={message}><FontAwesomeIcon icon={faMessage} className={classes.dots} />Message</button><button onClick={blockUser}><FontAwesomeIcon icon={faBan} className={classes.dots} />Block</button></div>
         else if (userStatus == "NONEE") return <div><button onClick={requestConnection}><FontAwesomeIcon icon={faUserSlash} className={classes.dots} />Connect</button><button onClick={blockUser}><FontAwesomeIcon icon={faBan} className={classes.dots} />Block</button></div>
         else if (userStatus == "BLOCKED") return <div><button onClick={unblockUser}><FontAwesomeIcon icon={faBan} className={classes.dots} />Unblock</button></div>
         else if (userStatus == "CONNECTION_REQUEST") return <div><button onClick={deleteConnectionRequest}><FontAwesomeIcon icon={faBan} className={classes.dots} />Cancel request</button></div>
@@ -70,6 +76,10 @@ const ProfileInfo = ({ user, userStatus, updateStatus, currentUser }) => {
             console.log(resp.data)
             updateStatus("BLOCKED")
         })
+    }
+
+    function message(){
+        navigate('/messaging/'+user.username)
     }
 
     function unblockUser() {
@@ -116,6 +126,14 @@ const ProfileInfo = ({ user, userStatus, updateStatus, currentUser }) => {
         })
     }
 
+    function changeNotifications(flag){
+        console.log(flag)
+        UserService.displayNotifications(flag).then(resp=>{
+            setNotifications(flag)
+            dispatch(notifications(flag));
+        })
+    }
+
     return (
         <div className={classes.flexRow}>
             <div className={classes.info}>
@@ -133,6 +151,11 @@ const ProfileInfo = ({ user, userStatus, updateStatus, currentUser }) => {
                             <button onClick={() => changePrivacy(false)} >Set to public</button>
                             :
                             <button onClick={() => changePrivacy(true)}>Set to private</button>
+                        }
+                        {!notificationsDisplay ?
+                            <button onClick={() => changeNotifications(!notificationsDisplay)} >Enable notifications</button>
+                            :
+                            <button onClick={() => changeNotifications(!notificationsDisplay)}>Disable notifications</button>
                         }
                     </div>
                         :
