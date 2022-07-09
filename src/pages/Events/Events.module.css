@@ -1,0 +1,25 @@
+.pageWrapper {
+    display: flex;
+    justify-content: space-between;
+    margin: 1.5rem 10%;
+    margin-bottom: 5rem;
+}
+
+.profileSummary {
+    width: 20%;
+}
+
+.wrapper {
+    border-radius: 7px;
+    background-color: white;
+    border: 1px solid #eae9e7;
+    width: 75%;
+    padding: 1rem;
+}
+
+.header {
+    display: inline-block;
+    width: 100%;
+    padding-bottom: 1rem;
+    text-align: left;
+}

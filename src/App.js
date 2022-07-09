@@ -6,6 +6,7 @@ import Homepage from './pages/Homepage/Homepage';
 import Mainpage from './pages/Mainpage/Mainpage';
 import Network from './pages/Network/Network';
 import MessagingPage from './pages/MessagingPage/MessagingPage';
+import Events from './pages/Events/Events';
 import Jobs from './pages/Jobs/Jobs';
 import './App.css';
 import Navigation from "../src/components/Navigation/Navigation";
@@ -31,8 +32,10 @@ function App() {
                     <Route path='/'          element={<Mainpage />} />
                     <Route path='/home'      element={<Homepage />} />
                     <Route path='/network'   element={<GuardedRoute Component = {Network} Roles="['COMPANY', 'USER']"/>} />
-                    <Route path='/messaging' element={<GuardedRoute Component = {MessagingPage} Roles="['COMPANY', 'USER']"/>} />
                     <Route path='/messaging/:username' element={<GuardedRoute Component = {MessagingPage} Roles="['COMPANY', 'USER']"/>} />
+                    <Route path='/messaging' element={<GuardedRoute Component = {MessagingPage} Roles="['COMPANY', 'USER', 'ADMIN']"/>} />
+                    <Route path='/events'    element={<GuardedRoute Component = {Events} Roles="['ADMIN', 'USER']"/>} />
+
                     <Route path='/jobs'      element={<Jobs />} />
                     <Route path='/in/:username'        element={<GuardedRoute Component = {UserProfile} Roles="['COMPANY', 'USER', 'ADMIN']"/>} />
                     <Route path='/jobs/create-job-offer'        element={<GuardedRoute Component = {CreateJobOffer} Roles="['COMPANY', 'USER', 'ADMIN']"/>} />

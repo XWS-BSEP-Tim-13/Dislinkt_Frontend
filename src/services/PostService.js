@@ -67,6 +67,15 @@ const PostService = {
         })
     },
 
+    events: function() {
+        return axios.get(this.baseURL+`events`, {
+            headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json',
+                'Authorization': `Bearer ${store.getState().loginReducer.token}`
+            }
+        })
+    },
 }
 
 export default PostService;
