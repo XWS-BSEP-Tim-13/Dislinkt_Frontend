@@ -1,5 +1,5 @@
 import classes from './Event.module.css';
-import Levi9 from '../../images/levi9.png'
+import User from '../../images/avatar.jfif'
 import { useState,useEffect } from 'react';
 
 const Event = (props) => {
@@ -7,7 +7,7 @@ const Event = (props) => {
     const [displayModal,setDisplayModal]= useState(false)
 
     useEffect(()=>{
-        console.log(props.jobOffer)
+        console.log(props.event)
     },[])
 
 
@@ -25,16 +25,16 @@ const Event = (props) => {
         <div>
         <div className={classes.wrapper}>
             <div className={classes.imageContainer}>
-                <img src={Levi9} className={classes.image} alt="Event" />
+                <img src={User} className={classes.image} alt="Event" />
             </div>
             <div className={classes.jobDescription}>
                 <div className={classes.job}>
-                    <h2>Blocked user marijakljestan</h2>
-                    <h3>stefanljubovic</h3>
+                    <h2>{props.event.action}</h2>
+                    <h3>{props.event.user}</h3>
                 </div>
                 <div className={classes.offerStatus}>
                     {/*<label>{getDate(props.jobOffer.published)}</label>*/}
-                    <label className={classes.applicants}>07/07/22</label>
+                    <label className={classes.applicants}>{getDate(props.event.published.seconds)}</label>
                 </div>
             </div>
         </div>

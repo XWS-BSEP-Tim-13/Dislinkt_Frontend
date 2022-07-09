@@ -4,18 +4,23 @@ import ProfileSummary from "../../components/ProfileSummary/ProfileSummary"
 import { getUserByUsername } from "../../api/UserProfile/UserProfileApi"
 import { useSelector } from 'react-redux';
 import { CheckUserPermission } from "../../components/Permissions/CheckUserPermission"
-import CompanyService from '../../services/CompanyService';
+import ConnectionService from '../../services/ConnectionService';
+import PostService from '../../services/PostService';
 import { useEffect, useState } from 'react';
 
 const Events = () => {
 
     const [events, setEvents] = useState([]);
     useEffect(() => {
-        CompanyService.getAllJobs(auth.username).then(resp => {
-            setEvents(resp.data.jobOffers)
+        PostService.events().then(resp => {
+            setEvents(resp.data.events)
             console.log(resp.data.events)
+            /*ConnectionService.events().then(resp => {
+                setEvents(events => [...events, resp.data.events])
+                console.log(resp.data.events)
+                
+            })*/
         })
-    
     }, [])
 
     const [user, setUser] = useState({});
@@ -41,9 +46,9 @@ const Events = () => {
                 <label className={classes.header}>Application events</label>
                 <div className={classes.jobOffers}>
                     {
-                        events.map((message, i) =>
+                        events.map((event, i) =>
                             <div className={classes.jobOffer} key={i}>
-                                <Event ></Event>
+                                <Event event={event}></Event>
                             </div>
                         )
                     }
