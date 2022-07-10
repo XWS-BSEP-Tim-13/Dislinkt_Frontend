@@ -58,7 +58,7 @@ const UserProfile = () => {
                 })
                 .then((data) => {
                     setUser(data);
-                    if(username != 'me') {
+                    if(username != 'me' || username != auth.username) {
                         //console.log(data)
                         UserService.checkIfUsersConnected(userName).then(resp=>{
                             //console.log(resp.data)
@@ -86,7 +86,7 @@ const UserProfile = () => {
     }
 
     function checkIfVisible(){
-        if(currentUser) return true
+        if(username == auth.username) return true
         if((userStatus == "NONEE" && !user.isPrivate) || userStatus=="CONNECTED") return true
         return false
     }

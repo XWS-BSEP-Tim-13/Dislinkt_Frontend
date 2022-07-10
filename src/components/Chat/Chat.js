@@ -49,6 +49,7 @@ const Chat = ({chat}) => {
             "content" : messageContent
         }
         PostService.sendMessage(message).then(resp=>{
+            resp.data.date =new Date()
             setMessages([...messages,resp.data])
             domInputRef.current.innerText = ""
             setMessageContent("")
