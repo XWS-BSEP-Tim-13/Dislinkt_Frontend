@@ -18,7 +18,7 @@ const SuggestedConnections = () => {
     },[])
 
     function sendRequest(usernameTo){
-        UserService.createConnectionRequest(auth.username, usernameTo).then(() =>  console.log(usernameTo));
+        UserService.requestConnection(usernameTo).then(() =>  console.log(usernameTo));
     }
 
     return (
@@ -38,7 +38,7 @@ const SuggestedConnections = () => {
                                     <label className={classes.descriptionProffesion}>Faculty of technical science, Novi Sad (student)</label>
                                 </div>
                                 <div>
-                                    <button className={classes.button}>Connect</button>
+                                    <button className={classes.button} onClick={() => sendRequest(connection)}>Connect</button>
                                 </div>
                             </div>
                         </div>

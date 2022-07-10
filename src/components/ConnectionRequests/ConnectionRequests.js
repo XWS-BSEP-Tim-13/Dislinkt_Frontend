@@ -14,8 +14,17 @@ const ConnectionRequests = () => {
     useEffect(() => {
         UserService.getConnectionRequestsForUser(auth.username).then(resp => {
             setConnections(resp.data.requests)
+            console.log(resp.data.requests)
         })
     }, [])
+
+    function acceptConnectionRequest(connection) {
+        UserService.acceptConnectionRequest(connection)
+    }
+
+    function rejectConnectionRequest(connection) {
+        UserService.deleteConnectionRequest(connection)
+    }
 
     function getPosition(connection) {
         if (connection.from) {
@@ -71,8 +80,8 @@ const ConnectionRequests = () => {
                                         </div>
                                     </div>
                                     <div className={classes.buttonDiv}>
-                                        <FontAwesomeIcon icon={faCircleCheck} className={classes.icon} />
-                                        <FontAwesomeIcon icon={faCircleXmark} className={classes.icon} />
+                                        <FontAwesomeIcon icon={faCircleCheck} className={classes.icon} onClick={ ()=> acceptConnectionRequest(connection.from.username)} />
+                                        <FontAwesomeIcon icon={faCircleXmark} className={classes.icon} onClick={ ()=> rejectConnectionRequest(connection.from.username)}/>
                                         <label className={classes.date}>{connection.from ? new Date(connection.requestTime).toLocaleString() : null}</label>
                                     </div>
                                 </div>
