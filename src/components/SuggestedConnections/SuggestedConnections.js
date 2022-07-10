@@ -8,12 +8,12 @@ import { useSelector } from 'react-redux';
 
 const SuggestedConnections = () => {
 
-    const [suggestions, setSuggestions] = useState([1, 2, 3])
+    const [suggestions, setSuggestions] = useState([])
     const auth = useSelector(state => state.loginReducer);
 
     useEffect(()=>{
         UserService.getConnectionSuggestionsForUser(auth.username).then(resp=>{
-            setSuggestions(resp.data.usernames)      
+            setSuggestions(resp.data.usernames)
         })
     },[])
 

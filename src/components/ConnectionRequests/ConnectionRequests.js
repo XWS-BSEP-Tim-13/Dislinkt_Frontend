@@ -8,7 +8,7 @@ import UserService from '../../services/UserService';
 import { useSelector } from 'react-redux';
 const ConnectionRequests = () => {
 
-    const [connections, setConnections] = useState([1, 2, 3])
+    const [connections, setConnections] = useState([])
     const auth = useSelector(state => state.loginReducer);
 
     useEffect(() => {
@@ -19,11 +19,18 @@ const ConnectionRequests = () => {
     }, [])
 
     function acceptConnectionRequest(connection) {
-        UserService.acceptConnectionRequest(connection)
+        console.log(connection)
+        UserService.acceptConnectionRequest(connection.from.username)
+        .then(() => {
+            setConnections(connections.filter(item => item.from.id !== connection.from.id))
+        })
     }
 
     function rejectConnectionRequest(connection) {
-        UserService.deleteConnectionRequest(connection)
+        UserService.deleteConnectionRequest(connection.from.username)
+        .then(() => {
+            setConnections(connections.filter(item => item.from.id !== connection.from.id))
+        })
     }
 
     function getPosition(connection) {
@@ -80,8 +87,8 @@ const ConnectionRequests = () => {
                                         </div>
                                     </div>
                                     <div className={classes.buttonDiv}>
-                                        <FontAwesomeIcon icon={faCircleCheck} className={classes.icon} onClick={ ()=> acceptConnectionRequest(connection.from.username)} />
-                                        <FontAwesomeIcon icon={faCircleXmark} className={classes.icon} onClick={ ()=> rejectConnectionRequest(connection.from.username)}/>
+                                        <FontAwesomeIcon icon={faCircleCheck} className={classes.icon} onClick={ ()=> acceptConnectionRequest(connection)} />
+                                        <FontAwesomeIcon icon={faCircleXmark} className={classes.icon} onClick={ ()=> rejectConnectionRequest(connection)}/>
                                         <label className={classes.date}>{connection.from ? new Date(connection.requestTime).toLocaleString() : null}</label>
                                     </div>
                                 </div>
