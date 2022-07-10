@@ -3,10 +3,20 @@ import React, { useState } from 'react'
 import User from '../../images/user-red.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
+import { useEffect } from 'react';
+import UserService from '../../services/UserService';
+import { useSelector } from 'react-redux';
 
 function SuggestionsHomepage() {
 
-    const [connections, setConnections] = useState([1, 2, 3, 4])
+    const [connections, setConnections] = useState([])
+    const auth = useSelector(state => state.loginReducer);
+
+    useEffect(()=>{
+        UserService.getConnectionSuggestionsForUser(auth.username).then(resp=>{
+            setConnections(resp.data.usernames)      
+        })
+    },[])
 
     return (
         <div className={classes.suggestionsWrapper}>
@@ -18,7 +28,7 @@ function SuggestionsHomepage() {
                             <img src={User} className={classes.image} alt="User" />
                         </div>
                         <div className={classes.content}>
-                            <label>Marija Kljestan</label>
+                            <label>{connection}</label>
                             <label className={classes.contentProffesion}>Faculty of technical science, Novi Sad</label>
                         </div>
                         <button className={classes.followButtonDiv}>
