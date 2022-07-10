@@ -102,26 +102,26 @@ function Navigation() {
                     <FontAwesomeIcon icon={faHome} className={classes.navigationIcon} />
                     <label className={classes.navigationLabel}>Home</label>
                 </div>
-                <div className={route !== 'network' ? classes.navigationDiv : classes.navigationDivActive} onClick={() => changeRoute('network')}>
+                {auth.role !== 'ADMIN' && <div className={route !== 'network' ? classes.navigationDiv : classes.navigationDivActive} onClick={() => changeRoute('network')}>
                     <FontAwesomeIcon icon={faPeopleGroup} className={classes.navigationIcon} />
                     <label className={classes.navigationLabel}>My network</label>
-                </div>
-                <div className={route !== 'jobs' ? classes.navigationDiv : classes.navigationDivActive} onClick={() => changeRoute('jobs')}>
+                </div>}
+                {auth.role !== 'ADMIN' && <div className={route !== 'jobs' ? classes.navigationDiv : classes.navigationDivActive} onClick={() => changeRoute('jobs')}>
                     <FontAwesomeIcon icon={faBriefcase} className={classes.navigationIcon} />
                     <label className={classes.navigationLabel}>Jobs</label>
-                </div>
-                <div className={route !== 'messaging' ? classes.navigationDiv : classes.navigationDivActive} onClick={() => changeRoute('messaging')}>
+                </div>}
+                {auth.role !== 'ADMIN' && <div className={route !== 'messaging' ? classes.navigationDiv : classes.navigationDivActive} onClick={() => changeRoute('messaging')}>
                     <FontAwesomeIcon icon={faMessage} className={classes.navigationIcon} />
                     <label className={classes.navigationLabel}>Messaging</label>
-                </div>
+                </div>}
                 {auth.role === 'ADMIN' && <div className={route !== 'events' ? classes.navigationDiv : classes.navigationDivActive} onClick={() => changeRoute('events')}>
                     <FontAwesomeIcon icon={faClock} className={classes.navigationIcon} />
                     <label className={classes.navigationLabel}>Events</label>
                 </div>}
-                <div className={route !== 'in' ? classes.navigationDiv : classes.navigationDivActive} onClick={() => changeRoute('in/me')} >
+                {auth.role !== 'ADMIN' && <div className={route !== 'in' ? classes.navigationDiv : classes.navigationDivActive} onClick={() => changeRoute('in/me')} >
                     <FontAwesomeIcon icon={faUser} className={classes.navigationIcon} />
                     <label className={classes.navigationLabel}>Me</label>
-                </div>
+                </div>}
                 {notification &&
                     <div className={route !== '' ? classes.navigationDiv : classes.navigationDivActive} onClick={()=>setDisplayNotifications(!displayNotifications)}>
                     <FontAwesomeIcon icon={faBell} className={classes.navigationIcon} />

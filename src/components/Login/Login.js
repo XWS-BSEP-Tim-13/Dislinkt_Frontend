@@ -5,9 +5,12 @@ import AuthentificationService from '../../services/AuthentificationService';
 import { useDispatch } from 'react-redux';
 import { login } from '../../store/actions'
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 
 
 function Login(props) {
+
+    const auth = useSelector(state => state.loginReducer);
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -26,7 +29,10 @@ function Login(props) {
                 else{
                     localStorage.setItem("token-ls", resp.data.token);
                     dispatch(login(resp.data));
-                    navigate('/home');
+
+                    if (auth.role !== 'ADMIN') navigate('/events');
+                    else navigate('/home');
+                    
                 }
         }).catch(error => {
             if (error.response.data.message.includes("Bad credentials")) {

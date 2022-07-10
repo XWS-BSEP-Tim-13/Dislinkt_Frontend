@@ -45,7 +45,7 @@ function App() {
                     <Route path='qr-code' element= {<QRCode/> }/>
             </Routes>
             {location.pathname !== '/'  && location.pathname !== '/forgot-password' && location.pathname !== '/qr-code'  && !location.pathname.includes("/change-password/")?
-                <div className={`messaging transform ${messagesOpen ? "transformActive" : ""}`}>
+                auth.role !== 'ADMIN' && <div className={`messaging transform ${messagesOpen ? "transformActive" : ""}`}>
                     <Messaging clickHandler={() => setMessagesOpen(!messagesOpen)}
                         isMessagesOpen={messagesOpen} page="app">
                     </Messaging>
