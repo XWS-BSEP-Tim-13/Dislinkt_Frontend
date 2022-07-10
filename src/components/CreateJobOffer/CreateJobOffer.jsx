@@ -25,6 +25,7 @@ const CreateJobOffer = () => {
             console.log(resp.data)
             navigate('/jobs')
         })
+        CompanyService.saveJobCompany(jobOffer)
     })
 
     useEffect(()=>{

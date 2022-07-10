@@ -24,6 +24,16 @@ const CompanyService = {
         })
     },
     saveJob: function(data){
+        return axios.post(this.baseURL+`conn/job-offer`,data, {
+            headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json',
+                'Authorization': `Bearer ${store.getState().loginReducer.token}`
+            }
+        })
+
+    },
+    saveJobCompany: function(data){
         return axios.post(this.baseURL+`company/job-offer`,data, {
             headers: {
                 'Content-Type': 'application/json',
