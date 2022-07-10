@@ -21,6 +21,7 @@ import { useSelector } from 'react-redux';
 
 
 function Navigation() {
+    const auth = useSelector(state => state.loginReducer);
     const notification = useSelector(state => state.notificationReducer);
     const [route, setRoute] = useState('');
     const wrapperRef = useRef(null);
@@ -113,10 +114,10 @@ function Navigation() {
                     <FontAwesomeIcon icon={faMessage} className={classes.navigationIcon} />
                     <label className={classes.navigationLabel}>Messaging</label>
                 </div>
-                <div className={route !== 'events' ? classes.navigationDiv : classes.navigationDivActive} onClick={() => changeRoute('events')}>
+                {auth.role === 'ADMIN' && <div className={route !== 'events' ? classes.navigationDiv : classes.navigationDivActive} onClick={() => changeRoute('events')}>
                     <FontAwesomeIcon icon={faClock} className={classes.navigationIcon} />
                     <label className={classes.navigationLabel}>Events</label>
-                </div>
+                </div>}
                 <div className={route !== 'in' ? classes.navigationDiv : classes.navigationDivActive} onClick={() => changeRoute('in/me')} >
                     <FontAwesomeIcon icon={faUser} className={classes.navigationIcon} />
                     <label className={classes.navigationLabel}>Me</label>
