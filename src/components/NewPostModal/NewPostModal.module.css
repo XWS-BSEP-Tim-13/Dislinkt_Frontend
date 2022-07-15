@@ -1,0 +1,179 @@
+#app {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    left: 0;
+    top: 0vh;
+    width: 100vw;
+    min-height: 100vh;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.modalOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 102;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modalInner {
+    width: 40%;
+    min-height: 50%;
+    background-color: white;
+    z-index: 150;
+    position: fixed;
+    border-radius: 7px;
+    padding: 1rem;
+    margin-top: 4rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.header{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #eae9e7;
+    align-items: center;
+}
+
+.headerH3{
+    color:#656565;
+    font-size: 1.5rem;
+}
+
+.icon {
+    cursor: pointer;
+    color:#656565;
+    margin-bottom: 0.5rem;
+}
+
+.user{
+    display: flex;
+    margin-top: 1rem;
+    align-items: center;
+}
+
+.userName {
+    color:#656565;
+    font-size: 1.1rem;
+}
+
+.textarea{
+    margin-top: 1rem;
+    border: none;
+    resize: none;
+}
+
+.textarea:focus{
+    border: none;
+    outline:none;
+}
+
+.space {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.footer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.pictureIcon{
+    color: #616365;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.pictureIcon:hover{
+    color: black;
+    background-color: #ffff;
+}
+
+.postBtn{
+    border-radius: 15px;
+    background-color: var(--red);
+    color: #ffff;
+    width: 5rem;
+    border: none;
+    height: 2rem;
+    cursor: pointer;
+}
+
+.postBtn:hover{
+    background-color: rgb(128, 0, 0, 0.8);
+}
+
+.imgDiv{
+    width: 60%;
+    position: relative;
+}
+
+.imgDivPicture {
+    width: 100%;
+    margin: 1rem 0;
+}
+
+.img {
+    background-color: var(--red);
+}
+
+.imgIcon{
+    position:absolute;
+    top: 7rem;
+    right: 0;
+    color: #ffff;
+}
+
+.buttonImage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #616365;
+    border: none;
+    position: absolute;
+    right: 0.5rem;
+    top: 1.5rem;
+    border-radius: 100px;
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.buttonImage:hover {
+    background-color: black;
+}
+
+.deleteImage {
+    color: white;
+    font-size: 1rem;
+}
+
+.image {
+    height: 3.3rem;
+    width: 3.3rem;
+    margin-left: -0.15rem;
+}
+
+.imageContainer {
+    height: 3rem;
+    width: 3rem;
+    margin-right: 1rem;
+    align-self: center;
+    background-color: var(--red);
+    border-radius: 30px;
+    display: inline-block;
+    overflow: hidden;
+}

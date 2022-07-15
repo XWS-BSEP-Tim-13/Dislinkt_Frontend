@@ -1,0 +1,8 @@
+
+
+.wrap{
+    display: flex;
+    flex-direction: row;
+    min-height: 4rem;
+    justify-content: space-around;
+}

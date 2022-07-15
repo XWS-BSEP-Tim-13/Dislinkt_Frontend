@@ -1,0 +1,103 @@
+#app {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    left: 0;
+    top: 0vh;
+    width: 100vw;
+    min-height: 100vh;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.modalOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 102;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modalInner {
+    width: 50rem;
+    background-color: white;
+    z-index: 150;
+    position: fixed;
+    border-radius: 7px;
+    padding: 2rem;
+    margin-top: 10rem;
+    padding-bottom: 3rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.position{
+    font-size: clamp(1rem, 2.5vw, 1.6rem);
+}
+.header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.postHeader{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    font-size: clamp(0.8rem, 2vw, 1rem);
+    flex-wrap: wrap;
+}
+
+.postHeaderLabel{
+    color: #656565;
+}
+
+.applicants {
+    color: var(--red);
+    font-weight: bold;
+}
+
+.basicDescription{
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+    max-width: 100%;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.icon{
+    color:#656565;
+    margin-right: 1rem;
+}
+
+.iconX {
+    color:#656565;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.basicDescription label{
+    margin-top:1rem;
+    word-wrap: break-word;
+    max-width: 100%;
+    text-align: start;
+}
+
+@media only screen and (max-width: 850px) {
+    .modalInner{
+       width: 90%;
+    }
+}

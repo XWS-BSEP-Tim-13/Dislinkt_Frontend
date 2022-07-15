@@ -1,0 +1,15 @@
+.card {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+}
+
+.info {
+    font-weight: bold;
+}
+
+.image {
+    width: 5rem;
+    height: 5rem;
+    margin-right: 2rem;
+}

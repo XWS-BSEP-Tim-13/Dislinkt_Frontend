@@ -1,0 +1,125 @@
+.pageWrapper {
+    display: flex;
+    justify-content: space-between;
+    margin: 1.5rem 10%;
+    margin-bottom: 5rem;
+}
+
+.profileSummary {
+    width: 20%;
+}
+
+.wrapper {
+    border-radius: 7px;
+    background-color: white;
+    border: 1px solid #eae9e7;
+    width: 75%;
+    padding: 1rem;
+}
+
+.header {
+    display: inline-block;
+    width: 100%;
+    padding-bottom: 1rem;
+    text-align: left;
+}
+
+.jobOffer {
+    border-top: 1px solid #eae9e7;
+}
+
+.searchDiv{
+    display: flex;
+    height: 5rem;
+    width: 100%;
+}
+
+.searchDiv > label {
+    font-size: 0.9rem;
+}
+
+.searchbar {
+    display: flex;
+    align-items: center;
+    background-color: #f0f0f0;
+    height: 50%;
+    border-radius: 4px;
+    width: 100%;
+}
+
+.searchInput {
+    border: none;
+    background-color: var(--light-grey);
+    width: 100%;
+    font-size: 0.9rem;
+    cursor: pointer;
+    color: #616365;
+}
+
+.searchInput:focus {
+    outline: none;
+}
+
+.searchInput > option[value=-1]:checked {
+    color: #616365;
+}
+
+.searchIcon {
+    color: #616365;
+    margin: 0 0.5rem;
+}
+
+.searchDiv{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    font-size: clamp(0.8rem, 2vw, 1rem);
+}
+
+.searchWrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+
+.searchWrapper div{
+    width: 95%;
+}
+
+.filter{
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.filter button{
+    border: none;
+    background-color:  var(--red);
+    color:#ffff;
+    border-radius: 20px;
+    height: 2rem;
+    font-size: 0.9rem;
+    width: 90%;
+}
+
+.filter button:hover {
+    background-color: rgba(128, 0, 0, 0.9);
+}
+
+@media only screen and (max-width: 40rem) {
+    .searchWrapper{
+       flex-direction: column;
+    }
+
+    .searchWrapper div{
+        width: 100%;
+        
+    }
+}
+
+
+

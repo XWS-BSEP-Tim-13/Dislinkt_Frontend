@@ -1,0 +1,81 @@
+.suggestionsWrapper {
+    border-radius: 7px;
+    background-color: #ffff;
+    border: 1px solid #eae9e7;
+    width: 100%;
+}
+
+.suggestionsCaption {
+    font-size: 1rem;
+    width: 100%;
+    text-align: left;
+    padding: 0.5rem 1rem;
+}
+
+.conection{
+    display: flex;
+    flex-direction: row;   
+    padding: 1rem;
+    border-top: 1px solid #eae9e7;
+}
+
+.imageContainer {
+    height: 3rem;
+    width: 3rem;
+    background-color: var(--red);
+    border-radius: 30px;
+    overflow: hidden;
+}
+
+.image {
+    height: 3.3rem;
+    width: 3.3rem;
+    margin-left: -0.15rem;
+}
+
+.content{
+    margin-left: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex: 1;
+}
+
+.content{
+    text-align: left;
+    font-size: 0.9rem;
+}
+
+.contentProffesion {
+    font-size: 0.8rem;
+    color: #616365;
+}
+
+.followButtonDiv{
+    display: flex;
+    margin-left: 1rem;
+    color: var(--red);
+    background-color: white;
+    border-radius: 2rem;
+    border: 1px solid var(--red);
+    cursor: pointer;
+    padding: 0 0.5rem;
+    font-size: 0.9rem;
+    height: 1.5rem;
+}
+
+.icon {
+    cursor: inherit;
+    margin-top: 0.3rem;
+    margin-right: 0.5rem;
+}
+
+.followButtonDiv:hover {
+    border: 2px solid var(--red);
+    margin-bottom: -1px;
+    margin-top: -1px;
+    margin-left: calc(1rem - 1px);
+    margin-right: -1px;
+    height: calc(1.5rem + 2px);
+    background-color: #fff7f7;
+}

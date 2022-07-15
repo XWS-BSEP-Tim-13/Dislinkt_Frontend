@@ -1,0 +1,13 @@
+.wrapper{
+    display: flex;
+    height: 85vh;
+    margin: 1.5rem 10%;
+}
+
+.messages{
+   width: 30%;
+}
+
+.chat {
+    width: 70%;
+}

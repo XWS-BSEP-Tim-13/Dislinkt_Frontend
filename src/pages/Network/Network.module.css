@@ -1,0 +1,14 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+    margin: 1.5rem 10%;
+    margin-bottom: 5rem;
+}
+
+.profileSummary {
+    width: 20%;
+}
+
+.network {
+    width: 75%;
+}
